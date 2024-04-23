@@ -1,92 +1,47 @@
-# Argo Worfklow
+# Component Name
 
-Argo Worfklow engine (OHDSA) 
+## Overview
 
-## Getting started
+This component aims to provide [describe the main functionality or goal] in the context of the Operational Hyperspectral Data Store and Access (OHDSA) platform (Dim-Sum).
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Features
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- Feature 1: Description of what it does.
+- Feature 2: Description of what it does.
+- Feature 3: Description of what it does.
 
-## Add your files
+## Getting Started
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+To begin using this project, please refer to the [Installation Manual](./docs/installation_manual.md).
 
-```
-cd existing_repo
-git remote add origin https://gl1.spacebel.be/bu-users/ohdsa/argo-worfklow.git
-git branch -M main
-git push -uf origin main
-```
+## Documentation
 
-## Integrate with your tools
+Detailed documentation is available to help you understand and use the project effectively:
 
-- [ ] [Set up project integrations](https://gl1.spacebel.be/bu-users/ohdsa/argo-worfklow/-/settings/integrations)
+- [User Manual](./docs/user_manual.md): A comprehensive guide for end-users on how to use the application.
+- [Software Design](./docs/design/sw_design.md): Documentation detailing the API specifications and usage.
+- [API Design](./docs/design/api_design.md): Documentation detailing the API specifications and usage.
 
-## Collaborate with your team
+## API Reference
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+For a detailed description of the API, see the [API Specifications](./api/openapi.yaml).
 
-## Test and Deploy
+## Configuration and Deployment
 
-Use the built-in continuous integration in GitLab.
+Configuration instructions and deployment guides are provided for different environments:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- [Helm Charts](./charts/README.md): Guidelines on using and configuring Helm charts for Kubernetes deployment.
+- [Docker Deployment](./deploy/image/README.md): Instructions for building the Docker image of the component.
+- [Kubernetes Deployment](./deploy/kubernetes/README.md): Description of the main Kubernetes resources of the components.
 
-***
+## Examples
 
-# Editing this README
+Explore practical examples to better understand how to integrate and use the project's features:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- [Example Usage](./examples/README.md)
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project incorporates components from the open source software, XXX, which is licensed under license XXX.
+
+All work developed within the context of this project, including modifications and extensions to the original components, is licensed under the [EUROPEAN SPACE AGENCY COMMUNITY LICENSE – V2.4 PERMISSIVE (TYPE 3)](https://essr.esa.int/license/european-space-agency-community-license-v2-4-permissive-type-3).

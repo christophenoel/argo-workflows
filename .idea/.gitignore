@@ -1,0 +1,31 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+
+# IntelliJ specific
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usageStatistics.xml
+.idea/dictionaries
+.idea/shelf/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usageStatistics.xml
+.idea/**/dictionaries
+.idea/**/shelf/
+.idea/**/contentModel.xml
+.idea/dataSources/
+.idea/dataSources.ids
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+*.iws
