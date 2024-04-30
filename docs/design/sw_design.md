@@ -72,7 +72,7 @@ Workflow designer creates workflows using a Directed Acyclic Graph (DAG) model.
 
 #### Hardware Constraints
 
-> TBD: Resource requirements/limites and afifnities
+> TBD: Resource requirements/limits and affinities
 
 #### Artefact Persistence
 
@@ -104,7 +104,7 @@ Argo Workflows encompasses the various components and resources it manages and i
 - **Control Flow**: Describe how the component starts and terminates, including any interactions during execution (such as interrupts).
 - **Data Flow**: Explain the input and output data flows, ensuring data structures are linked with control flows and interface components through common data areas or files.
 
-Documentation detailing the API specifications and usage is provided in teh [API Design](./docs/design/api_design.md)
+Documentation detailing the API specifications and usage is provided in teh [API Design](./api_design.md)
 
 > NOte: sequence diagram and link to the api-design document.
 
@@ -112,7 +112,7 @@ Documentation detailing the API specifications and usage is provided in teh [API
 ### Resources
 - **Requirements**: Itemize what the component needs from its environment to perform its function, excluding items that are part of the component interface.
 
-> NOTE: include docker dependencies, might iclude maven dependencies (libs)
+> NOTE: include docker dependencies, might include maven dependencies (libs)
 
 
 ### Data

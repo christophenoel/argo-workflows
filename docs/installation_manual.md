@@ -48,7 +48,7 @@ cd charts
 helm install my-release ./<chart-name>
 ```
 
-For a detailed description of the Helm chart and configuration options, refer to the [Helm Chart Description](./charts/<chart-name>/README.md).
+For a detailed description of the Helm chart and configuration options, refer to the [Helm Chart Description](../charts/README.md).
 
 ## Configuration
 

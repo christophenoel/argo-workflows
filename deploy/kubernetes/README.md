@@ -49,5 +49,5 @@ kubectl delete -f .
 
 ## Additional Resources
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
-- [Helm Charts](../charts/README.md) for managing complex deployments with Helm.
+- [Helm Charts](../../charts/README.md) for managing complex deployments with Helm.
 

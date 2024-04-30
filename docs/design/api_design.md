@@ -6,8 +6,6 @@
 - [Producers and Consumers](#producers-and-consumers)
 - [Operations](#operations)
 - [Data Model](#data-model)
-- [Security Considerations](#security-considerations)
-- [Error Handling](#error-handling)
 
 ## Interface Overview
 Provide a brief overview of the purpose and functionality of the API, including how it integrates with other systems and services.

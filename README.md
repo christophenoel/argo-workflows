@@ -6,7 +6,7 @@ Argo Workflows enables the chaining of container-based modules and workflows.
 
 Argo Workflows is a **Commercial-Of-The-Shelf (COTS)** Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. 
 
-The component description is provided in the context of the Operational Hyperspectral Data Store and Access (OHDSA) platform (Dim-Sum).
+The component description is provided in the context of the Operational Hyper-spectral Data Store and Access (OHDSA) platform (Dim-Sum).
 
 ## Features
 
