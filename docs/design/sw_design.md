@@ -1,20 +1,17 @@
-# Software Design Document for [Project Name]
+# Software Design Document for Argo-Workflow
 
 ## Table of Contents
-- [Software Components Design - Aspects of Each Component](#software-components-design---aspects-of-each-component)
-    - [General](#general)
-    - [Component Identifier](#component-identifier)
-    - [Type](#type)
-    - [Purpose](#purpose)
-    - [Function](#function)
-    - [Subordinates](#subordinates)
-    - [Dependencies](#dependencies)
-    - [Interfaces](#interfaces)
-    - [Resources](#resources)
-    - [References](#references)
-    - [Data](#data)
 
-## Software Components Design - Aspects of Each Component
+- [General](#general)
+- [Component Identifier](#component-identifier)
+- [Type](#type)
+- [Purpose](#purpose)
+- [Function](#function)
+- [Subordinates](#subordinates)
+- [Dependencies](#dependencies)
+- [Interfaces](#interfaces)
+- [Resources](#resources)
+- [Data](#data)
 
 ### General
 This section provides a detailed look at the design aspects of each component used in the software. 
@@ -25,12 +22,13 @@ This section provides a detailed look at the design aspects of each component us
 - **Naming Convention**: Argo-Workflows
 
 ### Type
+ 
 - **Logical Characteristics**: Argo Workflows is the main functional component implementing the Data Processing Environment sub-system of the OHDSA platform.
 - **Physical Characteristics**: Argo Workflows is a Commercial-Of-The-Shelf (COTS) Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. It uses Kubernetes resources like custom resources, pods, jobs, ConfigMaps, and Secrets to implement and manage workflows. Each workflow is defined as a Workflow object, which dictates the sequence of tasks to be executed. These tasks are encapsulated as Kubernetes Jobs or Pods, making each step of the workflow a discrete, schedulable unit under Kubernetes management.
 
 ### Purpose
 
-- **Description**: Argo Workflows component is designed to fulfill a pivotal role in managing and executing complex workflows that integrate various modules within Docker containers. The purpose of Argo Workflows is to enable users to submit both simple and elaborate workflows with a versatile Workflow Definition Language that accommodates Directed Acyclic Graph models, dynamic resource allocation, retry strategies, the utilisation of specialized hardware, and completion notifications. 
+Argo Workflows component is designed to fulfill a pivotal role in managing and executing complex workflows that integrate various modules within Docker containers. The purpose of Argo Workflows is to enable users to submit both simple and elaborate workflows with a versatile Workflow Definition Language that accommodates Directed Acyclic Graph models, dynamic resource allocation, retry strategies, the utilisation of specialized hardware, and completion notifications. 
 
 ### Function
 

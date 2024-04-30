@@ -2,7 +2,11 @@
 
 ## Overview
 
-This component aims to provide [describe the main functionality or goal] in the context of the Operational Hyperspectral Data Store and Access (OHDSA) platform (Dim-Sum).
+Argo Workflows enables the chaining of container-based modules and workflows. 
+
+Argo Workflows is a **Commercial-Of-The-Shelf (COTS)** Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. 
+
+The component description is provided in the context of the Operational Hyperspectral Data Store and Access (OHDSA) platform (Dim-Sum).
 
 ## Features
 
@@ -42,6 +46,10 @@ Explore practical examples to better understand how to integrate and use the pro
 
 ## License
 
-This project incorporates components from the open source software, XXX, which is licensed under license XXX.
+The component relies on the open source software Argo Workflows (Copyright 2017-2018 The Argo Authors) licensed under the Apache License, Version 2.0 (the "License").
 
-All work developed within the context of this project, including modifications and extensions to the original components, is licensed under the [EUROPEAN SPACE AGENCY COMMUNITY LICENSE – V2.4 PERMISSIVE (TYPE 3)](https://essr.esa.int/license/european-space-agency-community-license-v2-4-permissive-type-3).
+You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+All work developed within the context of the OHDSA project, including modifications and extensions to the original components, is licensed under the [EUROPEAN SPACE AGENCY COMMUNITY LICENSE – V2.4 PERMISSIVE (TYPE 3)](https://essr.esa.int/license/european-space-agency-community-license-v2-4-permissive-type-3).
