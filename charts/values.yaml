@@ -1,0 +1,6 @@
+workflow:
+  serviceAccount:
+    create: true
+    name: "executor"
+  rbac:
+    create: true
