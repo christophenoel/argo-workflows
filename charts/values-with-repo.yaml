@@ -11,14 +11,11 @@ artifactRepositoryRef:
     default-artifact-repository:
       s3:
         bucket: test
+        insecure: true
         endpoint: 172.17.20.10:30901
-        insecure: false
-        caSecret:
-          name: minio-cert
-          key: minio.pem
         accessKeySecret:
-         name: minio-credentials
-         key: accessKey
+          name: minio-credentials
+          key: accessKey
         secretKeySecret:
-         name: minio-credentials
-         key: secretKey
+          name: minio-credentials
+          key: secretKey
