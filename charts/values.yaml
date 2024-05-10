@@ -4,6 +4,14 @@ workflow:
     name: "executor"
   rbac:
     create: true
+server:
+  authModes: [ server ]
+  rbac:
+    create: true
+controller:
+  workflowDefaults:
+    spec:
+      serviceAccountName: executor
 artifactRepositoryRef:
   artifact-repositories:
     annotations:
