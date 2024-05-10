@@ -8,6 +8,8 @@ server:
   authModes: [ server ]
   rbac:
     create: true
+  serviceType: NodePort
+  serviceNodePort: 32747
 controller:
   workflowDefaults:
     spec:
