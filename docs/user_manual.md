@@ -98,7 +98,7 @@ Describe a typical task using graphical illustrations and diagrams to show the a
 ## Hello-World Tutorial
 This tutorial covers how we can use ARGO CLI to register a workflow template, submit a workflow and monitor its status before retrieving logs and results.
 
-### register a Workflow template
+### Register a Workflow template
 As we want to register a Workflow template, the first step would be to defined one.
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -122,6 +122,11 @@ See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-
 Once we have defined a workflow template in a YAML file, we can register this template by calling ARGO CLI:
 ```
 agro -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
+```
+
+After the workflow template registration, we should see the template in the list, with the following command:
+```
+agro -n <k8s-namespace> template list
 ```
 
 ## Artifact Tutorial
