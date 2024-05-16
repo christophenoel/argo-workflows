@@ -91,8 +91,39 @@ Provide procedures for restarting or recovering from errors and maintaining cont
 
 ## Tutorial
 
-Introduce how to use the software and what it accomplishes, tailored for both novices and experts.
+> NOTE: Introduce how to use the software and what it accomplishes, tailored for both novices and experts.
 A welcoming introduction to the software, setting the stage for its use.
 Describe a typical task using graphical illustrations and diagrams to show the actions performed by the user.
 
-> NOTE: optional
+## Hello-World Tutorial
+This tutorial covers how we can use ARGO CLI to register a workflow template, submit a workflow and monitor its status before retrieving logs and results.
+
+### register a Workflow template
+As we want to register a Workflow template, the first step would be to defined one.
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+name: hello-world-wft
+spec:
+entrypoint: whalesay
+templates:
+- name: whalesay
+inputs:
+parameters:
+- name: message
+container:
+image: docker/whalesay
+command: [ cowsay ]
+args: ["{{inputs.parameters.message}}"]
+```
+See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
+
+Once we have defined a workflow template in a YAML file, we can register this template by calling ARGO CLI:
+```
+agro -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
+```
+
+## Artifact Tutorial
+This tutorial covers how we can use and produce artifacts in a workflow.
+**TBC**
