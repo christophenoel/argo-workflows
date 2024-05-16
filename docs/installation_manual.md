@@ -11,6 +11,9 @@ Before you begin the installation, ensure that the following software is install
 - Docker
 - Kubernetes
 - Helm
+- Argo CLI
+
+NB: Argo CLI can be downloaded from here: https://github.com/argoproj/argo-workflows/releases/
 
 ## Build Procedure
 

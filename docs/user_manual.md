@@ -17,22 +17,21 @@
 
 ## Purpose of the Software
 
-Describe the intended uses of the software, including its capabilities, operational improvements, and benefits expected from its use.
-
-> Note: concise section
+Argo Workflow is an open-source engine tailored for orchestrating workflows on Kubernetes, enabling users to define, manage, and execute tasks in containers.
 
 ## Operations Environment
 
-This section describes the software environment required to operate the 
+Argo Workflow is executed on a Kubernetes cluster, on which it orchestrates the containers required fo executing the desired workflows.
 
 ### Hardware Configuration
 
+**TBC**
 Provide a block diagram illustrating the main hardware components of the system, including required memory, storage, and peripherals like printers.
 
 > Note: section might be omitted or restricted to requirements
 
 ### Software Configuration
-
+**TBC**
 Outline the main software components through a block diagram, including operating systems, utilities, and other supporting systems.
 
 > Note: might be restricted to description of docker environment
@@ -53,16 +52,26 @@ The set-up procedures are described in the [Installation Manual](./installation_
 
 ### Getting Started
 
-Include step-by-step procedures for beginning operations, available options, and a problem determination checklist.
 
-> Note : Often a single paragraph about how to start or access application (e.g. browser)
+1. Ensure Kubectl configuration points to the desired Kubernetes cluster.
+2. Open a new terminal.
 
 
 ### Normal Operations
 
-Identify and describe normal user operations, interface elements like menus, icons, user inputs, and expected outputs.
+From ARGO CLI, a non-exhaustive list of operations are available. 
 
-> NOTE: describe or link to various operations
+#### Workflow Template operations
+- List Workflow templates: `argo template list`
+- Create Workflow template: `argo -n <k8s-namespace> template create <workflow-template-definition.yaml>`
+- Delete workflow template: `argo -n <k8s-namespace> template delete <workflow-template-name>`
+
+#### Workflow operations
+- List Workflows: `argo -n <k8s-namespace> list`
+- Submit a workflow: `argo -n <k8s-namespace> submit <workflow-definition.yaml>`
+- Get status of a workflow: `argo -n <k8s-namespace> get <workflow-name>`
+- Retrieve logs of a workflow: `argo -n <k8s-namespace> logs <workflow-name>`
+- Delete a workflow: `argo -n <k8s-namespace> delete <workflow-name>`
 
 ### Normal Termination
 
