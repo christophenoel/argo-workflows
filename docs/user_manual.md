@@ -195,7 +195,77 @@ Expected output:
 
 
 ## Artifact Tutorial
-This tutorial covers how we can use and produce artifacts in a workflow.
+This tutorial covers how we can consume and produce artifacts in a workflow.
+For this purpose, we will use the artifact-consumer example located in [examples/artifact/consumer](../examples/artifact-consumer)
+
+The workflow Template is as follows:
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: artifact-consumer-wft
+spec:
+  entrypoint: process-artifact
+  templates:
+    - name: process-artifact
+      inputs:
+        parameters:
+          - name: source-path
+          - name: target-path
+        artifacts:
+          - name: input-file
+            path: /tmp/input-file
+            s3:
+              bucket: test
+              key: "{{inputs.parameters.source-path}}"
+      outputs:
+        artifacts:
+          - name: output-file
+            path: /tmp/output-file.txt
+            archive:
+              none: { }
+            s3:
+              key: "{{inputs.parameters.target-path}}"
+      container:
+        image: docker/whalesay
+        command: [ sh, -c ]
+        args: ["ls -lh /tmp/input-file >> /tmp/output-file.txt"]
+```
+See: [examples/artifact/consumer/artifact-consumer-wf-template.yml](../examples/artifact-consumer/artifact-consumer-wf-template.yml)
+
+This workflow template defines an input artifact, which references a bucket 'test' and the key is provided as a parameter.
+```yaml
+artifacts:
+          - name: input-file
+            path: /tmp/input-file
+            s3:
+              bucket: test
+              key: "{{inputs.parameters.source-path}}"
+```
+
+
+It also defines an output artifact, which key is also provided as a parameter:
+```yaml
+artifacts:
+          - name: output-file
+            path: /tmp/output-file.txt
+            archive:
+              none: { }
+            s3:
+              key: "{{inputs.parameters.target-path}}"
+```
+
+The first step, is to register this workflow template:
+```
+argo -n <k8s-namespace> template create examples/artifact-consumer/artifact-consumer-wf-template.yml
+```
+
+Expected output:
+
+![img.png](user_manual_resources/img-6.png)
+
+
+
 **TBC**
 
 ## WEB GUI Tutorial
