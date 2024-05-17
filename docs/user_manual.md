@@ -95,7 +95,6 @@ Provide procedures for restarting or recovering from errors and maintaining cont
 A welcoming introduction to the software, setting the stage for its use.
 Describe a typical task using graphical illustrations and diagrams to show the actions performed by the user.
 
-## Hello-World Tutorial
 This tutorial covers how we can use ARGO CLI to register a workflow template, submit a workflow and monitor its status before retrieving logs and results.
 
 ### Register a Workflow template
@@ -122,12 +121,13 @@ See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-
 Once we have defined a workflow template in a YAML file, we can register this template by calling ARGO CLI:
 In this tutorial, we will use the template located at: examples/hello-world-template/hello-world-wf-template.yml
 
-To proceed, open a new terminal windows at the reoot of this project.
+To proceed, open a new terminal windows at the root of this project.
 Then execute the following command:
 ```
 argo -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
 ```
 Expected output:
+
 ![img.png](user_manual_resources/img.png)
 
 After the workflow template registration, we should see the template in the list, with the following command:
@@ -135,11 +135,67 @@ After the workflow template registration, we should see the template in the list
 argo -n <k8s-namespace> template list
 ```
 Expected output:
+
 ![img.png](user_manual_resources/img-2.png)
 
-**TBC**
+### Submit a workflow
+
+As for the workflow template, the workflow can be defined in a yaml file.
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-workflow-
+spec:
+  arguments:
+    parameters:
+      - name: message
+        value: This is a whale message # Message to pass to the template
+  # Reference the WorkflowTemplate
+  workflowTemplateRef:
+    name: hello-world-wft
+```
+See: [hello-world-wf.yml](../examples/hello-world-template/hello-world-wf.yml)
+
+Once we have defined a workflow in a YAML file, we can submit it by calling ARGO CLI.
+In this tutorial, we will use the workflow located at: examples/hello-world-template/hello-world-wf.yml
+
+To proceed, open a new terminal windows at the root of this project.
+Then execute the following command:
+```
+argo -n <k8s-namespace> submit examples/hello-world-template/hello-world-wf.yml
+```
+Expected output:
+
+![img.png](user_manual_resources/img-3.png)
+
+### Monitor a workflow
+
+In order to monitor a submitted workflow, we can retrieve its status with the following command:
+```
+argo -n <k8s-namespace> get <workflow-name>
+```
+Note that `<workflow-name>` correspond to the name of the workflow (available in the response to the submit workflow operation). In this example, it corresponds to: hello-world-workflow-qltqd
+
+Expected output:
+
+![img.png](user_manual_resources/img-4.png)
+
+In the response, we can observe that `Status` is `Succeeded`. meaning that the execution of this workflow terminated successfully.
+
+To retrieve the logs associated with this workflow, one can use the following command:
+```
+argo -n <k8s-namespace> get <workflow-name>
+```
+
+Expected output:
+
+![img.png](user_manual_resources/img-5.png)
+
 
 
 ## Artifact Tutorial
 This tutorial covers how we can use and produce artifacts in a workflow.
 **TBC**
+
+## WEB GUI Tutorial
