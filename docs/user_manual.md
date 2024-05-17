@@ -128,7 +128,7 @@ argo -n <k8s-namespace> template create examples/hello-world-template/hello-worl
 ```
 Expected output:
 
-![img.png](user_manual_resources/img.png)
+![img.png](user_manual_resources/tutorial-img.png)
 
 After the workflow template registration, we should see the template in the list, with the following command:
 ```
@@ -136,7 +136,7 @@ argo -n <k8s-namespace> template list
 ```
 Expected output:
 
-![img.png](user_manual_resources/img-2.png)
+![img.png](user_manual_resources/tutorial-img-2.png)
 
 ### Submit a workflow
 
@@ -167,7 +167,7 @@ argo -n <k8s-namespace> submit examples/hello-world-template/hello-world-wf.yml
 ```
 Expected output:
 
-![img.png](user_manual_resources/img-3.png)
+![img.png](user_manual_resources/tutorial-img-3.png)
 
 ### Monitor a workflow
 
@@ -179,7 +179,7 @@ Note that `<workflow-name>` correspond to the name of the workflow (available in
 
 Expected output:
 
-![img.png](user_manual_resources/img-4.png)
+![img.png](user_manual_resources/tutorial-img-4.png)
 
 In the response, we can observe that `Status` is `Succeeded`. meaning that the execution of this workflow terminated successfully.
 
@@ -190,7 +190,7 @@ argo -n <k8s-namespace> get <workflow-name>
 
 Expected output:
 
-![img.png](user_manual_resources/img-5.png)
+![img.png](user_manual_resources/tutorial-img-5.png)
 
 
 
@@ -267,7 +267,7 @@ argo -n <k8s-namespace> template create examples/artifact-consumer/artifact-cons
 
 Expected output:
 
-![img.png](user_manual_resources/img-6.png)
+![img.png](user_manual_resources/tutorial-img-6.png)
 
 After registering the workflow template, we can submit a workflow. 
 This workflow will have to define the key used for the input (source-path) and output (target-path) artifacts.
@@ -297,7 +297,7 @@ argo -n <k8s-namespace> submit examples/artifact-consumer/artifact-consumer-wf.y
 
 Expected output:
 
-![img.png](user_manual_resources/img-7.png)
+![img.png](user_manual_resources/tutorial-img-7.png)
 
 
 To monitor the workflow execution progress, use the same commands as in the basic tutorial.
@@ -308,25 +308,25 @@ In this tutorial we will see how we can leverage the graphical user interface to
 
 The first step is to open a web browser and open the url on which your argo workflow web server is exposed. From the Home page you can use the navigation menu displayed on the left to choose the desired section.
 
-![img.png](user_manual_resources/img-8.png)
+![img.png](user_manual_resources/tutorial-img-8.png)
 
 In our case we will select the 'Workflow Templates tab'. From this page we can see the different workflow templates available, create new ones, delete old ones,....
 
-![img.png](user_manual_resources/img-9.png)
+![img.png](user_manual_resources/tutorial-img-9.png)
 
 After deploying the desired workflow template, you can choose the 'Workflow' page (still from the navigation menu on the left).
 
-![img.png](user_manual_resources/img-10.png)
+![img.png](user_manual_resources/tutorial-img-10.png)
 
 From this page, we can see the workflows already submitted, submit a new one, monitor a workflow, delete one,...
 
 Now, if we click on a workflow we can see its status, this section can also help us to monitor a workflow during its execution.
 
-![img.png](user_manual_resources/img-11.png)
+![img.png](user_manual_resources/tutorial-img-11.png)
 
 By clicking on the output artifact 'results.txt' we can see its content and download it.
 
-![img.png](user_manual_resources/img-12.png)
+![img.png](user_manual_resources/tutorial-img-12.png)
 
 This concludes this tutorial. 
 You can find more information online on: [Argo Workflow - User Guide](https://argo-workflows.readthedocs.io/en/latest/workflow-concepts/)
