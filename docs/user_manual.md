@@ -195,7 +195,12 @@ Expected output:
 
 
 ## Artifact Tutorial
-This tutorial covers how we can consume and produce artifacts in a workflow.
+
+Requirements:
+- This tutorial requires that your argo workflow installation uses a default artifact repository (see the [installation manual](installation_manual.md) for more information on this)
+- It also requires that a bucket named 'test' is presetn at the root of your artifact repository (S3 storage).
+
+This tutorial covers how we can consume and produce artifacts in a workflow. 
 For this purpose, we will use the artifact-consumer example located in [examples/artifact/consumer](../examples/artifact-consumer)
 
 The workflow Template is as follows:
@@ -264,8 +269,37 @@ Expected output:
 
 ![img.png](user_manual_resources/img-6.png)
 
+After registering the workflow template, we can submit a workflow. 
+This workflow will have to define the key used for the input (source-path) and output (target-path) artifacts.
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: artifact-consumer-wft-
+spec:
+  arguments:
+    parameters:
+      - name: source-path
+        value: lorem.txt # The specific key for the S3 input object
+      - name: target-path
+        value: result.txt # The specific key where the S3 output object will be written
+
+  # Reference the WorkflowTemplate
+  workflowTemplateRef:
+    name: artifact-consumer-wft
+```
+See: [examples/artifact/consumer/artifact-consumer-wf.yml](../examples/artifact-consumer/artifact-consumer-wf.yml)
+
+Submit the workflow for execution with the following command:
+```
+argo -n <k8s-namespace> submit examples/artifact-consumer/artifact-consumer-wf.yml
+```
+
+Expected output:
+
+![img.png](user_manual_resources/img-7.png)
 
 
-**TBC**
+To monitor the workflow execution progress, use the same commands as in the basic tutorial.
 
 ## WEB GUI Tutorial
