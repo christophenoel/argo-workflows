@@ -120,14 +120,25 @@ args: ["{{inputs.parameters.message}}"]
 See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
 
 Once we have defined a workflow template in a YAML file, we can register this template by calling ARGO CLI:
+In this tutorial, we will use the template located at: examples/hello-world-template/hello-world-wf-template.yml
+
+To proceed, open a new terminal windows at the reoot of this project.
+Then execute the following command:
 ```
-agro -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
+argo -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
 ```
+Expected output:
+![img.png](user_manual_resources/img.png)
 
 After the workflow template registration, we should see the template in the list, with the following command:
 ```
-agro -n <k8s-namespace> template list
+argo -n <k8s-namespace> template list
 ```
+Expected output:
+![img.png](user_manual_resources/img-2.png)
+
+**TBC**
+
 
 ## Artifact Tutorial
 This tutorial covers how we can use and produce artifacts in a workflow.
