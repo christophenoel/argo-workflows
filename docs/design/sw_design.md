@@ -41,7 +41,8 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
 - **Event-driven Execution**: 
   Argo Events is an event-driven workflow automation framework capable of triggering Argo Workflows based on external events (for reactive workflow scenarios). it supports a significant list (more than 20) of event sources, including AMQP and Minio.
   Agro Evtens support of Minio enables to automate workflow execution based on changes within a bucket. 
-  ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\argo-workflow-trigger.png) 
+  ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\argo-workflow-trigger.png)
+  Argo Events does not only support the 'Submit' operation but also supports the following operations: Submit,Submit --from,Resubmit, Resume, Retry,Suspend,Terminate,Stop.
   For more information see: https://argoproj.github.io/argo-events/sensors/triggers/argo-workflow/
 
 - **Resource Optimization**: Dynamically allocates resources based on task demands, optimizing cluster resource use.
