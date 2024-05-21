@@ -49,7 +49,12 @@ To ensure a container is executed on a Kubernetes node with a specific hardware 
 - **Error Handling and Retry Logic**: Argo Workflow provides built-in mechanisms for error recovery and task retries.
  This mechanism is called the 'retryStrategy' and can be defined in Workflow specification. The strategy is used to decide in which case a step is retried. In addition to the retry decision, it is possible to configure a 'backoff' mechanism in order to delay the retry and thus avoid retrying too soon or too frequently. https://argo-workflows.readthedocs.io/en/stable/retries/
 
-- **Monitoring and Logging**: Supports integration with Prometheus for monitoring and fluentd for logging, enhancing visibility into workflow operations.
+- **Monitoring**: Supports integration with Prometheus for monitoring
+
+- **Logging**: 
+It is officially not recommended to rely on Argo to archive logs as it is a naive solution, not designed for indexing, searching, and storing logs (see: https://argo-workflows.readthedocs.io/en/stable/configure-archive-logs/). 
+In a Kubernetes environment, logs can be forwarded by an agent running on the node (see: https://kubernetes.io/docs/concepts/cluster-administration/logging/#using-a-node-logging-agent). 
+This agent can forward logs to be saved and indexed for a future usage. Such solution can be provided by Fluentd (acting as the agent forwarding logs). Such logs can be forwarded to ElasticSearch (ELK) which provides storing, indexing and searching capabilities.
 
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
 
