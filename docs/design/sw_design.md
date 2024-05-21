@@ -45,9 +45,9 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
 When defining a workflow template, within the 'container' section, resourceRequirements can be defined: https://argo-workflows.readthedocs.io/en/stable/fields/#resourcerequirements
 By specifying 'podSpecPatch' field in either the workflow or workflow template, one can override the resource limits and requests associated with a container: https://argo-workflows.readthedocs.io/en/stable/fields/#fields_123
 
-
-- **Error Handling and Retry Logic**: Argo Workflow rovides built-in mechanisms for error recovery and task retries.
+- **Error Handling and Retry Logic**: Argo Workflow provides built-in mechanisms for error recovery and task retries.
  This mechanism is called the 'retryStrategy' and can be defined in Workflow specification. The strategy is used to decide in which case a step is retried. In addition to the retry decision, it is possible to configure a 'backoff' mechanism in order to delay the retry and thus avoid retrying too soon or too frequently. https://argo-workflows.readthedocs.io/en/stable/retries/
+
 - **Monitoring and Logging**: Supports integration with Prometheus for monitoring and fluentd for logging, enhancing visibility into workflow operations.
 
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
