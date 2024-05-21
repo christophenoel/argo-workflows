@@ -38,7 +38,11 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
 
 - **DAG Execution**: Manages task dependencies using Directed Acyclic Graphs to ensure optimal execution order.
 
-- **Event-driven Execution**: Allows workflows to be triggered by external events for reactive workflow scenarios.
+- **Event-driven Execution**: 
+  Argo Events is an event-driven workflow automation framework capable of triggering Argo Workflows based on external events (for reactive workflow scenarios). it supports a significant list (more than 20) of event sources, including AMQP and Minio.
+  Agro Evtens support of Minio enables to automate workflow execution based on changes within a bucket. 
+  ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\argo-workflow-trigger.png) 
+  For more information see: https://argoproj.github.io/argo-events/sensors/triggers/argo-workflow/
 
 - **Resource Optimization**: Dynamically allocates resources based on task demands, optimizing cluster resource use.
   To achieve resource usage optimization, one can leverage Kubernetes resource mechanisms (limits and requests). 
@@ -55,7 +59,7 @@ To ensure a container is executed on a Kubernetes node with a specific hardware 
 It is officially not recommended to rely on Argo to archive logs as it is a naive solution, not designed for indexing, searching, and storing logs (see: https://argo-workflows.readthedocs.io/en/stable/configure-archive-logs/). 
 In a Kubernetes environment, logs can be forwarded by an agent running on the node (see: https://kubernetes.io/docs/concepts/cluster-administration/logging/#using-a-node-logging-agent). 
 This agent can forward logs to be saved and indexed for a future usage. Such solution can be provided by Fluentd (acting as the agent forwarding logs). Such logs can be forwarded to ElasticSearch (ELK) which supports storing, indexing and searching capabilities.
-
+![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\logging-with-node-agent.png)
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
