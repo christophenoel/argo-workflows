@@ -35,11 +35,21 @@ Argo Workflows component is designed to fulfill a pivotal role in managing and e
 Argo Workflows is a container-native workflow engine for Kubernetes, designed to orchestrate parallel jobs in a cloud environment. Here are its major functions:
 
 - **Workflow Orchestration**: Executes workflows where each step is a container, handling sequential, parallel, or conditionally executed steps.
+
 - **DAG Execution**: Manages task dependencies using Directed Acyclic Graphs to ensure optimal execution order.
+
 - **Event-driven Execution**: Allows workflows to be triggered by external events for reactive workflow scenarios.
+
 - **Resource Optimization**: Dynamically allocates resources based on task demands, optimizing cluster resource use.
+  To achieve resource usage optimization, one can leverage Kubernetes resource mechanisms (limits and requests). 
+When defining a workflow template, within the 'container' section, resourceRequirements can be defined: https://argo-workflows.readthedocs.io/en/stable/fields/#resourcerequirements
+By specifying 'podSpecPath' field in either the workflow or workflow template, one can override the resource limits and requests associated with a container: https://argo-workflows.readthedocs.io/en/stable/fields/#fields_123
+
+
 - **Error Handling and Retry Logic**: Provides built-in mechanisms for error recovery and task retries.
+
 - **Monitoring and Logging**: Supports integration with Prometheus for monitoring and fluentd for logging, enhancing visibility into workflow operations.
+
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
