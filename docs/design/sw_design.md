@@ -68,7 +68,9 @@ In a Kubernetes environment, logs can be forwarded by an agent running on the no
 This agent can forward logs to be saved and indexed for a future usage. Such solution can be provided by Fluentd (acting as the agent forwarding logs). Such logs can be forwarded to ElasticSearch (ELK) which supports storing, indexing and searching capabilities.
 ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\logging-with-node-agent.png)
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
-  All users of the Argo Server must ultimately use a service account in order to interact with the Argo Controller. It is possible to define rules that map a user (using their OIDC groups) to a service account in the same namespace as argo server by annotating the desired service account. A single service account can be shared by multiple users, as it is used to list  possible actions a user can do.
+  All users of the Argo Server must use a service account in order to interact with the Argo Controller. A single service account can be shared by multiple users, as it is used to list  possible actions a user can do.
+  Rules  defined in Argo can associate a user (using their OIDC group) to a service account in the same namespace as Argo server by annotating the desired service account. By using such rules, users from the OIDC provider are associated to the appropriate service account, with which they can interact with Argo Workflow server to manage workflows.
+
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
 
 The following subsections focus on the implementation of the **OHDSA specific capabilities** supported by the workflow engine.
