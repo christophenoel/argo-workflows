@@ -77,6 +77,12 @@ This agent can forward logs to be saved and indexed for a future usage. Such sol
   Rules  defined in Argo can associate a user (using their OIDC group) to a service account in the same namespace as Argo server by annotating the desired service account. By using such rules, users from the OIDC provider are associated to the appropriate service account, with which they can interact with Argo Workflow server to manage workflows.
   For more information, see: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/
 
+- **Artifacts**
+Argo supports staging-in, staging-out and passing artifacts between steps thanks to artifact repositories.
+An artifact repository can be used with any S3 compatible API (like Minio). Artifact repositories are defined in Kubernetes configmaps and referenced in workflow templates in order to reduce information duplication and simplify artifact repository usage.
+It also supports other interfaces such as GIT, but there maybe some limitations. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
+  
+
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
 
 The following subsections focus on the implementation of the **OHDSA specific capabilities** supported by the workflow engine.
