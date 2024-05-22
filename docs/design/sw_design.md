@@ -63,7 +63,7 @@ To ensure a container is executed on a Kubernetes node with a specific hardware 
 - **Monitoring**: Argo produces metrics that provide information on the controller's status. As those metrics follow the same format as required by prometheus, those can be integrated with Prometheus.
   Two types of metrics are emitted by Argo: 
   - Controller metrics: concerns the state of the controller;
-  - Custom metrics: regards the state of a Workflow, or a series of Workflows.
+  - Custom metrics: regards the state of a Workflow, or a series of Workflows. Those metrics can be defined on the Workflow/Step/Task emitting the metric. using the same name and help string, is a required by prometheus to track the metrics over time. 
   
   For more information, see: See: https://argo-workflows.readthedocs.io/en/stable/metrics/
 
