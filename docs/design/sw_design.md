@@ -70,6 +70,7 @@ This agent can forward logs to be saved and indexed for a future usage. Such sol
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
   All users of the Argo Server must use a service account in order to interact with the Argo Controller. A single service account can be shared by multiple users, as it is used to list  possible actions a user can do.
   Rules  defined in Argo can associate a user (using their OIDC group) to a service account in the same namespace as Argo server by annotating the desired service account. By using such rules, users from the OIDC provider are associated to the appropriate service account, with which they can interact with Argo Workflow server to manage workflows.
+  For more information, see: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
 
