@@ -60,7 +60,12 @@ To ensure a container is executed on a Kubernetes node with a specific hardware 
 - **Error Handling and Retry Logic**: Argo Workflow provides built-in mechanisms for error recovery and task retries.
  This mechanism is called the 'retryStrategy' and can be defined in Workflow specification. The strategy is used to decide in which case a step is retried. In addition to the retry decision, it is possible to configure a 'backoff' mechanism in order to delay the retry and thus avoid retrying too soon or too frequently. https://argo-workflows.readthedocs.io/en/stable/retries/
 
-- **Monitoring**: Argo produces metrics that provide information on the controller's status. As those metrics follow the same format as required by prometheus, those can be integrated with Prometheus. See: https://argo-workflows.readthedocs.io/en/stable/metrics/#default-controller-metrics
+- **Monitoring**: Argo produces metrics that provide information on the controller's status. As those metrics follow the same format as required by prometheus, those can be integrated with Prometheus.
+  Two types of metrics are emitted by Argo: 
+  - Controller metrics: concerns the state of the controller;
+  - Custom metrics: regards the state of a Workflow, or a series of Workflows.
+  
+  For more information, see: See: https://argo-workflows.readthedocs.io/en/stable/metrics/
 
 - **Logging**: 
 It is officially not recommended to rely on Argo to archive logs as it is a naive solution, not designed for indexing, searching, and storing logs (see: https://argo-workflows.readthedocs.io/en/stable/configure-archive-logs/). 
