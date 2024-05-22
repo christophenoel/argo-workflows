@@ -80,7 +80,7 @@ This agent can forward logs to be saved and indexed for a future usage. Such sol
 - **Artifacts**
 Argo supports staging-in, staging-out and passing artifacts between steps thanks to artifact repositories.
 An artifact repository can be used with any S3 compatible API (like Minio). Artifact repositories are defined in Kubernetes configmaps and referenced in workflow templates in order to reduce information duplication and simplify artifact repository usage.
-It also supports other interfaces such as GIT, but there maybe some limitations. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
+It also supports other interfaces such as GIT. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
   
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
