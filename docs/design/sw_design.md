@@ -162,10 +162,7 @@ If the expression evaluates to false, the step will not be retried. The result o
 
 **Backoff**: The backoff parameter can be used to avoid too frequent retries too soon by introducing a delay between retries, thereby preventing immediate subsequent retry attempts.
 
-- **TBD**: add example of retry strategy
-
-In addition to the retry decision, it is possible to configure a 'backoff' mechanism in order to delay the retry and thus avoid retrying too soon or too frequently.
-**TBD**: Add example of backoff
+**TBD**: add example of retry strategy
 
 For more information, see: https://argo-workflows.readthedocs.io/en/stable/retries/
 
