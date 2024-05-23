@@ -55,9 +55,6 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
 
 - **Resource Optimization**: Dynamically allocates resources based on task demands, optimizing cluster resource use.
   To achieve resource usage optimization, one can leverage Kubernetes resource mechanisms (limits and requests). 
-When defining a workflow template, within the 'container' section, resourceRequirements can be defined: https://argo-workflows.readthedocs.io/en/stable/fields/#resourcerequirements
-By specifying 'podSpecPatch' field in either the workflow or workflow template, one can override the resource limits and requests associated with a container: https://argo-workflows.readthedocs.io/en/stable/fields/#fields_123
-To ensure a container is executed on a Kubernetes node with a specific hardware configuration, a nodeSelector can be defined both in the workflowSpecification or Workflow Template. The node selector should reference labels matching the labels defined on the desired node. On the other hand, Kubernetes nodes with specific hardware must use labels to advertise those specificities and leverage nodeSelector capabilities( see: https://argo-workflows.readthedocs.io/en/stable/fields/#template)
 
 - **Error Handling and Retry Logic**: Argo Workflow provides built-in mechanisms for error recovery and task retries.
 
@@ -92,12 +89,19 @@ The following subsections focus on the implementation of the **OHDSA specific ca
 
 #### API
 > list operations available in the REST API (required)
+> 
 > workflow template management (registration/list/describe)
+> 
 > workflow management (list/submit execution)
+> 
 > workflow deletion 
+> 
 > get status of workflow
+> 
 > get status of task/step
+> 
 > get logs of workflow /step
+> 
 > Note: TBD reference to API
 
 Argo Workflow provide a REST API endpoint with plenty operations.
@@ -171,6 +175,15 @@ For more information, see: https://argo-workflows.readthedocs.io/en/stable/retri
 > TBD: Resource requirements/limits and affinities
 > Describe how to use affinities to deploy pods on nodes with specific harware
 > Describe how to define resource requests/limits to deploy on node with sufficient resource (optimize resource usage).
+
+When defining a workflow template, resource requirements can be specified within the 'container' section. The 'podSpecPatch' field in either the workflow or workflow template allows for overriding the resource limits and requests for a container.
+
+  **TBD**: add request/limits example
+
+To ensure a container runs on a Kubernetes node with specific hardware configurations, a nodeSelector can be defined in the workflow specification or workflow template. This nodeSelector should reference labels that match those defined on the desired node. 
+It is essential that Kubernetes nodes with specific hardware configurations use labels matching those used in the workflow/template nodeSelector parameter.
+
+**TBD**: add nodeSelector example
 
 #### Artefact Persistence
 
