@@ -138,8 +138,31 @@ Workflow designer creates workflows using a Directed Acyclic Graph (DAG) model.
 > TBD Workflow designer implements retry strategies for failed or errored workflow steps
 > List the different strategies +show examples (retry number, backoff,...)
 
-This mechanism is called the 'retryStrategy' and can be defined in Workflow specification. The strategy is used to decide in which case a step is retried. 
-**TBD**: add example of retry strategy
+The retry strategy is used to decide in which case a step is retried.
+
+**Limit parameter:**
+A limit parameter san be specified in order to limit the number of reties.
+
+**Retry Policy:**
+In addition to this limit parameter, one can define a retry policy.
+Retry policies in Argo Workflows are configured using the retryPolicy parameter defined in Workflow specification. It determines the conditions under which failed steps should be retried.
+The available retry policies include:
+- Always: Retries all failed steps, regardless of the failure type.
+- OnFailure: Retries steps where the main container is marked as failed by Kubernetes.
+- OnError: Retries steps that encounter errors related to the Argo controller, or steps where the init or wait containers fail.
+- OnTransientError: Retries steps that encounter transient errors or errors that match the pattern specified in the TRANSIENT_ERROR_PATTERN environment variable.
+
+**Expressions**:In addition to retry policies, retries in Argo Workflows can be controlled using expressions. These expressions have access to the following variables:
+- lastRetry.exitCode: The exit code of the last retry, or "-1" if not available. 
+- lastRetry.status: The phase of the last retry, which can be "Error" or "Failed".
+- lastRetry.duration: The duration of the last retry, measured in seconds. 
+- lastRetry.message: The message output from the last retry.
+
+If the expression evaluates to false, the step will not be retried. The result of the expression is logically combined (using a logical AND) with the retryPolicy. Both the expression and the retry policy must evaluate to true for a retry to occur.
+
+**Backoff**: The backoff parameter can be used to avoid too frequent retries too soon by introducing a delay between retries, thereby preventing immediate subsequent retry attempts.
+
+- **TBD**: add example of retry strategy
 
 In addition to the retry decision, it is possible to configure a 'backoff' mechanism in order to delay the retry and thus avoid retrying too soon or too frequently.
 **TBD**: Add example of backoff
