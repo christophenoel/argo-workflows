@@ -104,21 +104,17 @@ The following subsections focus on the implementation of the **OHDSA specific ca
 > 
 > Note: TBD reference to API
 
-Argo Workflow provide a REST API endpoint with plenty operations.
+Argo Workflow provide a REST API endpoint with plenty operations, in which we can find the following ones:
+- Workflow Template creation
+- List available Workflow Templates 
+- Describe Workflow Template
+- List Workflows
+- Submit Workflow
+- Delete Workflow
+- Retrieve Workflow Status
+- Retrieve Workflow Logs
 
-**Workflow Template creation**: The following operation is used to register a reusable workflow template by providing the target namespace as a path parameter and the workflow template in the request's body.
-
-![img.png](sw_design_resources/api/create-template.png)
-
-**List available Workflow Templates**: The following operation list the reusable workflow templates already available. This request requires to provide the namespace as a path parameter, other parameters must be provided as query parameters and are optionals parameters used to filter the list returned by this operation.
-
-![img.png](sw_design_resources/api/list-templates.png)
-
-**Describe Workflow Template**:The following operation provide information about a specific workflow template.
-
-![img.png](sw_design_resources/api/describe-workflow-tempalte.png)
-
-**TBD: describe required operations**
+For more information on those operations,see API design documentation: [API](api_design.md)
 
 #### Reusable Workflow Templates
 
