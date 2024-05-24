@@ -1,0 +1,63 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: demo-artifacts-wft
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      steps:
+        - - name: process-artifact
+            template: process-artifact
+            arguments:
+              parameters:
+                - name: source-path
+                  value: "{{workflow.parameters.source-path}}"
+              artifacts:
+                - name: input-file
+        - - name: compress-files
+            template: compress-files
+            arguments:
+              parameters:
+                - name: target-path
+                  value: "{{workflow.parameters.target-path}}"
+              artifacts:
+                - name: intermediate-file
+                  from: "{{steps.process-artifact.outputs.artifacts.intermediate-file}}"
+
+    - name: process-artifact
+      inputs:
+        parameters:
+          - name: source-path
+        artifacts:
+          - name: input-file
+            path: /tmp/input-file
+      outputs:
+        artifacts:
+          - name: intermediate-file
+            path: /tmp/intermediate-file
+      container:
+        image: alpine
+        command: [sh, -c]
+        args: ["mkdir -p /tmp/intermediate-file/ && cp /tmp/input-file /tmp/intermediate-file/input.txt && echo \"processing time: $(date)\" > /tmp/intermediate-file/processing.txt"]
+
+    - name: compress-files
+      inputs:
+        parameters:
+          - name: target-path
+        artifacts:
+          - name: intermediate-file
+            path: "/tmp/intermediate-file"
+            # Here the intermediate artifact is automatically passed to the next step.
+      outputs:
+        artifacts:
+          - name: output-file
+            path: /output-file
+            archive:
+              none: { }
+            s3:
+              key: "{{inputs.parameters.target-path}}"
+      container:
+        image: alpine
+        command: [ sh, -c ]
+        args: ["tar -cf output-file /tmp/intermediate-file"]
