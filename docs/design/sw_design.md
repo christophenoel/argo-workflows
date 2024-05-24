@@ -112,10 +112,53 @@ For more information on those operations,see API design documentation: [API](api
 > TBD: Workflow designer prepares reusable workflow templates for standardizing and streamlining reusable steps
 
 Argo Workflow supports defining workflow templates reused in workflow definitions. The REST API provide an operation to register such workflow template. For more information on this, see section 'Workflow Template creation' in the API Design document: [API](api_design.md)
+The following example represents a workflow template definition:
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: hello-world-wft
+spec:
+  entrypoint: whalesay
+  templates:
+    - name: whalesay
+      inputs:
+        parameters:
+          - name: message
+      container:
+        image: docker/whalesay
+        command: [ cowsay ]
+        args: ["{{inputs.parameters.message}}"]
+```
+See: [Example](../../examples/hello-world-template/hello-world-wf-template.yml)
 
 #### DAG Workflow Creation
 
 Workflow designer creates workflows using a Directed Acyclic Graph (DAG) model.
+Workflow templates can be referenced in DAG workflows in order to define workflow's tasks.
+
+The following example represents a DAG workflow definition:
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: dag-test-workflow-
+spec:
+  entrypoint: whalesay
+  templates:
+    - name: whalesay
+      dag:
+        tasks:
+          - name: call-wf-template-1
+            templateRef:
+              name: wf-template-1
+              template: whalesay-workflow-template
+            arguments:
+              parameters:
+                - name: message
+                  value: "hello world"
+```
+
 
 #### Data Artefacts
 
