@@ -83,7 +83,7 @@ An artifact repository can be used with any S3 compatible API (like Minio). Arti
 It also supports other interfaces such as GIT. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
   
 - **Notification**
-A default Exit handler can be configured in order to send notifications (such as emails or anything) to notify the completion of a workflow execution (failure/success)
+A default Exit handler can be configured in order to send notifications (such as emails or anything) to notify the completion of a workflow execution (failure/success). The exit handler is defined as a container executing a command, which permits to do anything with the end of the workflow, making it possible to communicate over any protocol.
   https://argo-workflows.readthedocs.io/en/stable/workflow-notifications/
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
