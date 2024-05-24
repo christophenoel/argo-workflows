@@ -82,6 +82,9 @@ Argo supports staging-in, staging-out and passing artifacts between steps thanks
 An artifact repository can be used with any S3 compatible API (like Minio). Artifact repositories are defined in Kubernetes configmaps and referenced in workflow templates in order to reduce information duplication and simplify artifact repository usage.
 It also supports other interfaces such as GIT. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
   
+- **Notification**
+A default Exit handler can be configured in order to send notifications (such as emails or anything) to notify the completion of a workflow execution (failure/success)
+  https://argo-workflows.readthedocs.io/en/stable/workflow-notifications/
 
 For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
 
