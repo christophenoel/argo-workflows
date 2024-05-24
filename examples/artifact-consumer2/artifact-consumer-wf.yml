@@ -9,7 +9,7 @@ spec:
         value: lorem.txt # The specific key for the S3 input object
       - name: target-path
         value: result.txt # The specific key where the S3 output object will be written
-    artefacts:
+    artifacts:
       - name: input-file
         s3:
           bucket: test
