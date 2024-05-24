@@ -40,9 +40,10 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
   - Main Container: This container executes the user-specified image. The argoexec utility is volume-mounted within this container and functions as the primary command, invoking the configured command as a subprocess.
   - Init Container: Known as an InitContainer, this container is responsible for fetching artifacts and parameters, making them accessible to the main container.
   - Wait Container: This container is tasked with performing necessary cleanup operations, including the preservation of parameters and artifacts.
+  
   **TBD**: add diagram to represent container usage
-[//]: # (  ![]&#40;D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\argo-workflow-overview.jpeg&#41;)
-    For more information, see: https://argo-workflows.readthedocs.io/en/stable/architecture/
+
+  For more information, see: https://argo-workflows.readthedocs.io/en/stable/architecture/
 
 - **DAG Execution**: Argo Workflows can manage task dependencies using Directed Acyclic Graphs to ensure optimal execution order.In a DAG template, tasks without any dependency will be run immediately.
 
@@ -70,8 +71,10 @@ Argo Workflows is a container-native workflow engine for Kubernetes, designed to
 It is officially not recommended to rely on Argo to archive logs as it is a naive solution, not designed for indexing, searching, and storing logs (see: https://argo-workflows.readthedocs.io/en/stable/configure-archive-logs/). 
 In a Kubernetes environment, logs can be forwarded by an agent running on the node (see: https://kubernetes.io/docs/concepts/cluster-administration/logging/#using-a-node-logging-agent). 
 This agent can forward logs to be saved and indexed for a future usage. Such solution can be provided by Fluentd (acting as the agent forwarding logs). Such logs can be forwarded to ElasticSearch (ELK) which supports storing, indexing and searching capabilities.
-**TBD**: add diagram to represent logging workflow
-- ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\logging-with-node-agent.png)
+
+  **TBD**: add diagram to represent logging workflow
+
+[//]: # (- ![]&#40;D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\logging-with-node-agent.png&#41;)
 - **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
   All users of the Argo Server must use a service account in order to interact with the Argo Controller. A single service account can be shared by multiple users, as it is used to list  possible actions a user can do.
   Rules  defined in Argo can associate a user (using their OIDC group) to a service account in the same namespace as Argo server by annotating the desired service account. By using such rules, users from the OIDC provider are associated to the appropriate service account, with which they can interact with Argo Workflow server to manage workflows.
