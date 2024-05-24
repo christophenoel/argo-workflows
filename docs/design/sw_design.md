@@ -94,21 +94,6 @@ For more detailed information, visit the [official Argo Workflows documentation]
 The following subsections focus on the implementation of the **OHDSA specific capabilities** supported by the workflow engine.
 
 #### API
-> list operations available in the REST API (required)
-> 
-> workflow template management (registration/list/describe)
-> 
-> workflow management (list/submit execution)
-> 
-> workflow deletion 
-> 
-> get status of workflow
-> 
-> get status of task/step
-> 
-> get logs of workflow /step
-> 
-> Note: TBD reference to API
 
 Argo Workflow provide a REST API endpoint with plenty operations, in which we can find the following ones:
 - Workflow Template creation
