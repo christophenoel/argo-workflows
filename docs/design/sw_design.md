@@ -271,6 +271,19 @@ It is essential that Kubernetes nodes with specific hardware configurations use 
 #### Retention Policies
 
 > TBD:  Workflow engine operator configure retention policies to remove expired workflows automatically
+> Archiving workflows: https://argo-workflows.readthedocs.io/en/stable/workflow-archive/
+
+The workflow archive stores information about the workflows such as the status, pods executed, results and more. This information is stored in a database such as PostgreSQL.
+
+**Archive TTL**:
+Specifies the time period to keep archived workflows before they will be deleted by the archived workflow garbage collection function. The default is forever.
+
+Example:
+```yaml
+persistence:
+  archiveTTL: 10d
+```
+
 
 
 ### Subordinates
