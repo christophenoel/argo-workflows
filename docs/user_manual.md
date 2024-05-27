@@ -199,7 +199,7 @@ For more information on those operations,see API design documentation: [API](./d
 
 > Authentication is not covered in this tutorial.
 
-**TBD**: Postman collection of requests used in this tutorial: [Postman DEMO Collection](./user_manual_resources/argo_workflow_demo.postman_collection.json)
+Postman collection of requests used in this tutorial: [Postman DEMO Collection](./user_manual_resources/argo_workflow_demo.postman_collection.json)
 
 Open the Postman collection HELLOWOLRD-TEMPLATE-EXAMPLE
 
