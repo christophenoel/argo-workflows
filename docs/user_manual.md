@@ -190,8 +190,60 @@ argo -n <k8s-namespace> get <workflow-name>
 
 Expected output:
 
-![img.png](user_manual_resources/tutorial-img-5.png)
+![img.png](./user_manual_resources/tutorial-img-5.png)
 
+## REST Tutorial
+
+In this section, we will see how to use the REST API for managing workflows.
+For more information on those operations,see API design documentation: [API](./design/api_design.md)
+
+> Authentication is not covered in this tutorial.
+
+**TBD**: Postman collection of requests used in this tutorial: 
+
+Open the Postman collection HELLOWOLRD-TEMPLATE-EXAMPLE
+
+### Register a Workflow template
+
+In this tutorial, we will use the template located at: examples/hello-world-template/hello-world-wf-template.yml
+See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
+
+Once we have defined a workflow template in a YAML file, we can register this template by calling the RESt API.
+
+Open the Postman collection and select the request located in Template/ Create Workflow Template:
+
+![img.png](user_manual_resources/tutorial-rest-register-template.png)
+
+Expected Output:
+**TBD**: Add screenshot.
+
+### Submit a Workflow
+
+Open the Postman request located in Workflow / Submit Workflow:
+
+![img.png](user_manual_resources/tutorial-rest-submit-workflow.png)
+
+Expected Output:
+**TBD**: Add screenshot.
+
+### Monitor a workflow
+
+The REST API provide an operation to retrieve the status of a Workflow including the status of the pods deployed on the Kubernetes cluster.
+
+Get STATUS request:
+
+![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-status.png)
+
+Expected output:
+![img.png](user_manual_resources/tutorial-rest-status.png)
+
+To retrieve the logs associated with a workflow, a REST Operation also exists.
+
+Get Logs request:
+![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-logs.png)
+
+Expected output:
+![img.png](user_manual_resources/tutorial-rest-logs.png)
 
 
 ## Artifact Tutorial
