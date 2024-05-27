@@ -230,7 +230,7 @@ Expected Output:
 
 The REST API provide an operation to retrieve the status of a Workflow including the status of the pods deployed on the Kubernetes cluster.
 
-Get STATUS request:
+Open the Postman collection and select the request located in Workflow/ Get Status:
 
 ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-status.png)
 
@@ -239,7 +239,8 @@ Expected output:
 
 To retrieve the logs associated with a workflow, a REST Operation also exists.
 
-Get Logs request:
+Open the Postman collection and select the request located in Workflow/ Get LOGS:
+
 ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-logs.png)
 
 Expected output:
