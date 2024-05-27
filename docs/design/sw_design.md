@@ -244,6 +244,10 @@ If the expression evaluates to false, the step will not be retried. The result o
 
 For more information, see: https://argo-workflows.readthedocs.io/en/stable/retries/
 
+#### Notification
+
+> **TBD**: describe how exit handler can be used to send notification of any type (using a container to send a AMQP message)
+
 #### Hardware Constraints
 
 > TBD: Resource requirements/limits and affinities
