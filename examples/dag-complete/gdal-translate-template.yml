@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: gdal-translate-template
+spec:
+  entrypoint: gdal-translate
+  templates:
+    - name: gdal-translate
+      inputs:
+        artifacts:
+          - name: input-dataset
+            path: /tmp/input-file
+        outputs:
+          artifacts:
+            - name: processed-dataset
+              path: /tmp/processed-file
+      container:
+        image: osgeo/gdal:latest
+        command: [sh, -c]
+        args: ["gdal_translate -mo \"project=dimsum\" /tmp/input-file.cog /tmp/processed-file.cog"]

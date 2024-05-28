@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: gdal-info-template
+spec:
+  entrypoint: gdal-info
+  templates:
+    - name: gdal-info
+      inputs:
+        artifacts:
+          - name: input-dataset
+            path: /tmp/input-file
+        outputs:
+          artifacts:
+            - name: report
+              path: /tmp/report.txt
+      container:
+        image: osgeo/gdal:latest
+        command: [sh, -c]
+        args: ["gdalinfo /tmp/input-file.cog > /tmp/report.txt"]
