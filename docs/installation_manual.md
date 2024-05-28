@@ -152,3 +152,8 @@ If CRD are already installed on the Kubernetes cluster, and you don’t want/nee
 helm install --namespace argo-helm argo-workflows argo/argo-workflows --version 0.41.4 --set crds.install=false
 ```
 
+## Uninstall
+```
+helm uninstall --namespace argo-helm argo-workflows
+kubectl delete namespace argo-helm
+```
