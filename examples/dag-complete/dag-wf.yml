@@ -22,6 +22,9 @@ spec:
                     endpoint: s3.amazonaws.com
                     region: us-west-2
                     key: /sentinel-s2-l2a-cogs/24/W/WS/2024/5/S2B_24WWS_20240521_0_L2A
+            retryStrategy:
+              limit: 10
+              retryPolicy: "Always"
           - name: gdal-info
             templateRef:
               name: wf-template-2
