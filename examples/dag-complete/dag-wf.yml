@@ -29,4 +29,10 @@ spec:
             arguments:
               artifacts:
                 - name: input-file
-                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+                  from: "{{tasks.['gdal-translate'].outputs.artifacts.processed-dataset}}"
+      outputs:
+        artifacts:
+          - name: gdal-report
+            from: "{{tasks.['gdal-info'].outputs.artifacts.report}}"
+          - name: processed-image
+            from: "{{tasks.['gdal-translate'].outputs.artifacts.processed-dataset}}"
