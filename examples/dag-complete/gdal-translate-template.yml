@@ -10,10 +10,10 @@ spec:
         artifacts:
           - name: input-dataset
             path: /tmp/input-file
-        outputs:
-          artifacts:
-            - name: processed-dataset
-              path: /tmp/processed-file
+      outputs:
+        artifacts:
+          - name: processed-dataset
+            path: /tmp/processed-file
       container:
         image: osgeo/gdal:latest
         command: [sh, -c]
