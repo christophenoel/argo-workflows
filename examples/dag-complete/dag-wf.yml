@@ -26,6 +26,7 @@ spec:
               limit: 10
               retryPolicy: "Always"
           - name: gdal-info
+            dependencies: [gdal-translate]
             templateRef:
               name: wf-template-2
               template: gdal-info-template
