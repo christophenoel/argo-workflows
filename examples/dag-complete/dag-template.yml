@@ -34,9 +34,27 @@ spec:
               artifacts:
                 - name: input-dataset
                   from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+          - name: stage-out
+            dependencies: [gdal-info]
+            template: stage-out
+            arguments:
+              artifacts:
+                - name: artifact-to-export
+                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+    - name: stage-out
+      inputs:
+        artifacts:
+          - name: artifact-to-export
+            path: /outputs
       outputs:
         artifacts:
-          - name: gdal-report
-            from: "{{tasks.gdal-info.outputs.artifacts.report}}"
           - name: processed-image
-            from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+            path: /outputs
+            s3:
+              bucket: test
+              key: result.tif
+           # from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+      container:
+        image: ghcr.io/osgeo/gdal:alpine-small-latest
+        command: [ sh, -c ]
+        args: [ "ls -la /outputs" ]
