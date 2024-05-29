@@ -9,12 +9,12 @@ spec:
       inputs:
         artifacts:
           - name: input-dataset
-            path: /tmp/input-file
+            path: /tmp/input-file.tif
       outputs:
         artifacts:
           - name: report
             path: /tmp/report.txt
       container:
-        image: osgeo/gdal:latest
+        image: ghcr.io/osgeo/gdal:alpine-small-latest
         command: [sh, -c]
-        args: ["gdalinfo /tmp/input-file.cog > /tmp/report.txt"]
+        args: ["gdalinfo /tmp/input-file.tif > /tmp/report.txt"]

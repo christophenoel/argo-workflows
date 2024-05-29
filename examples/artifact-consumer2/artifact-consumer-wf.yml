@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: artifact-consumer-wft-
+  generateName: artifact-consumer-wft-2-
 spec:
   arguments:
     parameters:
@@ -16,4 +16,4 @@ spec:
           key: "{{inputs.parameters.source-path}}"
   # Reference the WorkflowTemplate
   workflowTemplateRef:
-    name: artifact-consumer-wft
+    name: artifact-consumer-wft-2

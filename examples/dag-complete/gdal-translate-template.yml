@@ -9,12 +9,12 @@ spec:
       inputs:
         artifacts:
           - name: input-dataset
-            path: /tmp/input-file
+            path: /tmp/input-file.tif
       outputs:
         artifacts:
           - name: processed-dataset
-            path: /tmp/processed-file
+            path: /tmp/processed-file.tif
       container:
-        image: osgeo/gdal:latest
+        image: ghcr.io/osgeo/gdal:alpine-small-latest
         command: [sh, -c]
-        args: ["gdal_translate -mo \"project=dimsum\" /tmp/input-file.cog /tmp/processed-file.cog"]
+        args: ["gdal_translate -mo \"project=dimsum\" /tmp/input-file.tif /tmp/processed-file.tif"]
