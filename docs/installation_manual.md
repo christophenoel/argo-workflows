@@ -141,6 +141,21 @@ Ensure the installation was successful, by submitting a workflow to Argo:
 argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml --watch
 ```
 
+### Addition configuration
+
+#### Label Kubernetes nodes
+
+Labels associated with nodes are used by Argo Workflow and Kubernetes to choose on which node a pods must be scheduled.
+Here is an example of how to associate a label with a node:
+```
+kubectl label nodes <node-name> accelerator=<my-label>
+```
+
+To list labels associated with nodes:
+```
+kubectl get nodes --show-labels=true
+```
+
 ## Troubleshooting
 
 Offer common issues and solutions encountered during the installation process.

@@ -4,6 +4,8 @@ metadata:
   name: dag-template
 spec:
   entrypoint: gdal-manipulation
+  nodeSelector:
+    accelerator: "example-gpu"
   templates:
     - name: gdal-manipulation
       retryStrategy:
