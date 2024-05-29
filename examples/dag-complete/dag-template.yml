@@ -8,6 +8,7 @@ spec:
     accelerator: "example-gpu"
   templates:
     - name: gdal-manipulation
+      podSpecPatch: '{"containers":[{"name":"main", "resources":{"requests":{"memory": "100M" }}}]}'
       retryStrategy:
         limit: "10"
       inputs:
