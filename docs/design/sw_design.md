@@ -254,7 +254,7 @@ For more information, see: https://argo-workflows.readthedocs.io/en/stable/retri
 > Describe how to use affinities to deploy pods on nodes with specific harware
 > Describe how to define resource requests/limits to deploy on node with sufficient resource (optimize resource usage).
 
-When defining a workflow template, resource requirements can be specified within the 'container' section. The 'podSpecPatch' field in either the workflow or workflow template allows for overriding the resource limits and requests for a container.
+When defining a workflow template, resource requirements can be specified within the 'container' section. The 'podSpecPatch' field in either the workflow or workflow template allows for overriding the resource limits and requests for a container. See: [Example](https://github.com/argoproj/argo-workflows/blob/main/examples/pod-spec-patch.yaml)
 
   **TBD**: add request/limits example
 

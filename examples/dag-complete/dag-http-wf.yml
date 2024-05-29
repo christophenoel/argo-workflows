@@ -1,36 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: dag-demo-workflow-
+  generateName: dag-workflow-
 spec:
-  entrypoint: gdal-manipulation
-  templates:
-    - name: gdal-manipulation
-      retryStrategy:
-        limit: "10"
-      dag:
-        tasks:
-          - name: gdal-translate
-            templateRef:
-              name: gdal-translate-template
-              template: gdal-translate
-            arguments:
-              artifacts:
-                - name: input-dataset
-                  http:
-                    url: https://dagshub.com/DagsHub-Datasets/sentinel-2-l2a-cogs-dataset/raw/e9420f518fa204e0b3665bf66aba30ba38449c2b/s3:/sentinel-cogs/sentinel-s2-l2a-cogs/1/C/CV/2024/1/S2B_1CCV_20240106_0_L2A/B01.tif
-          - name: gdal-info
-            dependencies: [gdal-translate]
-            templateRef:
-              name: gdal-info-template
-              template: gdal-info
-            arguments:
-              artifacts:
-                - name: input-dataset
-                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
-      outputs:
-        artifacts:
-          - name: gdal-report
-            from: "{{tasks.gdal-info.outputs.artifacts.report}}"
-          - name: processed-image
-            from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+  arguments:
+    parameters:
+      - name: image-url
+        value: https://dagshub.com/DagsHub-Datasets/sentinel-2-l2a-cogs-dataset/raw/e9420f518fa204e0b3665bf66aba30ba38449c2b/s3:/sentinel-cogs/sentinel-s2-l2a-cogs/1/C/CV/2024/1/S2B_1CCV_20240106_0_L2A/B01.tif
+  workflowTemplateRef:
+    name: dag-template

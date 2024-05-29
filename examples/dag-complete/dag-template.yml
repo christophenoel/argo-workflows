@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: dag-template
+spec:
+  entrypoint: gdal-manipulation
+  templates:
+    - name: gdal-manipulation
+      retryStrategy:
+        limit: "10"
+      inputs:
+        parameters:
+          - name: image-url
+      dag:
+        tasks:
+          - name: gdal-translate
+            templateRef:
+              name: gdal-translate-template
+              template: gdal-translate
+            arguments:
+              artifacts:
+                - name: input-dataset
+                  http:
+                    url: "{{inputs.parameters.image-url}}"
+          - name: gdal-info
+            dependencies: [gdal-translate]
+            templateRef:
+              name: gdal-info-template
+              template: gdal-info
+            arguments:
+              artifacts:
+                - name: input-dataset
+                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+      outputs:
+        artifacts:
+          - name: gdal-report
+            from: "{{tasks.gdal-info.outputs.artifacts.report}}"
+          - name: processed-image
+            from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
