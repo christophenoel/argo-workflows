@@ -12,10 +12,10 @@ spec:
             path: /outputs
       outputs:
         artifacts:
-          - name: processed-image
+          - name: result
             path: /outputs
             s3:
-              bucket: outputs
+              bucket: archive
               key: result.tif
               insecure: true
               endpoint: l-k8s01-master.spb.spacebel.be:30901

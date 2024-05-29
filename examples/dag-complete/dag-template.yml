@@ -14,6 +14,11 @@ spec:
       inputs:
         parameters:
           - name: image-url
+      outputs:
+        artifacts:
+          - name: result
+            globalName: result
+            from: "{{tasks.stage-out.outputs.artifacts.result}}"
       dag:
         tasks:
           - name: gdal-translate
