@@ -6,6 +6,8 @@ spec:
   entrypoint: gdal-manipulation
   templates:
     - name: gdal-manipulation
+      retryStrategy:
+        limit: "10"
       dag:
         tasks:
           - name: gdal-translate
@@ -17,9 +19,6 @@ spec:
                 - name: input-dataset
                   http:
                     url: https://dagshub.com/DagsHub-Datasets/sentinel-2-l2a-cogs-dataset/raw/e9420f518fa204e0b3665bf66aba30ba38449c2b/s3:/sentinel-cogs/sentinel-s2-l2a-cogs/1/C/CV/2024/1/S2B_1CCV_20240106_0_L2A/B01.tif
-          #            retryStrategy:
-          #              limit: 10
-          #              retryPolicy: "Always"
           - name: gdal-info
             dependencies: [gdal-translate]
             templateRef:
