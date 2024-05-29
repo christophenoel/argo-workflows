@@ -36,7 +36,9 @@ spec:
                   from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
           - name: stage-out
             dependencies: [gdal-info]
-            template: stage-out
+            templateRef:
+              name: stage-out-template
+              template: stage-out
             arguments:
               artifacts:
                 - name: artifact-to-export
@@ -48,28 +50,3 @@ spec:
 #            s3:
 #              bucket: test
 #              key: result-2.tif
-    - name: stage-out
-      inputs:
-        artifacts:
-          - name: artifact-to-export
-            path: /outputs
-      outputs:
-        artifacts:
-          - name: processed-image
-            path: /outputs
-            s3:
-              bucket: outputs
-              key: result.tif
-              insecure: true
-              endpoint: l-k8s01-master.spb.spacebel.be:30901
-              accessKeySecret:
-                name: minio-credentials
-                key: accessKey
-              secretKeySecret:
-                name: minio-credentials
-                key: secretKey
-           # from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
-      container:
-        image: ghcr.io/osgeo/gdal:alpine-small-latest
-        command: [ sh, -c ]
-        args: [ "ls -la /outputs" ]
