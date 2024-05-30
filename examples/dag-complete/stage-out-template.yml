@@ -7,6 +7,8 @@ spec:
   templates:
     - name: stage-out
       inputs:
+        parameters:
+          - name: export-key
         artifacts:
           - name: artifact-to-export
             path: /outputs
@@ -16,7 +18,7 @@ spec:
             path: /outputs
             s3:
               bucket: archive
-              key: result.tif
+              key: "{{inputs.parameters.export-key}}"
               insecure: true
               endpoint: l-k8s01-master.spb.spacebel.be:30901
               accessKeySecret:
