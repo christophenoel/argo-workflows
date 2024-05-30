@@ -17,4 +17,4 @@ spec:
       container:
         image: ghcr.io/osgeo/gdal:alpine-small-latest
         command: [sh, -c]
-        args: ["gdalinfo /tmp/input-file.tif > /tmp/report.txt"]
+        args: ["gdalinfo /tmp/input-file.tif > /tmp/report.txt && cat /tmp/report.txt "]
