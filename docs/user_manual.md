@@ -356,7 +356,6 @@ Expected output:
 To monitor the workflow execution progress, use the same commands as in the basic tutorial.
 
 ## DAG Tutorial
-**TBC**
 
 The workflow Template is as follows:
 ```yaml
