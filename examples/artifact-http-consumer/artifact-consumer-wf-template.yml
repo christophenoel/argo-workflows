@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: artifact-consumer-wft-2
+  name: artifact-http-consumer-wft
 spec:
   entrypoint: process-artifact
   templates:
@@ -13,6 +13,8 @@ spec:
         artifacts:
           - name: input-file
             path: /tmp/input-file
+            http:
+              url: "{{inputs.parameters.url}}"
       outputs:
         artifacts:
           - name: output-file

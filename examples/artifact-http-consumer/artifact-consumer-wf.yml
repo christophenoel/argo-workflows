@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: artifact-http-consumer-wft-
+spec:
+  arguments:
+    parameters:
+      - name: url
+        value: https://dagshub.com/DagsHub-Datasets/sentinel-2-l2a-cogs-dataset/raw/e9420f518fa204e0b3665bf66aba30ba38449c2b/s3:/sentinel-cogs/sentinel-s2-l2a-cogs/1/C/CV/2024/1/S2B_1CCV_20240106_0_L2A/B01.tif
+      - name: target-path
+        value: result.txt # The specific key where the S3 output object will be written
+
+  # Reference the WorkflowTemplate
+  workflowTemplateRef:
+    name: artifact-http-consumer-wft
