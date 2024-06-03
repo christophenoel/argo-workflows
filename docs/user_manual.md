@@ -355,6 +355,93 @@ Expected output:
 
 To monitor the workflow execution progress, use the same commands as in the basic tutorial.
 
+## DAG Tutorial
+**TBC**
+
+The workflow Template is as follows:
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: dag-template
+spec:
+  entrypoint: gdal-manipulation
+  nodeSelector:
+    accelerator: "example-gpu"
+  templates:
+    - name: gdal-manipulation
+      podSpecPatch: '{"containers":[{"name":"main", "resources":{"requests":{"memory": "100M" }}}]}'
+      retryStrategy:
+        limit: "10"
+      inputs:
+        parameters:
+          - name: image-url
+          - name: export-key
+      outputs:
+        artifacts:
+          - name: result
+            globalName: result
+            from: "{{tasks.stage-out.outputs.artifacts.result}}"
+      dag:
+        tasks:
+          - name: gdal-translate
+            templateRef:
+              name: gdal-translate-template
+              template: gdal-translate
+            arguments:
+              artifacts:
+                - name: input-dataset
+                  http:
+                    url: "{{inputs.parameters.image-url}}"
+          - name: gdal-info
+            dependencies: [gdal-translate]
+            templateRef:
+              name: gdal-info-template
+              template: gdal-info
+            arguments:
+              artifacts:
+                - name: input-dataset
+                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+          - name: stage-out
+            dependencies: [gdal-info]
+            templateRef:
+              name: stage-out-template
+              template: stage-out
+            arguments:
+              parameters:
+                - name: export-key
+                  value: "{{inputs.parameters.export-key}}"
+              artifacts:
+                - name: artifact-to-export
+                  from: "{{tasks.gdal-translate.outputs.artifacts.processed-dataset}}"
+```
+
+See: [Example](../examples/dag-complete/dag-template.yml)
+
+This template defines a Direct Acyclic Graph (DAG), each task re-using a workflow template:
+1. GDAL Translate: Used to append metadata to a file [Template](../examples/dag-complete/gdal-translate-template.yml)
+2. GDAl Info: used to generate a report concernin the file modified in task 1. [Template](../examples/dag-complete/gdal-info-template.yml)
+3. Stage OUT: use to stage out the file modified in task 1.[Template](../examples/dag-complete/stage-out-template.yml)
+
+The first tak argument is an artifact of type HTTP artifact. The url is provided in the Workflow definition:
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: dag-workflow-
+spec:
+  arguments:
+    parameters:
+      - name: image-url
+        value: https://dagshub.com/DagsHub-Datasets/sentinel-2-l2a-cogs-dataset/raw/e9420f518fa204e0b3665bf66aba30ba38449c2b/s3:/sentinel-cogs/sentinel-s2-l2a-cogs/1/C/CV/2024/1/S2B_1CCV_20240106_0_L2A/B01.tif
+      - name: export-key
+        value: result.tif
+  workflowTemplateRef:
+    name: dag-template
+```
+See: [Workflow Example](../examples/dag-complete/dag-http-wf.yml)
+
+
 ## WEB GUI Tutorial
 
 In this tutorial we will see how we can leverage the graphical user interface to manage workflow templates, submit and monitor workflows.
