@@ -410,11 +410,11 @@ When a workflow references a `WorkflowTemplate`, it must provide the required pa
 
 ### Argo CLI
 
-This tutorial covers how you can use ARGO CLI to register a workflow template, submit a workflow and monitor its status before retrieving logs and results.
+This tutorial demonstrates how to use the Argo CLI to register a workflow template, submit a workflow, monitor its status, and retrieve logs and results.
 
 #### Register a Workflow template
 
-As we want to register a Workflow template, the first step would be to defined one.
+To register a workflow template, we first need to define one.
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -436,29 +436,21 @@ args: ["{{inputs.parameters.message}}"]
 
 See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
 
-Once we have defined a workflow template in a YAML file, we can register this template by calling ARGO CLI:
-In this tutorial, we will use the template located at: examples/hello-world-template/hello-world-wf-template.yml
+After defining a workflow template in a YAML file, we can register it using the Argo CLI. To proceed, open a new terminal window at the root of this project and execute the following command:
 
-To proceed, open a new terminal windows at the root of this project.
-Then execute the following command:
 ```
 argo -n <k8s-namespace> template create examples/hello-world-template/hello-world-wf-template.yml
 ```
-Expected output:
 
-![img.png](images/tutorial-img.png)
-
-After the workflow template registration, we should see the template in the list, with the following command:
+After registering the workflow template, verify its registration with the following command:
 ```
 argo -n <k8s-namespace> template list
 ```
-Expected output:
-
-![img.png](images/tutorial-img-2.png)
 
 #### Submit a workflow
 
-As for the workflow template, the workflow can be defined in a yaml file.
+Define the workflow in a YAML file as shown below.
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
@@ -475,17 +467,11 @@ spec:
 ```
 See: [hello-world-wf.yml](../examples/hello-world-template/hello-world-wf.yml)
 
-Once we have defined a workflow in a YAML file, we can submit it by calling ARGO CLI.
-In this tutorial, we will use the workflow located at: examples/hello-world-template/hello-world-wf.yml
+Once we have defined a workflow in a YAML file, we can submit it by calling ARGO CLI. To proceed, open a new terminal windows at the root of this project. Then execute the following command:
 
-To proceed, open a new terminal windows at the root of this project.
-Then execute the following command:
 ```
 argo -n <k8s-namespace> submit examples/hello-world-template/hello-world-wf.yml
 ```
-Expected output:
-
-![img.png](images/tutorial-img-3.png)
 
 #### Monitor a workflow
 
@@ -495,10 +481,6 @@ argo -n <k8s-namespace> get <workflow-name>
 ```
 Note that `<workflow-name>` correspond to the name of the workflow (available in the response to the submit workflow operation). In this example, it corresponds to: hello-world-workflow-qltqd
 
-Expected output:
-
-![img.png](images/tutorial-img-4.png)
-
 In the response, we can observe that `Status` is `Succeeded`. meaning that the execution of this workflow terminated successfully.
 
 To retrieve the logs associated with this workflow, one can use the following command:
@@ -506,16 +488,12 @@ To retrieve the logs associated with this workflow, one can use the following co
 argo -n <k8s-namespace> get <workflow-name>
 ```
 
-Expected output:
-
-![img.png](images/tutorial-img-5.png)
-
 ### REST Tutorial
 
 In this section, we will see how to use the REST API for managing workflows.
 For more information on those operations,see API design documentation: [API](./design/api_design.md)
 
-> Authentication is not covered in this tutorial.
+> Note: Authentication aspects are not covered in this tutorial. See https://argo-workflows.readthedocs.io/en/latest/argo-server-auth-mode/
 
 Postman collection of requests used in this tutorial: [Postman DEMO Collection](images/argo_workflow_demo.postman_collection.json)
 
@@ -523,17 +501,13 @@ Open the Postman collection HELLOWOLRD-TEMPLATE-EXAMPLE
 
 #### Register a Workflow template
 
-In this tutorial, we will use the template located at: examples/hello-world-template/hello-world-wf-template.yml
-See: [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
+In this tutorial, we will use the template located at [hello-world-wf-template.yml](../examples/hello-world-template/hello-world-wf-template.yml)
 
-Once we have defined a workflow template in a YAML file, we can register this template by calling the RESt API.
+Once we have defined a workflow template in a YAML file, we can register this template by calling the REST API.
 
 Open the Postman collection and select the request located in Template/ Create Workflow Template:
 
 ![img.png](images/tutorial-rest-register-template.png)
-
-Expected Output:
-**TBD**: Add screenshot.
 
 #### Submit a Workflow
 
@@ -541,8 +515,6 @@ Open the Postman request located in Workflow / Submit Workflow:
 
 ![img.png](images/tutorial-rest-submit-workflow.png)
 
-Expected Output:
-**TBD**: Add screenshot.
 
 #### Monitor a workflow
 
@@ -552,18 +524,11 @@ Open the Postman collection and select the request located in Workflow/ Get Stat
 
 ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-status.png)
 
-Expected output:
-![img.png](images/tutorial-rest-status.png)
-
 To retrieve the logs associated with a workflow, a REST Operation also exists.
 
 Open the Postman collection and select the request located in Workflow/ Get LOGS:
 
 ![](D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\api_design_resources\workflow-logs.png)
-
-Expected output:
-![img.png](images/tutorial-rest-logs.png)
-
 
 ### Artifact Tutorial
 
@@ -636,10 +601,6 @@ The first step, is to register this workflow template:
 argo -n <k8s-namespace> template create examples/artifact-consumer/artifact-consumer-wf-template.yml
 ```
 
-Expected output:
-
-![img.png](images/tutorial-img-6.png)
-
 After registering the workflow template, we can submit a workflow. 
 This workflow will have to define the key used for the input (source-path) and output (target-path) artifacts.
 ```yaml
@@ -665,11 +626,6 @@ Submit the workflow for execution with the following command:
 ```
 argo -n <k8s-namespace> submit examples/artifact-consumer/artifact-consumer-wf.yml
 ```
-
-Expected output:
-
-![img.png](images/tutorial-img-7.png)
-
 
 To monitor the workflow execution progress, use the same commands as in the basic tutorial.
 

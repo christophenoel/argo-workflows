@@ -87,6 +87,7 @@ The following operation retrieves the logs of the desired workflow running in th
 Describe the data structures used by the API. Include JSON schema definitions or similar structures to detail the types and formats of data that the API will accept and return.
 
 ### Example Data Model: Item
+
 ```json
 {
   "type": "object",
