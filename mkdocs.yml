@@ -1,0 +1,67 @@
+site_name: Argo Workflows documentation
+
+repo_name: argo-workflows
+repo_url: https://github.com/dimsum-project/argo-workflows
+
+nav:
+  - Home: README.md
+  - User Manual: user_manual.md
+  - Tutorial: tutorial.md
+  - Operator Manual:
+      - Installation: installation_manual.md
+      - Docker: docker.md
+      - Kubernetes: kubernetes.md
+      - Helm Charts: helm_charts.md
+  - Software Design: design/sw_design.md
+  - API Design: design/api_design.md
+  - License: LICENSE.md
+
+theme:
+  name: material
+  logo: assets/logo-dimsum-white.svg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.superfences
+  - tables
+plugins:
+  - search
+  - render_swagger:
+      allow_arbitrary_locations: true
+  - print-site
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
+      num_workers: 8

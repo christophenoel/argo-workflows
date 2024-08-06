@@ -206,7 +206,7 @@ In the context of Argo Workflows, three key concepts are essential: **Workflow**
 - **template**: A task within a workflow that acts as a function or method.
 - **Workflow Template**: A predefined definition of a workflow that can be persisted, submitted, or referenced within other workflows.
 
-```plantuml
+```puml
 @startuml
 title Grouped Workflow Diagram
 
@@ -250,7 +250,7 @@ A **Workflow** is composed of several key components:
     - **templates**: A collection of tasks or functions to be executed within the workflow.
     - **arguments**: Parameters or inputs required for the workflow to execute.
 
-```plantuml
+```puml
 @startuml
 title Abstract Workflow Structure
 
@@ -271,7 +271,7 @@ spec -down-> templates
 spec -down-> arguments
 
 @enduml
-
+```
 
 
 ### Argo CLI
