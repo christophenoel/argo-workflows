@@ -2,47 +2,44 @@
 
 ## Overview
 
-This directory contains the Helm charts for deploying [Component Name] on Kubernetes. Helm charts provide a reproducible way of packaging and deploying Kubernetes applications.
+The official chart for Argo Workflows is used to deploy Argo Workflows. It is described and detailed in [Argo Workflows Helm Documentation](https://github.com/argoproj/argo-helm/tree/main/charts/argo-workflows) with a list of all properties.
+
+The present repository provides the specific parameters used for the DimSum platform. This document only details these parameters and those that need to be provided during installation (depending on the environment).
+
+The exact configuration and prerequisites required for the DimSum platform are detailed in the [installation manual](installation_manual.md).
+
 
 ## Prerequisites
 
-Before you can use these Helm charts, ensure you meet the following prerequisites:
-- Kubernetes cluster
-- Helm 3.x installed
+Before you can use this Helm chart, ensure you meet the following prerequisites:
+* Kubernetes 1.23+
+* Helm 3.8.0+
+* PV provisioner support in the underlying infrastructure
+* S3 Bucket
 
 ## Installing the Helm Chart
 
-To install the Helm chart for [Component Name] in your Kubernetes cluster, follow these steps:
+1. Clone locally the present GitHub repository, which contains the DimSum `charts/values.yaml` with some overridden values.
 
-1. Add the Helm repository (if applicable):
-   ```bash
-   helm repo add [repo-name] [repo-url]
-   helm repo update
-   ```
+    ```bash
+    git clone https://github.com/argoproj/argo-helm.git /charts
+    ```
 
-2. Install the chart with:
-   ```bash
-   helm install [release-name] ./[chart-name] --namespace [namespace]
-   ```
-   Replace `[release-name]` with a name for your Helm release, `[chart-name]` with the name of the chart directory, and `[namespace]` with the Kubernetes namespace where you want to deploy.
+2. Add the Helm chart repository:
 
-## Configuring the Helm Chart
+    ```bash
+    helm repo add argo https://argoproj.github.io/argo-helm
+    helm repo update
+    ```
 
-Configuration parameters can be specified using the `values.yaml` file or set on the command line with `--set`.
+3. Edit the necessary parameters in [charts/values.yml](../charts/values.yml) (see further section)
 
-Example:
-```bash
-helm install [release-name] ./[chart-name] --set parameter1=value1,parameter2=value2 --namespace [namespace]
-```
+4. Install the official Argo Workflows Helm chart with:
 
-For a complete list of configuration parameters, refer to the `values.yaml` file within each chart directory.
-
-## Upgrading the Release
-
-To upgrade your Helm release to a new version of the chart or to update the configuration:
-```bash
-helm upgrade [release-name] ./[chart-name] --install --namespace [namespace]
-```
+    ```bash
+    helm install [release-name] argo/argo-workflows --namespace [namespace] -f /charts/values.yaml 
+    ```
+   Replace `[release-name]` with a name for your Helm release, and `[namespace]` with the Kubernetes namespace where you want to deploy.
 
 ## Uninstalling the Chart
 
@@ -50,6 +47,146 @@ To remove the deployed Helm chart:
 ```bash
 helm delete [release-name] --namespace [namespace]
 ```
+
+## Configuration and installation details
+
+This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed. 
+
+### Artifact Repository Configuration
+
+
+To configure the artifact repository, you need to set up the `artifactRepositoryRef` in the `values.yaml` file. This configuration defines where Argo Workflows will store its artifacts. 
+
+By default, the workflow uses the artifact repositories defined by the config map `artifact-repositories` (specifying one or more repositories). Within this ConfigMap, the  default repository must be designated using the annotation workflows.argoproj.io/default-artifact-repository. 
+
+The following configuration defines the details of the default repository.
+
+You need to specify the bucket name, endpoint, and the secrets for the access key and secret key. Here's how it works:
+
+- **Bucket**: The name of the bucket where artifacts will be stored.
+- **Endpoint**: The endpoint URL for the S3-compatible storage service.
+- **Access Key and Secret Key**: These are used to authenticate with the storage service. You need to provide the secrets for these keys. The `accessKeySecret` and `secretKeySecret` fields specify the names and keys of the Kubernetes secrets containing the access key and secret key, respectively.
+
+
+```yaml
+artifactRepositoryRef:
+  artifact-repositories:
+    annotations:
+      workflows.argoproj.io/default-artifact-repository: default-artifact-repository
+      default-artifact-repository:
+        s3:
+            bucket: test
+            insecure: true
+            endpoint: l-k8s01-master.spb.spacebel.be:30901 # TBD create an additional property
+            accessKeySecret:
+              name: minio-credentials
+              key: accessKey
+            secretKeySecret:
+              name: minio-credentials
+              key: secretKey
+```
+
+### Service Account Parameters
+
+>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations. 
+
+Each workflow is associated with a service account that dictates the permissions and actions the workflow can perform within the cluster. 
+
+It is recommended to create a default service account `argo-workflow`, assign all required roles for workflows, and bind the role to that default service account.
+
+```yaml
+workflow:
+  serviceAccount:
+    create: true
+    name: "argo-workflow"
+  rbac:
+    create: true
+server:
+  rbac:
+    create: true
+controller:
+  workflowDefaults:
+    spec:
+      serviceAccountName: argo-workflow
+```
+
+### Authentication Parameters
+
+Authentication parameters define the authentication modes and settings for Argo Workflows. These parameters are specified in the values.yaml file.
+
+
+### Ingress Parameters
+
+```yaml
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      # Add other necessary annotations here
+    hosts:
+      - argo.your-domain.com
+    paths:
+      - /
+    tls: 
+      - secretName: argo-tls
+        hosts:
+          - argo.your-domain.com
+```
+
+
+## Parameters
+
+The configuration applied when deploying the HELM chart is defined in the yaml file [../charts/values.yaml](../charts/values.yaml).
+
+The full list of properties are defined in the official [Argo Workflows Chart](https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/README.md) page. The present section provides a description of the properties that require a high level of attention.
+
+
+### Artefacts Repository Parameters
+
+| Key | Type | Default           | Description |
+|-----|------|-------------------|-------------|
+| artifactRepository.s3 | object | See example above | Store artifact in a S3-compliant object store |
+
+
+TBD: (to be checked)
+
+```yaml
+  workflowDefaults: {}
+  #   spec:
+  #     ttlStrategy:
+  #       secondsAfterCompletion: 86400
+  #     # Ref: https://argo-workflows.readthedocs.io/en/stable/artifact-repository-ref/
+  #     artifactRepositoryRef:
+  #       configMap: my-artifact-repository # default is "artifact-repositories"
+  #       key: v2-s3-artifact-repository # default can be set by the `workflows.argoproj.io/default-artifact-repository` annotation in config map.
+
+```
+
+
+### Service Account Parameters
+
+| Key | Type | Value                                          | Description |
+|-----|------|------------------------------------------------|-------------|
+| workflow.serviceAccount.create | bool | `true`                                         | Specifies whether a service account should be created |
+| workflow.serviceAccount.name | string | `"argo-workflow"`                              | Service account which is used to run workflows |
+| workflow.serviceAccount.pullSecrets | list | `[]`  (TBD)                                    | Secrets with credentials to pull images from a private registry. Same format as `.Values.images.pullSecrets` |
+| controller.workflowDefaults | object | `{    spec.serviceAccountName: argo-workflow}` | Default values that will apply to all Workflows from this controller, unless overridden on the Workflow-level. Only valid for 2.7+ |
+
+
+### Authentication Parameters
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| server.authModes | list | `[]` | A list of supported authentication modes. Available values are `server`, `client`, or `sso`. If you provide sso, please configure `.Values.server.sso` as well. |
+
+### Ingress Configuration
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+server.serviceType | string | `"ClusterIP"` | Service type for server pods |
+server.serviceNodePort | string | `nil` | Service node port |
+
 
 ## Additional Resources
 

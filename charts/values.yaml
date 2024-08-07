@@ -1,7 +1,7 @@
 workflow:
   serviceAccount:
     create: true
-    name: "executor"
+    name: "argo-workflow"
   rbac:
     create: true
 server:
@@ -13,7 +13,7 @@ server:
 controller:
   workflowDefaults:
     spec:
-      serviceAccountName: executor
+      serviceAccountName: argo-workflow
 artifactRepositoryRef:
   artifact-repositories:
     annotations:
