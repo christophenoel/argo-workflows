@@ -105,13 +105,13 @@ Argo Workflow provide a REST API endpoint with plenty operations, in which we ca
 - Retrieve Workflow Status
 - Retrieve Workflow Logs
 
-For more information on those operations,see API design documentation: [API](api_design.md)
+For more information on those operations,see API design documentation: [API](rest_api_design)
 
 #### Reusable Workflow Templates
 
 > TBD: Workflow designer prepares reusable workflow templates for standardizing and streamlining reusable steps
 
-Argo Workflow supports defining workflow templates reused in workflow definitions. The REST API provide an operation to register such workflow template. For more information on this, see section 'Workflow Template creation' in the API Design document: [API](api_design.md)
+Argo Workflow supports defining workflow templates reused in workflow definitions. The REST API provide an operation to register such workflow template. For more information on this, see section 'Workflow Template creation' in the API Design document: [API](rest_api_design)
 The following example represents a workflow template definition:
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -306,7 +306,7 @@ Argo Workflows encompasses the various components and resources it manages and i
 - **Control Flow**: Describe how the component starts and terminates, including any interactions during execution (such as interrupts).
 - **Data Flow**: Explain the input and output data flows, ensuring data structures are linked with control flows and interface components through common data areas or files.
 
-Documentation detailing the API specifications and usage is provided in teh [API Design](./api_design.md)
+Documentation detailing the API specifications and usage is provided in teh [API Design](./rest_api_design)
 
 > NOte: sequence diagram and link to the api-design document.
 

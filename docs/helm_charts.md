@@ -12,10 +12,9 @@ The exact configuration and prerequisites required for the DimSum platform are d
 ## Prerequisites
 
 Before you can use this Helm chart, ensure you meet the following prerequisites:
-* Kubernetes 1.23+
-* Helm 3.8.0+
-* PV provisioner support in the underlying infrastructure
-* S3 Bucket
+* S3 Bucket must be deployed and a `secret` providing the credentials.
+* Target cluster with Kubernetes 1.23+ (with PV support)
+* Helm 3.8.0+ installed locally
 
 ## Installing the Helm Chart
 

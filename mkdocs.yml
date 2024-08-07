@@ -5,15 +5,22 @@ repo_url: https://github.com/dimsum-project/argo-workflows
 
 nav:
   - Home: README.md
-  - User Manual: user_manual.md
-  - Tutorial: tutorial.md
-  - Operator Manual:
+  - User Guide:
+    - Software User Manual: user_manual.md
+    - Workflow Design Manual: workflow_design_manual.md
+    - CLI Tutorial: tutorial_cli.md
+    - REST Tutorial: tutorial_rest.md
+    - GUI Tutorial: tutorial_gui.md
+  - Operator Guide:
       - Installation: installation_manual.md
       - Docker: docker.md
       - Kubernetes: kubernetes.md
       - Helm Charts: helm_charts.md
   - Software Design: design/sw_design.md
-  - API Design: design/api_design.md
+  - Interfaces:
+    - REST API Design: design/rest_api_design.md
+    - REST API Specification: design/rest_api_spec.md
+    - Message Queue Interface Design: design/mq_api_spec.md
   - License: LICENSE.md
 
 theme:
@@ -38,6 +45,7 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+  - css/mkdocsoad.css
 
 markdown_extensions:
   - abbr
@@ -57,8 +65,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.superfences
   - tables
+  - pymdownx.tabbed:
+      alternate_style: true
 plugins:
   - search
+  - neoteroi.mkdocsoad:
+      use_pymdownx: true
   - render_swagger:
       allow_arbitrary_locations: true
   - print-site

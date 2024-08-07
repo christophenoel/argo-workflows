@@ -23,17 +23,8 @@ NO Build process required.
 
 This project uses Helm for deployment on Kubernetes. Follow the steps below to deploy the application using Helm charts.
 
-### Step 1: Install Helm
-
 Make sure Helm is installed and set up correctly. For installation instructions, see the [official Helm documentation](https://helm.sh/docs/intro/install/).
 
-### Step 2: Deploy Using Helm
-
-
-Those Helm charts are provided and maintained by the community. It is not an “official” Argo Helm chart, but it is officially recommended in Argo’s documentation.
-```
-helm repo add argo https://argoproj.github.io/argo-helm
-helm install --namespace argo-helm argo-workflows argo/argo-workflows --version 0.41.4 -f charts/values.yaml
 ```
 
 

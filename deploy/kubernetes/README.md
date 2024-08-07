@@ -1,1 +1,1 @@
-See: [documentation](../docs/kubernetes.md)
+This directory holds an example of artifact-secret which holds the credentials of the S3 bucket used as artifact repository for Argo Workflows. 
