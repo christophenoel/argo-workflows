@@ -20,7 +20,6 @@ nav:
   - Interfaces:
     - REST API Design: design/rest_api_design.md
     - REST API Specification: design/rest_api_spec.md
-    - Message Queue Interface Design: design/mq_api_spec.md
   - License: LICENSE.md
 
 theme:

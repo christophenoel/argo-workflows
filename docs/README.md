@@ -10,9 +10,14 @@ The component description is provided in the context of the Operational Hyper-sp
 
 ## Features
 
-- Feature 1: Description of what it does.
-- Feature 2: Description of what it does.
-- Feature 3: Description of what it does.
+- **Chaining of Container-Based Modules**: Create workflows connecting multiple containerized processes.
+- **Seamless Container Interfacing**: Facilitate smooth interaction between containers.
+- **Workflow Completion Notifications**: Provide notifications upon workflow completion (planned in a future version of the DimSum platform)
+- **Workflow Monitoring and Management**: Monitor and manage workflows.
+- **Versatile Workflow Definition Language**: Support Directed Acyclic Graph (DAG) models.
+- **Dynamic Resource Allocation**: Allocate resources dynamically.
+- **Retry Strategies**: Implement retry strategies for task failures.
+
 
 ## Getting Started
 
