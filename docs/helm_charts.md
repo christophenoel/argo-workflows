@@ -137,31 +137,13 @@ server:
 
 ## Parameters
 
-The configuration applied when deploying the HELM chart is defined in the yaml file [../charts/values.yaml](../charts/values.yaml).
-
-The full list of properties are defined in the official [Argo Workflows Chart](https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/README.md) page. The present section provides a description of the properties that require a high level of attention.
-
+The present section provides the definition of the properties overridden in the yaml file [../charts/values.yaml](../charts/values.yaml).
 
 ### Artefacts Repository Parameters
 
-| Key | Type | Default           | Description |
-|-----|------|-------------------|-------------|
-| artifactRepository.s3 | object | See example above | Store artifact in a S3-compliant object store |
-
-
-TBD: (to be checked)
-
-```yaml
-  workflowDefaults: {}
-  #   spec:
-  #     ttlStrategy:
-  #       secondsAfterCompletion: 86400
-  #     # Ref: https://argo-workflows.readthedocs.io/en/stable/artifact-repository-ref/
-  #     artifactRepositoryRef:
-  #       configMap: my-artifact-repository # default is "artifact-repositories"
-  #       key: v2-s3-artifact-repository # default can be set by the `workflows.argoproj.io/default-artifact-repository` annotation in config map.
-
-```
+| Key                   | Type | Default           | Description |
+|-----------------------|------|-------------------|-------------|
+| artifactRepositoryRef | object | See example above | Store artifact in a S3-compliant object store |
 
 
 ### Service Account Parameters
