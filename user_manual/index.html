@@ -1,0 +1,1428 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../workflow_design_manual/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Software User Manual - Argo Workflows documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings1.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings2.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings3.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings4.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings5.css">
+    
+      <link rel="stylesheet" href="../css/print-site-enum-headings6.css">
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../css/mkdocsoad.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#user-manual-for-argo-workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Argo Workflows documentation" class="md-header__button md-logo" aria-label="Argo Workflows documentation" data-md-component="logo">
+      
+  <img src="../assets/logo-dimsum-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Argo Workflows documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software User Manual
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dimsum-project/argo-workflows" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    argo-workflows
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_manual/" class="md-tabs__link">
+          
+  
+  Operator Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../design/sw_design/" class="md-tabs__link">
+        
+  
+    
+  
+  Software Design
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../design/rest_api_design/" class="md-tabs__link">
+          
+  
+  Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../LICENSE/" class="md-tabs__link">
+        
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Argo Workflows documentation" class="md-nav__button md-logo" aria-label="Argo Workflows documentation" data-md-component="logo">
+      
+  <img src="../assets/logo-dimsum-white.svg" alt="logo">
+
+    </a>
+    Argo Workflows documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dimsum-project/argo-workflows" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    argo-workflows
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Software User Manual
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Software User Manual
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-of-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose of the Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations Manual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-and-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set-up and Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normal Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argo-workflow-key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argo Workflow Key Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimsum-platform-main-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      DimSum Platform Main Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DimSum Platform Main Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration-of-the-workflow-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration of the Workflow Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-of-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution of the Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Notifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Termination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recover-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recover Runs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorials
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow_design_manual/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Design Manual
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLI Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_rest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_gui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GUI Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Operator Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Operator Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_manual/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helm_charts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helm Charts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/sw_design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interfaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Interfaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/rest_api_design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/rest_api_spec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    REST API Specification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/mq_api_spec.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Message Queue Interface Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-of-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose of the Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operations-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operations Manual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations Manual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-up-and-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set-up and Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normal Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argo-workflow-key-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argo Workflow Key Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimsum-platform-main-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      DimSum Platform Main Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DimSum Platform Main Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration-of-the-workflow-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registration of the Workflow Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-of-the-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution of the Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow Notifications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normal Termination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Conditions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recover-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recover Runs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorials
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="user-manual-for-argo-workflow">User Manual for Argo Workflow</h1>
+<h2 id="purpose-of-the-software">Purpose of the Software</h2>
+<p>Argo Workflow is an open-source engine tailored for orchestrating workflows on Kubernetes, enabling users to define, manage, and execute tasks in containers.</p>
+<h2 id="operations-environment">Operations Environment</h2>
+<p>Argo Workflow is executed on a Kubernetes cluster, on which it orchestrates the containers required fo executing the desired workflows.</p>
+<h3 id="hardware-configuration">Hardware Configuration</h3>
+<p>Argo Workflow requires a Kubernetes cluster to operate effectively. </p>
+<h2 id="operations-manual">Operations Manual</h2>
+<h3 id="set-up-and-initialization">Set-up and Initialization</h3>
+<p>The set-up procedures are described in the <a href="../installation_manual/">Installation Manual</a>.</p>
+<h3 id="normal-operations">Normal Operations</h3>
+<p>The normal operations of the Argo Workflow engine are thoroughly documented on the <a href="https://argo-workflows.readthedocs.io/en/latest/">official Argo Workflows documentation site</a>, with detailed references to various <a href="https://argo-workflows.readthedocs.io/en/latest/fields/">operational fields</a>. </p>
+<p>The resources below aim to complement the official documentation with guidance for performing activities expected within the DimSum platform:</p>
+<ul>
+<li><strong>Workflow Design Manual</strong>: This manual explains concepts and provides guidance on designing workflows that include features relevant to the platform, such as workflow templates, artefacts, and retry strategies. <a href="../workflow_design_manual/">Workflow Design Manual</a></li>
+<li><strong>API Design</strong>: This section describes the operations from the REST API specification expected to be used by the Workflow Management System (WMTS) for submitting workflows. <a href="../design/rest_api_design/">API Design</a></li>
+</ul>
+<p>The subsection below provides a summary of the operations and sequences expected to be used by the WMTS. Additionally, a few <a href="#Tutorials">tutorials</a> are provided for testing purposes to facilitate the learning of Argo Workflows.</p>
+<h4 id="argo-workflow-key-concepts">Argo Workflow Key Concepts</h4>
+<p>In the context of Argo Workflows, three key concepts are essential: <strong>Workflow</strong>, <strong>template</strong>, and <strong>Workflow Template</strong>.</p>
+<ul>
+<li><strong>Workflow</strong>: A structured sequence of tasks that defines the steps to be executed. It includes a specification (<code>spec</code>) of the tasks, a current status (<code>state</code>), and may reference a <code>WorkflowTemplate</code>.</li>
+<li><strong>template</strong>: A task within a workflow that acts as a function or method.</li>
+<li><strong>Workflow Template</strong>: A predefined definition of a workflow that can be persisted, submitted, or referenced within other workflows.</li>
+</ul>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="309px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 430 309" width="430px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="218.8115" x="98.6392" y="22.9951">Grouped Workflow Diagram</text><g id="cluster_Workflow"><path d="M108.59,43.2969 L184.3068,43.2969 A3.75,3.75 0 0 1 186.8068,45.7969 L193.8068,65.5938 L420.59,65.5938 A2.5,2.5 0 0 1 423.09,68.0938 L423.09,156.0969 A2.5,2.5 0 0 1 420.59,158.5969 L108.59,158.5969 A2.5,2.5 0 0 1 106.09,156.0969 L106.09,45.7969 A2.5,2.5 0 0 1 108.59,43.2969 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="106.09" x2="193.8068" y1="65.5938" y2="65.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="74.7168" x="110.09" y="58.292">Workflow</text></g><g id="elem_Spec"><rect codeLine="6" fill="#F1F1F1" height="64.2969" id="Spec" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="130.1318" x="122.02" y="78.2969"/><ellipse cx="165.8415" cy="94.2969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M168.8103,99.9375 Q168.2322,100.2344 167.5915,100.375 Q166.9509,100.5313 166.2478,100.5313 Q163.7478,100.5313 162.4197,98.8906 Q161.1072,97.2344 161.1072,94.1094 Q161.1072,90.9844 162.4197,89.3281 Q163.7478,87.6719 166.2478,87.6719 Q166.9509,87.6719 167.5915,87.8281 Q168.2478,87.9844 168.8103,88.2813 L168.8103,91 Q168.1853,90.4219 167.5915,90.1563 Q166.9978,89.875 166.3728,89.875 Q165.029,89.875 164.3415,90.9531 Q163.654,92.0156 163.654,94.1094 Q163.654,96.2031 164.3415,97.2813 Q165.029,98.3438 166.3728,98.3438 Q166.9978,98.3438 167.5915,98.0781 Q168.1853,97.7969 168.8103,97.2188 L168.8103,99.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.084" x="186.2463" y="99.1436">Spec</text><line style="stroke:#181818;stroke-width:0.5;" x1="123.02" x2="251.1518" y1="110.2969" y2="110.2969"/><ellipse cx="133.02" cy="123.9453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104.1318" x="142.02" y="127.292">templates: List</text><line style="stroke:#181818;stroke-width:0.5;" x1="123.02" x2="251.1518" y1="134.5938" y2="134.5938"/></g><g id="elem_State"><rect codeLine="10" fill="#F1F1F1" height="64.2969" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="119.9668" x="287.1" y="78.2969"/><ellipse cx="325.0091" cy="94.2969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M327.9779,99.9375 Q327.3998,100.2344 326.7591,100.375 Q326.1185,100.5313 325.4154,100.5313 Q322.9154,100.5313 321.5873,98.8906 Q320.2748,97.2344 320.2748,94.1094 Q320.2748,90.9844 321.5873,89.3281 Q322.9154,87.6719 325.4154,87.6719 Q326.1185,87.6719 326.7591,87.8281 Q327.4154,87.9844 327.9779,88.2813 L327.9779,91 Q327.3529,90.4219 326.7591,90.1563 Q326.1654,89.875 325.5404,89.875 Q324.1966,89.875 323.5091,90.9531 Q322.8216,92.0156 322.8216,94.1094 Q322.8216,96.2031 323.5091,97.2813 Q324.1966,98.3438 325.5404,98.3438 Q326.1654,98.3438 326.7591,98.0781 Q327.3529,97.7969 327.9779,97.2188 L327.9779,99.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37.0576" x="344.1" y="99.1436">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="288.1" x2="406.0668" y1="110.2969" y2="110.2969"/><ellipse cx="298.1" cy="123.9453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93.9668" x="307.1" y="127.292">status: String</text><line style="stroke:#181818;stroke-width:0.5;" x1="288.1" x2="406.0668" y1="134.5938" y2="134.5938"/></g><g id="elem_WorkflowTemplate"><rect codeLine="16" fill="#F1F1F1" height="80.5938" id="WorkflowTemplate" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="166.1709" x="7" y="221.5969"/><ellipse cx="23.2621" cy="237.5969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M26.2309,243.2375 Q25.6527,243.5344 25.0121,243.675 Q24.3715,243.8312 23.6684,243.8312 Q21.1684,243.8312 19.8402,242.1906 Q18.5277,240.5344 18.5277,237.4094 Q18.5277,234.2844 19.8402,232.6281 Q21.1684,230.9719 23.6684,230.9719 Q24.3715,230.9719 25.0121,231.1281 Q25.6684,231.2844 26.2309,231.5812 L26.2309,234.3 Q25.6059,233.7219 25.0121,233.4562 Q24.4184,233.175 23.7934,233.175 Q22.4496,233.175 21.7621,234.2531 Q21.0746,235.3156 21.0746,237.4094 Q21.0746,239.5031 21.7621,240.5812 Q22.4496,241.6437 23.7934,241.6437 Q24.4184,241.6437 25.0121,241.3781 Q25.6059,241.0969 26.2309,240.5187 L26.2309,243.2375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131.3662" x="37.5426" y="242.4436">WorkflowTemplate</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="172.1709" y1="253.5969" y2="253.5969"/><ellipse cx="18" cy="267.2453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140.1709" x="27" y="270.592">definition: Workflow</text><ellipse cx="18" cy="283.5422" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130.5801" x="27" y="286.8889">persisted: Boolean</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="172.1709" y1="294.1906" y2="294.1906"/></g><g id="elem_Template"><rect codeLine="21" fill="#F1F1F1" height="64.2969" id="Template" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="152.6699" x="207.75" y="229.7369"/><ellipse cx="247.2341" cy="245.7369" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M250.2029,251.3775 Q249.6248,251.6744 248.9841,251.815 Q248.3435,251.9713 247.6404,251.9713 Q245.1404,251.9713 243.8123,250.3306 Q242.4998,248.6744 242.4998,245.5494 Q242.4998,242.4244 243.8123,240.7681 Q245.1404,239.1119 247.6404,239.1119 Q248.3435,239.1119 248.9841,239.2681 Q249.6404,239.4244 250.2029,239.7213 L250.2029,242.44 Q249.5779,241.8619 248.9841,241.5963 Q248.3904,241.315 247.7654,241.315 Q246.4216,241.315 245.7341,242.3931 Q245.0466,243.4556 245.0466,245.5494 Q245.0466,247.6431 245.7341,248.7213 Q246.4216,249.7838 247.7654,249.7838 Q248.3904,249.7838 248.9841,249.5181 Q249.5779,249.2369 250.2029,248.6588 L250.2029,251.3775 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.2607" x="266.675" y="250.5836">Template</text><line style="stroke:#181818;stroke-width:0.5;" x1="208.75" x2="359.4199" y1="261.7369" y2="261.7369"/><ellipse cx="218.75" cy="275.3853" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126.6699" x="227.75" y="278.732">function: Function</text><line style="stroke:#181818;stroke-width:0.5;" x1="208.75" x2="359.4199" y1="286.0338" y2="286.0338"/></g><g id="link_Spec_Template"><path codeLine="25" d="M207.42,142.7769 C223.92,168.1969 243.8031,198.8342 260.3431,224.3142 " fill="none" id="Spec-to-Template" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="263.61,229.3469,262.0648,219.62,260.8876,225.153,255.3546,223.9758,263.61,229.3469" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.8726" x="240.09" y="187.6638">includes</text></g><g id="link_Spec_WorkflowTemplate"><path codeLine="26" d="M166.75,142.7769 C151.92,165.6269 134.977,191.7343 119.027,216.3043 " fill="none" id="Spec-to-WorkflowTemplate" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="115.76,221.3369,124.0155,215.966,118.4825,217.1431,117.3054,211.61,115.76,221.3369" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69.418" x="146.09" y="187.6638">references</text></g></g></svg></div>
+
+<h4 id="dimsum-platform-main-operations">DimSum Platform Main Operations</h4>
+<p>This section outlines the operations expected to be executed by the Workflow Management System (WMTS) in the DimSum platform. The process is divided into three parts: registration, execution, and status polling.</p>
+<h5 id="registration-of-the-workflow-template">Registration of the Workflow Template</h5>
+<ol>
+<li>The WMTS submits the Argo Workflow Template to the Module Registry microservice.</li>
+<li>The Module Registry registers the workflow template in the DimSum namespace using the Argo Workflow API.</li>
+</ol>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="149px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 670 149" width="670px" zoomAndPan="magnify"><defs/><g><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="33" x2="33" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="233.6191" x2="233.6191" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="597.0713" x2="597.0713" y1="36.2969" y2="114.5625"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="133.5576">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="172.6191" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="179.6191" y="24.9951">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="172.6191" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="179.6191" y="133.5576">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="530.0713" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="537.0713" y="24.9951">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="530.0713" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="537.0713" y="133.5576">ArgoWorkflowAPI</text><polygon fill="#181818" points="222.0435,63.4297,232.0435,67.4297,222.0435,71.4297,226.0435,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="33.6802" x2="228.0435" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.3633" x="40.6802" y="62.3638">Submit Workflow Template</text><polygon fill="#181818" points="585.0908,92.5625,595.0908,96.5625,585.0908,100.5625,589.0908,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="234.0435" x2="591.0908" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="339.0474" x="241.0435" y="91.4966">Register Workflow Template in DimSum namespace</text></g></svg></div>
+<h5 id="execution-of-the-workflow">Execution of the Workflow</h5>
+<ol>
+<li>The WMTS submits the Workflow using the REST API.</li>
+<li>The WMTS monitors the Workflow until it is complete.</li>
+<li>Upon completion, the WMTS retrieves the results.</li>
+<li>If the execution fails, the WMTS retrieves logs from an operator.</li>
+</ol>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="268px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 369 268" width="369px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="46.2656" style="stroke:#000000;stroke-width:1.5;" width="353.6035" x="10" y="169.8281"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="36.2969" y2="233.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="199.8994" x2="199.8994" y1="36.2969" y2="233.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="314.9385" x2="314.9385" y1="36.2969" y2="233.0938"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="252.0889">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="132.8994" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="139.8994" y="24.9951">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="132.8994" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="139.8994" y="252.0889">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="276.9385" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="283.9385" y="24.9951">Operator</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="276.9385" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="283.9385" y="252.0889">Operator</text><polygon fill="#181818" points="187.9189,63.4297,197.9189,67.4297,187.9189,71.4297,191.9189,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110.7031" x="55.6802" y="62.3638">Submit Workflow</text><polygon fill="#181818" points="187.9189,92.5625,197.9189,96.5625,187.9189,100.5625,191.9189,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114.0039" x="55.6802" y="91.4966">Monitor Workflow</text><polygon fill="#181818" points="59.6802,121.6953,49.6802,125.6953,59.6802,129.6953,55.6802,125.6953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="53.6802" x2="198.9189" y1="125.6953" y2="125.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.2388" x="65.6802" y="120.6294">Workflow Complete</text><polygon fill="#181818" points="187.9189,150.8281,197.9189,154.8281,187.9189,158.8281,191.9189,154.8281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="154.8281" y2="154.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106.4312" x="55.6802" y="149.7622">Retrieve Results</text><path d="M10,169.8281 L74.4429,169.8281 L74.4429,176.9609 L64.4429,186.9609 L10,186.9609 L10,169.8281 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="46.2656" style="stroke:#000000;stroke-width:1.5;" width="353.6035" x="10" y="169.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="25" y="182.895">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="101.6157" x="89.4429" y="182.0386">[Workflow Fails]</text><polygon fill="#181818" points="303.271,204.0938,313.271,208.0938,303.271,212.0938,307.271,208.0938" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="309.271" y1="208.0938" y2="208.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.1274" x="55.6802" y="203.0278">Retrieve Logs</text></g></svg></div>
+
+<h5 id="workflow-notifications">Workflow Notifications</h5>
+<p>Argo Workflows does not natively support notification mechanisms for status updates, except through implementing a custom container in an exit handler to handle such notifications. However, this functionality can be considered in phase 2 of the project.</p>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="149px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 278 149" width="278px" zoomAndPan="magnify"><defs/><g><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="33" x2="33" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="211.1001" x2="211.1001" y1="36.2969" y2="114.5625"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="133.5576">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="24.9951">MessageQueue</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="133.5576">MessageQueue</text><polygon fill="#181818" points="199.7759,63.4297,209.7759,67.4297,199.7759,71.4297,203.7759,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="33.6802" x2="205.7759" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="133.1611" x="40.6802" y="62.3638">Poll Workflow Status</text><polygon fill="#181818" points="44.6802,92.5625,34.6802,96.5625,44.6802,100.5625,40.6802,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="38.6802" x2="210.7759" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154.0957" x="50.6802" y="91.4966">Return Workflow Status</text></g></svg></div>
+<p>See <a href="https://argo-workflows.readthedocs.io/en/latest/workflow-notifications/">Workflow Notifications Documentation</a> for additional details.</p>
+<h3 id="normal-termination">Normal Termination</h3>
+<p>To cease or interrupt the use of Argo Workflow, users can terminate their workflows through the Argo CLI or Argo UI. Using the Argo CLI, the <code>argo stop</code> or <code>argo terminate</code> commands can be employed to stop or terminate a workflow, respectively. Additionally, the Argo UI provides an intuitive interface to manage and halt workflows.</p>
+<p>To verify if the termination has been normal, users should check the status of the workflow. A normally terminated workflow will have a status of <code>Succeeded</code> or <code>Failed</code>, indicating that the workflow has completed its execution or encountered an error during the process. Users can inspect the workflow status via the Argo CLI with the <code>argo get</code> command or through the Argo UI.</p>
+<h3 id="error-conditions">Error Conditions</h3>
+<p>Common error conditions in Argo Workflow include:</p>
+<ol>
+<li><strong>Workflow Fails to Start</strong>: This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.</li>
+</ol>
+<p><strong>Troubleshooting Steps</strong>:
+  - Verify the workflow YAML file for syntax errors.
+  - Ensure all required parameters and artifacts are correctly defined.
+  - Use the <code>argo lint</code> command to validate the workflow definition.</p>
+<ol>
+<li><strong>Pod Failures</strong>: Pods may fail to start or run due to resource constraints, image pull errors, or misconfigurations. Detection involves monitoring pod status in the Kubernetes dashboard or using the Argo CLI.</li>
+</ol>
+<p><strong>Troubleshooting Steps</strong>:
+  - Check pod logs using <code>kubectl logs &lt;pod-name&gt;</code> for detailed error messages.
+  - Ensure the container images are accessible and correctly specified.
+  - Verify resource requests and limits to ensure the cluster can accommodate the pod.</p>
+<ol>
+<li><strong>Timeouts</strong>: Workflows or specific steps may time out if they exceed the allotted execution time. Detection methods include checking the workflow status for timeout errors.</li>
+</ol>
+<p><strong>Troubleshooting Steps</strong>:
+  - Review and adjust the timeout settings in the workflow definition.
+  - Optimize the workflow steps to reduce execution time.
+  - Ensure external services or dependencies are responsive and not causing delays.</p>
+<ol>
+<li><strong>Permission Denied Errors</strong>: These errors occur when the workflow does not have the necessary permissions to perform certain actions. Detection involves examining the error messages related to access issues.</li>
+</ol>
+<p><strong>Troubleshooting Steps</strong>:
+  - Verify the service account permissions and roles assigned to the workflow.
+  - Update the role-based access control (RBAC) settings to grant the required permissions.
+  - Check and correct any file or directory permissions within the workflow.</p>
+<ol>
+<li><strong>Resource Quota Exceeded</strong>: Workflows may fail if they exceed the assigned resource quotas in the cluster. Detection involves checking for resource-related error messages in the workflow status.</li>
+</ol>
+<p><strong>Troubleshooting Steps</strong>:
+  - Review the resource quotas assigned to the namespace and adjust if necessary.
+  - Optimize workflow resource usage to stay within the quota limits.
+  - Consult with the cluster administrator to request increased resource allocations if needed.</p>
+<h3 id="recover-runs">Recover Runs</h3>
+<p>In the event of workflow failures or interruptions, Argo Workflows provides mechanisms to restart or recover runs, ensuring continuity and minimizing downtime.</p>
+<ol>
+<li><strong>Retry Failed Steps</strong>: Argo allows users to retry failed steps within a workflow. This can be configured in the workflow YAML by specifying the <code>retryStrategy</code>. Users can define the number of retries and the backoff strategy.</li>
+</ol>
+<p><strong>Procedure</strong>:
+  - Edit the workflow definition to include a <code>retryStrategy</code> for the relevant steps.
+  - Resubmit the workflow using the <code>argo submit</code> command with the updated YAML file.</p>
+<ol>
+<li><strong>Resume Suspended Workflows</strong>: If a workflow is manually or automatically suspended, it can be resumed using the Argo CLI.</li>
+</ol>
+<p><strong>Procedure</strong>:
+  - Use the <code>argo resume &lt;workflow-name&gt;</code> command to resume a suspended workflow.
+  - Verify the workflow status to ensure it continues from the point of suspension.</p>
+<ol>
+<li><strong>Resubmit Failed Workflows</strong>: Entire workflows that have failed can be resubmitted. This can be useful if the failure was due to transient issues or if changes have been made to the environment.</li>
+</ol>
+<p><strong>Procedure</strong>:
+  - Identify the failed workflow using the <code>argo list</code> command.
+  - Resubmit the workflow using the <code>argo resubmit &lt;workflow-name&gt;</code> command.
+  - Monitor the workflow status to ensure it runs to completion.</p>
+<ol>
+<li><strong>Workflow Archiving and Retrieval</strong>: Argo Workflows can be configured to archive completed workflows. Archived workflows can be retrieved and resubmitted if needed.</li>
+</ol>
+<p><strong>Procedure</strong>:
+  - Ensure workflow archiving is enabled in the Argo configuration.
+  - Retrieve archived workflows using the <code>argo archive get &lt;workflow-name&gt;</code> command.
+  - Resubmit the archived workflow using the <code>argo submit</code> command.</p>
+<ol>
+<li><strong>Handling Emergency Situations</strong>: In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.</li>
+</ol>
+<p><strong>Procedure</strong>:
+  - Implement backup and restore strategies for the Argo Workflow controller and associated databases.
+  - Utilize high-availability (HA) configurations for critical components to minimize downtime.
+  - Regularly test disaster recovery plans to ensure workflows can be recovered quickly.</p>
+<h2 id="tutorials">Tutorials</h2>
+<p>The following tutorials are provided for testing purposes to facilitate the learning of Argo Workflows:</p>
+<ul>
+<li><a href="../tutorial_cli/">CLI Tutorial</a>: Offers a brief overview of the main operations of the Argo CLI, a command-line interface that allows users to manage and interact with their workflows efficiently.</li>
+<li><a href="../tutorial_rest/">REST API Tutorial</a>: Demonstrates how to interact with the Argo Workflows through REST API calls, providing examples of common operations such as submitting, monitoring, and managing workflows.</li>
+<li><a href="../tutorial_gui/">GUI Tutorial</a>: Guides users through the graphical user interface of Argo Workflows, showcasing how to visually design, manage, and monitor workflows using the web-based interface.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+    
+  </body>
+</html>
