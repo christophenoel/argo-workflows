@@ -1048,7 +1048,7 @@
 <li><strong>Retry Strategies</strong>: Implement retry strategies for task failures.</li>
 </ul>
 <h2 id="index-getting-started">Getting Started</h2>
-<p>To begin using this project, please refer to the <a href="#docs-installation_manual.md">Installation Manual</a>.</p>
+<p>To begin using this project, please refer to the <a href="#installation_manual">Installation Manual</a>.</p>
 <h2 id="index-documentation">Documentation</h2>
 <p>Detailed documentation is available to help you understand and use the project effectively:</p>
 <ul>
@@ -1057,7 +1057,7 @@
 <li><a href="#design-rest_api_design">API Design</a>: Documentation detailing the API specifications and usage.</li>
 </ul>
 <h2 id="index-api-reference">API Reference</h2>
-<p>For a detailed description of the API, see the <a href="../design/rest_api_spec.yaml">API Specifications</a>.</p>
+<p>For a detailed description of the API, see the <a href="#design-rest_api_design">API Specifications</a>.</p>
 <h2 id="index-configuration-and-deployment">Configuration and Deployment</h2>
 <p>Configuration instructions and deployment guides are provided for different environments:</p>
 <ul>
@@ -1073,24 +1073,19 @@
                         </h1>
                         <section class="print-page" id="user_manual"><h1 id="user_manual-user-manual-for-argo-workflow">User Manual for Argo Workflow</h1>
 <h2 id="user_manual-purpose-of-the-software">Purpose of the Software</h2>
-<p>Argo Workflow is an open-source engine tailored for orchestrating workflows on Kubernetes, enabling users to define, manage, and execute tasks in containers.</p>
+<p>Argo Workflows is an open-source engine tailored for orchestrating workflows on Kubernetes, enabling users to define, manage, and execute tasks in containers.</p>
 <h2 id="user_manual-operations-environment">Operations Environment</h2>
-<p>Argo Workflow is executed on a Kubernetes cluster, on which it orchestrates the containers required fo executing the desired workflows.</p>
+<p>Argo Workflows is executed on a Kubernetes cluster, on which it orchestrates the containers required fo executing the desired workflows.</p>
 <h3 id="user_manual-hardware-configuration">Hardware Configuration</h3>
-<p>Argo Workflow requires a Kubernetes cluster to operate effectively. </p>
+<p>Argo Workflows requires a Kubernetes cluster to operate effectively. </p>
 <h2 id="user_manual-operations-manual">Operations Manual</h2>
 <h3 id="user_manual-set-up-and-initialization">Set-up and Initialization</h3>
 <p>The set-up procedures are described in the <a href="#installation_manual">Installation Manual</a>.</p>
 <h3 id="user_manual-normal-operations">Normal Operations</h3>
-<p>The normal operations of the Argo Workflow engine are thoroughly documented on the <a href="https://argo-workflows.readthedocs.io/en/latest/">official Argo Workflows documentation site</a>, with detailed references to various <a href="https://argo-workflows.readthedocs.io/en/latest/fields/">operational fields</a>. </p>
-<p>The resources below aim to complement the official documentation with guidance for performing activities expected within the DimSum platform:</p>
-<ul>
-<li><strong>Workflow Design Manual</strong>: This manual explains concepts and provides guidance on designing workflows that include features relevant to the platform, such as workflow templates, artefacts, and retry strategies. <a href="#workflow_design_manual">Workflow Design Manual</a></li>
-<li><strong>API Design</strong>: This section describes the operations from the REST API specification expected to be used by the Workflow Management System (WMTS) for submitting workflows. <a href="#design-rest_api_design">API Design</a></li>
-</ul>
-<p>The subsection below provides a summary of the operations and sequences expected to be used by the WMTS. Additionally, a few <a href="#user_manual-Tutorials">tutorials</a> are provided for testing purposes to facilitate the learning of Argo Workflows.</p>
-<h4 id="user_manual-argo-workflow-key-concepts">Argo Workflow Key Concepts</h4>
-<p>In the context of Argo Workflows, three key concepts are essential: <strong>Workflow</strong>, <strong>template</strong>, and <strong>Workflow Template</strong>.</p>
+<p>The normal operations of the Argo Workflows engine are thoroughly documented on the <a href="https://argo-workflows.readthedocs.io/en/latest/">official Argo Workflows documentation site</a>, with detailed references to various <a href="https://argo-workflows.readthedocs.io/en/latest/fields/">operational fields</a>. </p>
+<p>The resources below aim to complement the official documentation with guidance for performing activities expected within the DimSum platform such as composing workflows, executing workflows through the REST API, and monitoring workflows with the GUI.</p>
+<h4 id="user_manual-argo-workflows-key-concepts">Argo Workflows Key Concepts</h4>
+<p>With Argo Workflows, three key concepts are essential: <strong>Workflow</strong>, <strong>template</strong>, and <strong>Workflow Template</strong>.</p>
 <ul>
 <li><strong>Workflow</strong>: A structured sequence of tasks that defines the steps to be executed. It includes a specification (<code>spec</code>) of the tasks, a current status (<code>state</code>), and may reference a <code>WorkflowTemplate</code>.</li>
 <li><strong>template</strong>: A task within a workflow that acts as a function or method.</li>
@@ -1098,32 +1093,175 @@
 </ul>
 <div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="309px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 430 309" width="430px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="218.8115" x="98.6392" y="22.9951">Grouped Workflow Diagram</text><g id="cluster_Workflow"><path d="M108.59,43.2969 L184.3068,43.2969 A3.75,3.75 0 0 1 186.8068,45.7969 L193.8068,65.5938 L420.59,65.5938 A2.5,2.5 0 0 1 423.09,68.0938 L423.09,156.0969 A2.5,2.5 0 0 1 420.59,158.5969 L108.59,158.5969 A2.5,2.5 0 0 1 106.09,156.0969 L106.09,45.7969 A2.5,2.5 0 0 1 108.59,43.2969 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="106.09" x2="193.8068" y1="65.5938" y2="65.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="74.7168" x="110.09" y="58.292">Workflow</text></g><g id="elem_Spec"><rect codeLine="6" fill="#F1F1F1" height="64.2969" id="Spec" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="130.1318" x="122.02" y="78.2969"/><ellipse cx="165.8415" cy="94.2969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M168.8103,99.9375 Q168.2322,100.2344 167.5915,100.375 Q166.9509,100.5313 166.2478,100.5313 Q163.7478,100.5313 162.4197,98.8906 Q161.1072,97.2344 161.1072,94.1094 Q161.1072,90.9844 162.4197,89.3281 Q163.7478,87.6719 166.2478,87.6719 Q166.9509,87.6719 167.5915,87.8281 Q168.2478,87.9844 168.8103,88.2813 L168.8103,91 Q168.1853,90.4219 167.5915,90.1563 Q166.9978,89.875 166.3728,89.875 Q165.029,89.875 164.3415,90.9531 Q163.654,92.0156 163.654,94.1094 Q163.654,96.2031 164.3415,97.2813 Q165.029,98.3438 166.3728,98.3438 Q166.9978,98.3438 167.5915,98.0781 Q168.1853,97.7969 168.8103,97.2188 L168.8103,99.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="34.084" x="186.2463" y="99.1436">Spec</text><line style="stroke:#181818;stroke-width:0.5;" x1="123.02" x2="251.1518" y1="110.2969" y2="110.2969"/><ellipse cx="133.02" cy="123.9453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104.1318" x="142.02" y="127.292">templates: List</text><line style="stroke:#181818;stroke-width:0.5;" x1="123.02" x2="251.1518" y1="134.5938" y2="134.5938"/></g><g id="elem_State"><rect codeLine="10" fill="#F1F1F1" height="64.2969" id="State" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="119.9668" x="287.1" y="78.2969"/><ellipse cx="325.0091" cy="94.2969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M327.9779,99.9375 Q327.3998,100.2344 326.7591,100.375 Q326.1185,100.5313 325.4154,100.5313 Q322.9154,100.5313 321.5873,98.8906 Q320.2748,97.2344 320.2748,94.1094 Q320.2748,90.9844 321.5873,89.3281 Q322.9154,87.6719 325.4154,87.6719 Q326.1185,87.6719 326.7591,87.8281 Q327.4154,87.9844 327.9779,88.2813 L327.9779,91 Q327.3529,90.4219 326.7591,90.1563 Q326.1654,89.875 325.5404,89.875 Q324.1966,89.875 323.5091,90.9531 Q322.8216,92.0156 322.8216,94.1094 Q322.8216,96.2031 323.5091,97.2813 Q324.1966,98.3438 325.5404,98.3438 Q326.1654,98.3438 326.7591,98.0781 Q327.3529,97.7969 327.9779,97.2188 L327.9779,99.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37.0576" x="344.1" y="99.1436">State</text><line style="stroke:#181818;stroke-width:0.5;" x1="288.1" x2="406.0668" y1="110.2969" y2="110.2969"/><ellipse cx="298.1" cy="123.9453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93.9668" x="307.1" y="127.292">status: String</text><line style="stroke:#181818;stroke-width:0.5;" x1="288.1" x2="406.0668" y1="134.5938" y2="134.5938"/></g><g id="elem_WorkflowTemplate"><rect codeLine="16" fill="#F1F1F1" height="80.5938" id="WorkflowTemplate" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="166.1709" x="7" y="221.5969"/><ellipse cx="23.2621" cy="237.5969" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M26.2309,243.2375 Q25.6527,243.5344 25.0121,243.675 Q24.3715,243.8312 23.6684,243.8312 Q21.1684,243.8312 19.8402,242.1906 Q18.5277,240.5344 18.5277,237.4094 Q18.5277,234.2844 19.8402,232.6281 Q21.1684,230.9719 23.6684,230.9719 Q24.3715,230.9719 25.0121,231.1281 Q25.6684,231.2844 26.2309,231.5812 L26.2309,234.3 Q25.6059,233.7219 25.0121,233.4562 Q24.4184,233.175 23.7934,233.175 Q22.4496,233.175 21.7621,234.2531 Q21.0746,235.3156 21.0746,237.4094 Q21.0746,239.5031 21.7621,240.5812 Q22.4496,241.6437 23.7934,241.6437 Q24.4184,241.6437 25.0121,241.3781 Q25.6059,241.0969 26.2309,240.5187 L26.2309,243.2375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131.3662" x="37.5426" y="242.4436">WorkflowTemplate</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="172.1709" y1="253.5969" y2="253.5969"/><ellipse cx="18" cy="267.2453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140.1709" x="27" y="270.592">definition: Workflow</text><ellipse cx="18" cy="283.5422" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130.5801" x="27" y="286.8889">persisted: Boolean</text><line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="172.1709" y1="294.1906" y2="294.1906"/></g><g id="elem_Template"><rect codeLine="21" fill="#F1F1F1" height="64.2969" id="Template" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="152.6699" x="207.75" y="229.7369"/><ellipse cx="247.2341" cy="245.7369" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M250.2029,251.3775 Q249.6248,251.6744 248.9841,251.815 Q248.3435,251.9713 247.6404,251.9713 Q245.1404,251.9713 243.8123,250.3306 Q242.4998,248.6744 242.4998,245.5494 Q242.4998,242.4244 243.8123,240.7681 Q245.1404,239.1119 247.6404,239.1119 Q248.3435,239.1119 248.9841,239.2681 Q249.6404,239.4244 250.2029,239.7213 L250.2029,242.44 Q249.5779,241.8619 248.9841,241.5963 Q248.3904,241.315 247.7654,241.315 Q246.4216,241.315 245.7341,242.3931 Q245.0466,243.4556 245.0466,245.5494 Q245.0466,247.6431 245.7341,248.7213 Q246.4216,249.7838 247.7654,249.7838 Q248.3904,249.7838 248.9841,249.5181 Q249.5779,249.2369 250.2029,248.6588 L250.2029,251.3775 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66.2607" x="266.675" y="250.5836">Template</text><line style="stroke:#181818;stroke-width:0.5;" x1="208.75" x2="359.4199" y1="261.7369" y2="261.7369"/><ellipse cx="218.75" cy="275.3853" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126.6699" x="227.75" y="278.732">function: Function</text><line style="stroke:#181818;stroke-width:0.5;" x1="208.75" x2="359.4199" y1="286.0338" y2="286.0338"/></g><g id="link_Spec_Template"><path codeLine="25" d="M207.42,142.7769 C223.92,168.1969 243.8031,198.8342 260.3431,224.3142 " fill="none" id="Spec-to-Template" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="263.61,229.3469,262.0648,219.62,260.8876,225.153,255.3546,223.9758,263.61,229.3469" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53.8726" x="240.09" y="187.6638">includes</text></g><g id="link_Spec_WorkflowTemplate"><path codeLine="26" d="M166.75,142.7769 C151.92,165.6269 134.977,191.7343 119.027,216.3043 " fill="none" id="Spec-to-WorkflowTemplate" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="115.76,221.3369,124.0155,215.966,118.4825,217.1431,117.3054,211.61,115.76,221.3369" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69.418" x="146.09" y="187.6638">references</text></g></g></svg></div>
 
-<h4 id="user_manual-dimsum-platform-main-operations">DimSum Platform Main Operations</h4>
-<p>This section outlines the operations expected to be executed by the Workflow Management System (WMTS) in the DimSum platform. The process is divided into three parts: registration, execution, and status polling.</p>
-<h5 id="user_manual-registration-of-the-workflow-template">Registration of the Workflow Template</h5>
+<h4 id="user_manual-workflow-composition">Workflow Composition</h4>
+<p>The <a href="#workflow_design_manual">Workflow Design Manual</a> explains the main Argo Workflows concepts and provides guidance on designing workflows that include features relevant to the platform, such as workflow templates, artefacts, and retry strategies.</p>
+<h4 id="user_manual-rest-api-operations">REST API Operations</h4>
+<p>This section outlines the REST API operations executed by the DimSum platform components such as the Workflow Management System (WMTS).</p>
+<p>The <a href="#design-rest_api_design">API Design Document</a> provides the details about the REST API operations referenced below..</p>
+<p>The sequence of operations performed by the platform consists in the following steps: </p>
 <ol>
-<li>The WMTS submits the Argo Workflow Template to the Module Registry microservice.</li>
-<li>The Module Registry registers the workflow template in the DimSum namespace using the Argo Workflow API.</li>
-</ol>
-<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="149px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 670 149" width="670px" zoomAndPan="magnify"><defs/><g><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="33" x2="33" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="233.6191" x2="233.6191" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="597.0713" x2="597.0713" y1="36.2969" y2="114.5625"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="133.5576">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="172.6191" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="179.6191" y="24.9951">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="172.6191" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="179.6191" y="133.5576">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="530.0713" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="537.0713" y="24.9951">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="530.0713" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="537.0713" y="133.5576">ArgoWorkflowAPI</text><polygon fill="#181818" points="222.0435,63.4297,232.0435,67.4297,222.0435,71.4297,226.0435,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="33.6802" x2="228.0435" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.3633" x="40.6802" y="62.3638">Submit Workflow Template</text><polygon fill="#181818" points="585.0908,92.5625,595.0908,96.5625,585.0908,100.5625,589.0908,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="234.0435" x2="591.0908" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="339.0474" x="241.0435" y="91.4966">Register Workflow Template in DimSum namespace</text></g></svg></div>
-<h5 id="user_manual-execution-of-the-workflow">Execution of the Workflow</h5>
-<ol>
-<li>The WMTS submits the Workflow using the REST API.</li>
+<li>The WMTS submits the Argo Workflows Template to the Module Registry microservice.</li>
+<li>The Module Registry registers the workflow template in the DimSum namespace using the Argo Workflows</li>
+<li>The WMTS submits the Workflow using the REST API. </li>
 <li>The WMTS monitors the Workflow until it is complete.</li>
 <li>Upon completion, the WMTS retrieves the results.</li>
 <li>If the execution fails, the WMTS retrieves logs from an operator.</li>
 </ol>
-<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="268px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 369 268" width="369px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="46.2656" style="stroke:#000000;stroke-width:1.5;" width="353.6035" x="10" y="169.8281"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="36.2969" y2="233.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="199.8994" x2="199.8994" y1="36.2969" y2="233.0938"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="314.9385" x2="314.9385" y1="36.2969" y2="233.0938"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="252.0889">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="132.8994" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="139.8994" y="24.9951">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="132.8994" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="139.8994" y="252.0889">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="276.9385" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="283.9385" y="24.9951">Operator</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="276.9385" y="232.0938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="283.9385" y="252.0889">Operator</text><polygon fill="#181818" points="187.9189,63.4297,197.9189,67.4297,187.9189,71.4297,191.9189,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110.7031" x="55.6802" y="62.3638">Submit Workflow</text><polygon fill="#181818" points="187.9189,92.5625,197.9189,96.5625,187.9189,100.5625,191.9189,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114.0039" x="55.6802" y="91.4966">Monitor Workflow</text><polygon fill="#181818" points="59.6802,121.6953,49.6802,125.6953,59.6802,129.6953,55.6802,125.6953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="53.6802" x2="198.9189" y1="125.6953" y2="125.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.2388" x="65.6802" y="120.6294">Workflow Complete</text><polygon fill="#181818" points="187.9189,150.8281,197.9189,154.8281,187.9189,158.8281,191.9189,154.8281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="193.9189" y1="154.8281" y2="154.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106.4312" x="55.6802" y="149.7622">Retrieve Results</text><path d="M10,169.8281 L74.4429,169.8281 L74.4429,176.9609 L64.4429,186.9609 L10,186.9609 L10,169.8281 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="46.2656" style="stroke:#000000;stroke-width:1.5;" width="353.6035" x="10" y="169.8281"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="25" y="182.895">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="101.6157" x="89.4429" y="182.0386">[Workflow Fails]</text><polygon fill="#181818" points="303.271,204.0938,313.271,208.0938,303.271,212.0938,307.271,208.0938" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="309.271" y1="208.0938" y2="208.0938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89.1274" x="55.6802" y="203.0278">Retrieve Logs</text></g></svg></div>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="502px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 754 502" width="754px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="81.3984" style="stroke:#000000;stroke-width:1.5;" width="738.3662" x="10" y="368.625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="48" x2="48" y1="36.2969" y2="467.0234"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="248.6191" x2="248.6191" y1="36.2969" y2="467.0234"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="584.6621" x2="584.6621" y1="36.2969" y2="467.0234"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="699.7012" x2="699.7012" y1="36.2969" y2="467.0234"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="20" y="466.0234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="27" y="486.0186">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="187.6191" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="194.6191" y="24.9951">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="122.8486" x="187.6191" y="466.0234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="108.8486" x="194.6191" y="486.0186">ModuleRegistry</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="517.6621" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="524.6621" y="24.9951">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="134.0391" x="517.6621" y="466.0234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120.0391" x="524.6621" y="486.0186">ArgoWorkflowAPI</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="661.7012" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="668.7012" y="24.9951">Operator</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76.665" x="661.7012" y="466.0234"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62.665" x="668.7012" y="486.0186">Operator</text><polygon fill="#181818" points="237.0435,63.4297,247.0435,67.4297,237.0435,71.4297,241.0435,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="243.0435" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="176.3633" x="55.6802" y="62.3638">Submit Workflow Template</text><path d="M254,80.4297 L254,105.4297 L736,105.4297 L736,90.4297 L726,80.4297 L254,80.4297 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M726,80.4297 L726,90.4297 L736,90.4297 L726,80.4297 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="461.9443" x="260" y="97.4966">Register the submitted workflow template in the specified namespace.</text><polygon fill="#181818" points="572.6816,127.6953,582.6816,131.6953,572.6816,135.6953,576.6816,131.6953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="249.0435" x2="578.6816" y1="131.6953" y2="131.6953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="311.6382" x="256.0435" y="126.6294">POST /api/v1/workflow-templates/{namespace}</text><path d="M53,144.6953 L53,169.6953 L302,169.6953 L302,154.6953 L292,144.6953 L53,144.6953 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M292,144.6953 L292,154.6953 L302,154.6953 L292,144.6953 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="228.1982" x="59" y="161.7622">Submit the workflow for execution.</text><polygon fill="#181818" points="572.6816,191.9609,582.6816,195.9609,572.6816,199.9609,576.6816,195.9609" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="578.6816" y1="195.9609" y2="195.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="306.0522" x="55.6802" y="190.895">POST /api/v1/workflows/{namespace}/{name}</text><path d="M53,208.9609 L53,233.9609 L489,233.9609 L489,218.9609 L479,208.9609 L53,208.9609 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M479,208.9609 L479,218.9609 L489,218.9609 L479,208.9609 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="415.105" x="59" y="226.0278">Monitor the status of the submitted workflow until it completes.</text><polygon fill="#181818" points="572.6816,256.2266,582.6816,260.2266,572.6816,264.2266,576.6816,260.2266" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="578.6816" y1="260.2266" y2="260.2266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="298.0161" x="55.6802" y="255.1606">GET /api/v1/workflows/{namespace}/{name}</text><polygon fill="#181818" points="59.6802,285.3594,49.6802,289.3594,59.6802,293.3594,55.6802,289.3594" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="53.6802" x2="583.6816" y1="289.3594" y2="289.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127.2388" x="65.6802" y="284.2935">Workflow Complete</text><path d="M53,302.3594 L53,327.3594 L383,327.3594 L383,312.3594 L373,302.3594 L53,302.3594 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M373,302.3594 L373,312.3594 L383,312.3594 L373,302.3594 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="309.9434" x="59" y="319.4263">Retrieve the results of the completed workflow.</text><polygon fill="#181818" points="572.6816,349.625,582.6816,353.625,572.6816,357.625,576.6816,353.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="578.6816" y1="353.625" y2="353.625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="298.0161" x="55.6802" y="348.5591">GET /api/v1/workflows/{namespace}/{name}</text><path d="M10,368.625 L74.4429,368.625 L74.4429,375.7578 L64.4429,385.7578 L10,385.7578 L10,368.625 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="81.3984" style="stroke:#000000;stroke-width:1.5;" width="738.3662" x="10" y="368.625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="19.4429" x="25" y="381.6919">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="101.6157" x="89.4429" y="380.8354">[Workflow Fails]</text><path d="M53,390.7578 L53,415.7578 L460,415.7578 L460,400.7578 L450,390.7578 L53,390.7578 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M450,390.7578 L450,400.7578 L460,400.7578 L450,390.7578 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="386.585" x="59" y="407.8247">Retrieve the logs from the operator to diagnose the failure.</text><polygon fill="#181818" points="688.0337,438.0234,698.0337,442.0234,688.0337,446.0234,692.0337,442.0234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="48.6802" x2="694.0337" y1="442.0234" y2="442.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="322.2134" x="55.6802" y="436.9575">GET /api/v1/workflows/{namespace}/{name}/log</text></g></svg></div>
 
-<h5 id="user_manual-workflow-notifications">Workflow Notifications</h5>
-<p>Argo Workflows does not natively support notification mechanisms for status updates, except through implementing a custom container in an exit handler to handle such notifications. However, this functionality can be considered in phase 2 of the project.</p>
-<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="149px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 278 149" width="278px" zoomAndPan="magnify"><defs/><g><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="33" x2="33" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="211.1001" x2="211.1001" y1="36.2969" y2="114.5625"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="133.5576">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="24.9951">MessageQueue</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="133.5576">MessageQueue</text><polygon fill="#181818" points="199.7759,63.4297,209.7759,67.4297,199.7759,71.4297,203.7759,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="33.6802" x2="205.7759" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="133.1611" x="40.6802" y="62.3638">Poll Workflow Status</text><polygon fill="#181818" points="44.6802,92.5625,34.6802,96.5625,44.6802,100.5625,40.6802,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="38.6802" x2="210.7759" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154.0957" x="50.6802" y="91.4966">Return Workflow Status</text></g></svg></div>
-<p>See <a href="https://argo-workflows.readthedocs.io/en/latest/workflow-notifications/">Workflow Notifications Documentation</a> for additional details.</p>
-<h3 id="user_manual-normal-termination">Normal Termination</h3>
-<p>To cease or interrupt the use of Argo Workflow, users can terminate their workflows through the Argo CLI or Argo UI. Using the Argo CLI, the <code>argo stop</code> or <code>argo terminate</code> commands can be employed to stop or terminate a workflow, respectively. Additionally, the Argo UI provides an intuitive interface to manage and halt workflows.</p>
-<p>To verify if the termination has been normal, users should check the status of the workflow. A normally terminated workflow will have a status of <code>Succeeded</code> or <code>Failed</code>, indicating that the workflow has completed its execution or encountered an error during the process. Users can inspect the workflow status via the Argo CLI with the <code>argo get</code> command or through the Argo UI.</p>
+<h5 id="user_manual-registration-of-the-workflow-template">Registration of the Workflow Template</h5>
+<p>To register a workflow template, send a POST request to the Argo Workflows API with the template definition.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflow-templates/{namespace}&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">  &quot;template&quot;: {</span>
+<span class="s1">    // your workflow template JSON here</span>
+<span class="s1">  }</span>
+<span class="s1">}&#39;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and provide your workflow template JSON in the <code>-d</code> parameter.</p>
+<h5 id="user_manual-submit-the-workflow">Submit the Workflow</h5>
+<p>To submit the workflow for execution, send a POST request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/submit&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-monitor-the-status">Monitor the Status</h5>
+<p>To monitor the status of the submitted workflow until it completes or get the progress and status of individual steps (tasks), send a GET request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<p>The response will include detailed information about the workflow, such as:
+- <code>status.phase</code>: The overall phase of the workflow (e.g., Running, Succeeded, Failed).
+- <code>status.startedAt</code>: The timestamp when the workflow started.
+- <code>status.finishedAt</code>: The timestamp when the workflow finished (if applicable).
+- <code>status.nodes</code>: An object containing the status of each node (step) in the workflow, including:
+   - <code>name</code>: The name of the node.
+   - <code>phase</code>: The phase of the node (e.g., Running, Succeeded, Failed).
+   - <code>startedAt</code>: The timestamp when the node started.
+   - <code>finishedAt</code>: The timestamp when the node finished (if applicable).
+   - <code>outputs</code>: Any outputs produced by the node.</p>
+<h5 id="user_manual-retrieve-the-results">Retrieve the Results</h5>
+<p>To retrieve the results of the completed workflow, send again a GET request to the Argo Workflows API when the workflow is completed.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<p>The response will include the outputs produced by the workflow, which can be found in the <code>status.outputs</code> field. This field contains:
+- <code>artifacts</code>: An array of artifacts produced by the workflow, each with:
+   - <code>name</code>: The name of the artifact.
+   - <code>path</code>: The path where the artifact is stored.
+   - <code>s3</code>: S3 bucket details if the artifact is stored in an S3 bucket.
+- <code>parameters</code>: Any parameters produced by the workflow, each with:
+   - <code>name</code>: The name of the parameter.
+   - <code>value</code>: The value of the parameter.
+   - <code>value</code>: The value of the parameter.</p>
+<h5 id="user_manual-retrieve-the-logs">Retrieve the Logs</h5>
+<p>If the workflow execution fails, retrieve the logs to diagnose the failure by sending a GET request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/logs&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-manually-delete-a-workflow">Manually Delete a Workflow</h5>
+<p>To manually delete a workflow, send a DELETE request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-suspend-a-workflow">Suspend a Workflow</h5>
+<p>To suspend a workflow, send a PUT request to the Argo Workflows API. Suspending a workflow pauses its execution, and it can be resumed later.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/suspend&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-resume-a-workflow">Resume a Workflow</h5>
+<p>To resume a previously stopped or suspended workflow, send a PUT request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/resume&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-stop-or-terminate-a-workflow">Stop or Terminate a Workflow</h5>
+<p>To stop a workflow, send a PUT request to the Argo Workflows API. Stopping a workflow will halt its execution but execute all exit handlers.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/stop&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<p>To terminate a workflow, send a PUT request to the Argo Workflows API. Terminating a workflow immediately stops its execution and marks it as terminated. Exit handlers are not executed.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/{namespace}/{name}/terminate&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{name}</code> with the workflow name.</p>
+<h5 id="user_manual-list-the-workflow-templates">List the Workflow Templates</h5>
+<p>To list all workflow templates, send a GET request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflow-templates/{namespace}&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace. This will return a list of all registered workflow templates.</p>
+<h5 id="user_manual-retrieve-a-workflow-template">Retrieve a Workflow Template</h5>
+<p>To retrieve a specific workflow template, send a GET request to the Argo Workflows API.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflow-templates/{namespace}/{template-name}&quot;</span>
+</code></pre></div>
+<p>Replace <code>{namespace}</code> with your namespace and <code>{template-name}</code> with the name of the workflow template you want to retrieve.</p>
+<p>By following these instructions, you can effectively manage your workflows using the Argo Workflow REST API.
+<div class="highlight"><pre><span></span><code>##### Workflow Notifications
+
+Argo Workflows does not natively support notification mechanisms for status updates, except through implementing a custom container in an exit handler to handle such notifications. However, this functionality can be considered in phase 2 of the project.
+
+&lt;pre class=&quot;diagram-uuid&quot;&gt;779231bc-b544-49ec-b933-baa12cbda351&lt;/pre&gt;
+See [Workflow Notifications Documentation](https://argo-workflows.readthedocs.io/en/latest/workflow-notifications/) for additional details.
+
+#### GUI Operations
+
+This section provides instructions on how to perform various operations using the Argo Workflow GUI.
+
+#### List Workflows (Running or Complete)
+
+1. Open the Argo Workflows GUI.
+2. Navigate to the &quot;Workflows&quot; tab.
+3. Here, you will see a list of all workflows, including both running and completed ones.
+4. You can use filters to refine the list based on workflow status, name, and other criteria.
+
+#### Display Workflow Status
+
+1. In the Argo Workflows GUI, navigate to the &quot;Workflows&quot; tab.
+2. Click on the workflow for which you want to view the status.
+3. The workflow details page will open, displaying the current status at the top (e.g., Running, Succeeded, Failed).
+
+#### Monitor Workflow Steps
+
+1. From the workflow details page in the Argo Workflows GUI, you can see the graphical representation of the workflow.
+2. Each step in the workflow is displayed as a node in the graph.
+3. Click on any node to view the details of that step, including logs, outputs, and the current status.
+
+#### Retrieve Workflow Logs
+
+1. In the workflow details page, click on the specific node (step) you are interested in.
+2. A sidebar will appear showing details about that step.
+3. Click on the &quot;Logs&quot; tab in the sidebar to view the logs for that specific step.
+
+#### Retrieve Workflow Outputs
+
+1. Navigate to the workflow details page in the Argo Workflows GUI.
+2. At the bottom of the page, you will see a section labeled &quot;Outputs.&quot;
+3. This section lists the outputs produced by the workflow. You can click on each output to view more details or download the data.
+
+#### Manually Delete a Workflow
+
+1. Open the Argo Workflows GUI and navigate to the &quot;Workflows&quot; tab.
+2. Find the workflow you want to delete in the list.
+3. Click the three-dot menu (ellipsis) next to the workflow.
+4. Select &quot;Delete&quot; from the dropdown menu.
+5. Confirm the deletion in the prompt that appears.
+
+### Normal Termination
+
+To cease or interrupt the use of Argo Workflow, users can terminate their workflows through the Argo REST API or Argo UI. Using the Argo REST API, users can send a POST request to the `/api/v1/workflows/{namespace}/{name}/terminate` endpoint to terminate a workflow or to the `/api/v1/workflows/{namespace}/{name}/stop` endpoint to stop a workflow. Additionally, the Argo UI provides an intuitive interface to manage and halt workflows.
+
+To verify if the termination has been normal, users should check the status of the workflow. A normally terminated workflow will have a status of `Succeeded` or `Failed`, indicating that the workflow has completed its execution or encountered an error during the process. Users can inspect the workflow status via the Argo REST API by sending a GET request to the `/api/v1/workflows/{namespace}/{name}` endpoint or through the Argo UI.
+
+#### Example: Terminate a Workflow Using REST API
+
+To terminate a workflow named `example-workflow` in the `default` namespace, users can send the following POST request:
+
+```sh
+curl -X POST &quot;https://your-argo-server/api/v1/workflows/default/example-workflow/terminate&quot;
+</code></pre></div></p>
+<h4 id="user_manual-example-check-workflow-status-using-rest-api">Example: Check Workflow Status Using REST API</h4>
+<p>To check the status of a workflow named example-workflow in the default namespace, users can send the following GET request:</p>
+<p>```sh
+curl -X GET "https://your-argo-server/api/v1/workflows/default/example-workflow"
+```` </p>
 <h3 id="user_manual-error-conditions">Error Conditions</h3>
-<p>Common error conditions in Argo Workflow include:</p>
+<p>Common error conditions in Argo Workflows include:</p>
 <ol>
 <li><strong>Workflow Fails to Start</strong>: This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.</li>
 </ol>
@@ -1191,7 +1329,7 @@
 <li><strong>Handling Emergency Situations</strong>: In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.</li>
 </ol>
 <p><strong>Procedure</strong>:
-  - Implement backup and restore strategies for the Argo Workflow controller and associated databases.
+  - Implement backup and restore strategies for the Argo Workflows controller and associated databases.
   - Utilize high-availability (HA) configurations for critical components to minimize downtime.
   - Regularly test disaster recovery plans to ensure workflows can be recovered quickly.</p>
 <h2 id="user_manual-tutorials">Tutorials</h2>
@@ -1610,7 +1748,7 @@ argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent
 
 #### Label Kubernetes nodes
 
-Labels associated with nodes are used by Argo Workflow and Kubernetes to choose on which node a pods must be scheduled.
+Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
 Here is an example of how to associate a label with a node:
 </code></pre></div>
 kubectl label nodes <node-name> accelerator=<my-label>
