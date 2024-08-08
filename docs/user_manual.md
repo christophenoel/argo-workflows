@@ -32,6 +32,8 @@ With Argo Workflows, three key concepts are essential: **Workflow**, **template*
 - **template**: A task within a workflow that acts as a function or method.
 - **Workflow Template**: A predefined definition of a workflow that can be persisted, submitted, or referenced within other workflows.
 
+<div style="text-align: center;">
+
 ```puml
 @startuml
 title Grouped Workflow Diagram
@@ -64,6 +66,7 @@ Spec --> WorkflowTemplate : references
 
 @enduml
 ``` 
+</div>
 
 #### Workflow Composition
 
@@ -162,6 +165,7 @@ curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}/{name}"
 Replace `{namespace}` with your namespace and `{name}` with the workflow name.
 
 The response will include detailed information about the workflow, such as:
+
 - `status.phase`: The overall phase of the workflow (e.g., Running, Succeeded, Failed).
 - `status.startedAt`: The timestamp when the workflow started.
 - `status.finishedAt`: The timestamp when the workflow finished (if applicable).
@@ -183,6 +187,7 @@ curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}/{name}"
 Replace `{namespace}` with your namespace and `{name}` with the workflow name.
 
 The response will include the outputs produced by the workflow, which can be found in the `status.outputs` field. This field contains:
+
 - `artifacts`: An array of artifacts produced by the workflow, each with:
    - `name`: The name of the artifact.
    - `path`: The path where the artifact is stored.
