@@ -1,30 +1,24 @@
 # Software Design Document for Argo-Workflow
 
-## Table of Contents
-
-- [General](#general)
-- [Component Identifier](#component-identifier)
-- [Type](#type)
-- [Purpose](#purpose)
-- [Function](#function)
-- [Subordinates](#subordinates)
-- [Dependencies](#dependencies)
-- [Interfaces](#interfaces)
-- [Resources](#resources)
-- [Data](#data)
-
 ### General
 This section provides a detailed look at the design aspects of each component used in the software. 
 
 ### Component Identifier
 
-- **Description**: Argo Workflows enables the chaining of container-based modules and workflows.
 - **Naming Convention**: Argo-Workflows
+
+Argo Workflows enables the chaining of container-based modules and workflows.
+
 
 ### Type
  
-- **Logical Characteristics**: Argo Workflows is the main functional component implementing the Data Processing Environment sub-system of the OHDSA platform.
-- **Physical Characteristics**: Argo Workflows is a Commercial-Of-The-Shelf (COTS) Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. It uses Kubernetes resources like custom resources, pods, jobs, ConfigMaps, and Secrets to implement and manage workflows. Each workflow is defined as a Workflow object, which dictates the sequence of tasks to be executed. These tasks are encapsulated as Kubernetes Jobs or Pods, making each step of the workflow a discrete, schedulable unit under Kubernetes management.
+#### Logical Characteristics
+
+Argo Workflows is the main functional component implementing the Data Processing Environment sub-system of the OHDSA platform.
+
+#### Physical Characteristics
+
+Argo Workflows is a Commercial-Of-The-Shelf (COTS) Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. It uses Kubernetes resources like custom resources, pods, jobs, ConfigMaps, and Secrets to implement and manage workflows. Each workflow is defined as a Workflow object, which dictates the sequence of tasks to be executed. These tasks are encapsulated as Kubernetes Jobs or Pods, making each step of the workflow a discrete, schedulable unit under Kubernetes management.
 
 ### Purpose
 
@@ -32,87 +26,42 @@ Argo Workflows component is designed to fulfill a pivotal role in managing and e
 
 ### Function
 
-Argo Workflows is a container-native workflow engine for Kubernetes, designed to orchestrate parallel jobs in a cloud environment. Here are its major functions:
+Argo Workflows is a container-native workflow engine for Kubernetes, designed to orchestrate parallel jobs in a cloud environment.
 
-- **Workflow Orchestration**: Executes workflows where each step is a container, handling sequential, parallel, or conditionally executed steps.
-  Each Step and Directed Acyclic Graph (DAG) Task triggers the creation of a Pod. 
-  Each Pod comprises three containers:
-  - Main Container: This container executes the user-specified image. The argoexec utility is volume-mounted within this container and functions as the primary command, invoking the configured command as a subprocess.
-  - Init Container: Known as an InitContainer, this container is responsible for fetching artifacts and parameters, making them accessible to the main container.
-  - Wait Container: This container is tasked with performing necessary cleanup operations, including the preservation of parameters and artifacts.
-  
-  **TBD**: add diagram to represent container usage
-
-  For more information, see: https://argo-workflows.readthedocs.io/en/stable/architecture/
-
-- **DAG Execution**: Argo Workflows can manage task dependencies using Directed Acyclic Graphs to ensure optimal execution order.In a DAG template, tasks without any dependency will be run immediately.
-
-[//]: # (- **Event-driven Execution**: )
-[//]: # (  Argo Events is an event-driven workflow automation framework capable of triggering Argo Workflows based on external events &#40;for reactive workflow scenarios&#41;. it supports a significant list &#40;more than 20&#41; of event sources, including AMQP and Minio.)
-[//]: # (  Agro Evetns support of Minio enables to automate workflow execution based on changes within a bucket. )
-[//]: # (  ![]&#40;D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\argo-workflow-trigger.png&#41;)
-[//]: # (  Argo Events does not only support the 'Submit' operation but also supports the following operations: Submit,Submit --from,Resubmit, Resume, Retry,Suspend,Terminate,Stop.)
-[//]: # (  For more information see: https://argoproj.github.io/argo-events/sensors/triggers/argo-workflow/)
-
-- **Resource Optimization**: Dynamically allocates resources based on task demands, optimizing cluster resource use.
-  To achieve resource usage optimization, one can leverage Kubernetes resource mechanisms (limits and requests). 
-
-- **Error Handling and Retry Logic**: Argo Workflow provides built-in mechanisms for error recovery and task retries.
-
-
-- **Monitoring**: Argo produces metrics that provide information on the controller's status. As those metrics follow the same format as required by prometheus, those can be integrated with Prometheus.
-  Two types of metrics are emitted by Argo: 
-  - Controller metrics: concerns the state of the controller;
-  - Custom metrics: regards the state of a Workflow, or a series of Workflows. Those metrics can be defined on the Workflow/Step/Task emitting the metric. using the same name and help string, is a required by prometheus to track the metrics over time. 
-  
-  For more information, see: See: https://argo-workflows.readthedocs.io/en/stable/metrics/
-
-- **Logging**: 
-It is officially not recommended to rely on Argo to archive logs as it is a naive solution, not designed for indexing, searching, and storing logs (see: https://argo-workflows.readthedocs.io/en/stable/configure-archive-logs/). 
-In a Kubernetes environment, logs can be forwarded by an agent running on the node (see: https://kubernetes.io/docs/concepts/cluster-administration/logging/#using-a-node-logging-agent). 
-This agent can forward logs to be saved and indexed for a future usage. Such solution can be provided by Fluentd (acting as the agent forwarding logs). Such logs can be forwarded to ElasticSearch (ELK) which supports storing, indexing and searching capabilities.
-
-  **TBD**: add diagram to represent logging workflow
-
-[//]: # (- ![]&#40;D:\env\gitprojects\OHDSA\argo-worfklows\docs\design\sw_design_resources\logging-with-node-agent.png&#41;)
-- **Role-Based Access Control (RBAC)**: Utilizes Kubernetes RBAC to control access to workflow execution and management.
-  All users of the Argo Server must use a service account in order to interact with the Argo Controller. A single service account can be shared by multiple users, as it is used to list  possible actions a user can do.
-  Rules  defined in Argo can associate a user (using their OIDC group) to a service account in the same namespace as Argo server by annotating the desired service account. By using such rules, users from the OIDC provider are associated to the appropriate service account, with which they can interact with Argo Workflow server to manage workflows.
-  For more information, see: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/
-
-- **Artifacts**
-Argo supports staging-in, staging-out and passing artifacts between steps thanks to artifact repositories.
-An artifact repository can be used with any S3 compatible API (like Minio). Artifact repositories are defined in Kubernetes configmaps and referenced in workflow templates in order to reduce information duplication and simplify artifact repository usage.
-It also supports other interfaces such as GIT. For more information,see: https://argo-workflows.readthedocs.io/en/stable/configure-artifact-repository/
-  
-- **Notification**
-A default Exit handler can be configured in order to send notifications (such as emails or anything) to notify the completion of a workflow execution (failure/success). The exit handler is defined as a container executing a command, which permits to do anything with the end of the workflow, making it possible to communicate over any protocol.
-  https://argo-workflows.readthedocs.io/en/stable/workflow-notifications/
-
-For more detailed information, visit the [official Argo Workflows documentation](https://argoproj.github.io/argo-workflows/).
-
-The following subsections focus on the implementation of the **OHDSA specific capabilities** supported by the workflow engine.
+The following subsections focus on the implementation of the **OHDSA capabilities** supported by the workflow engine.
 
 #### API
 
-Argo Workflow provide a REST API endpoint with plenty operations, in which we can find the following ones:
-- Workflow Template creation
-- List available Workflow Templates 
-- Describe Workflow Template
-- List Workflows
-- Submit Workflow
-- Delete Workflow
-- Retrieve Workflow Status
-- Retrieve Workflow Logs
 
-For more information on those operations,see API design documentation: [API](rest_api_design)
+The Argo Workflows component provides a REST API that facilitates the creation, management, and monitoring of workflows.
+
+Key API Operations:
+
+1. **Create Workflow Template**: Allows the user to define and register a reusable workflow template.
+2. **List Available Workflow Templates**: Retrieves a list of all registered workflow templates.
+3. **Describe Workflow Template**: Provides detailed information about a specific workflow template.
+4. **List Workflows**: Returns a list of all active and completed workflows.
+5. **Submit Workflow**: Initiates a new workflow based on a specified workflow template.
+6. **Delete Workflow**: Removes a specified workflow from the system.
+7. **Retrieve Workflow Status**: Fetches the current status of a specific workflow.
+8. **Retrieve Workflow Logs**: Provides access to the logs generated by a specific workflow.
+
+For detailed documentation and examples of these API operations, refer to the [API Design Documentation](rest_api_design.md).
+
 
 #### Reusable Workflow Templates
 
-> TBD: Workflow designer prepares reusable workflow templates for standardizing and streamlining reusable steps
+Argo Workflows supports the creation and utilisation of reusable workflow templates to standardise and streamline workflow definitions.
 
-Argo Workflow supports defining workflow templates reused in workflow definitions. The REST API provide an operation to register such workflow template. For more information on this, see section 'Workflow Template creation' in the API Design document: [API](rest_api_design)
-The following example represents a workflow template definition:
+Reusable workflow templates in Argo Workflows allow users to define a set of tasks and their configurations once and reuse them across multiple workflows. 
+
+The templates encapsulate the following elements:
+
+- **Entrypoint**: Defines the main entry point for the workflow, specifying the starting task.
+- **Templates**: Lists the tasks included in the workflow template, each with its own configuration such as container image, commands, and arguments.
+
+The following [example](../../examples/hello-world-template/hello-world-wf-template.yml)
+represents a basic workflow template definition:
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
@@ -130,74 +79,101 @@ spec:
         command: [ cowsay ]
         args: ["{{inputs.parameters.message}}"]
 ```
-See: [Example](../../examples/hello-world-template/hello-world-wf-template.yml)
+
+The usage of workflow template works as follows:
+
+1. **Definition**: Users define a workflow template, specifying the tasks and their configurations. This is done using YAML, where each task within the template is defined with its specific parameters and resources.
+
+2. **Registration**: The defined workflow template is registered with the Argo system using the appropriate API endpoint. This makes the template available for use in workflows.
+
+3. **Reuse**: Once registered, the workflow template can be referenced in multiple workflows. This is achieved by specifying the template reference in the workflow definition, allowing the workflow to utilise the predefined tasks and configurations.
+
+4. **Execution**: When a workflow that references a reusable template is executed, Argo orchestrates the tasks as defined in the template, ensuring that each task is executed according to the specified configuration.
+
+Argo provides a REST API to manage workflow templates, including operations to create, list, describe, and delete templates. This API facilitates the integration of workflow template management into automated processes and external systems.
 
 #### DAG Workflow Creation
 
-Workflow designer creates workflows using a Directed Acyclic Graph (DAG) model.
-Workflow templates can be referenced in DAG workflows in order to define workflow's tasks.
+Argo Workflows supports the creation of Directed Acyclic Graph (DAG) workflows, which allow for the definition of complex workflows with dependencies between tasks. This capability ensures optimal execution order and efficient resource utilisation.
 
-The following example represents a DAG workflow definition:
+DAG workflows in Argo enable users to define workflows where tasks are executed based on their dependencies. This means that a task will only start once all its dependent tasks have been completed successfully.
+
+- **Task Dependencies**: Tasks in a DAG can specify dependencies, indicating which tasks need to be completed before they can be executed.
+- **Parallel Execution**: Independent tasks can run in parallel, maximising resource usage and reducing overall execution time.
+- **Template Reuse**: DAG workflows can reference reusable workflow templates, allowing for modular and maintainable workflow definitions.
+- **Dynamic Execution**: The DAG model supports dynamic execution paths, where the workflow can adapt based on the results of preceding tasks.
+
+The process of creating and executing a DAG workflow is as follows:
+
+1. **Definition**: A DAG workflow is defined in a YAML file, where the `templates` section includes a `dag` template that specifies the tasks and their dependencies.
+2. **Task Specification**: Each task within the DAG is defined with a `name`, `templateRef` to reference reusable templates, and `dependencies` to specify other tasks that must complete before this task starts.
+3. **Execution**: When the DAG workflow is submitted, Argo orchestrates the execution based on the defined dependencies. Tasks are scheduled to run in the optimal order, ensuring that each task only starts once all its dependencies are resolved.
+
+Below is a minimal example of a DAG workflow definition:
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: dag-test-workflow-
+  generateName: dag-example-
 spec:
-  entrypoint: whalesay
+  entrypoint: dag-example
   templates:
-    - name: whalesay
+    - name: dag-example
       dag:
         tasks:
-          - name: call-wf-template-1
+          - name: task-1
             templateRef:
-              name: wf-template-1
-              template: whalesay-workflow-template
-            arguments:
-              parameters:
-                - name: message
-                  value: "hello world"
+              name: some-template
+              template: some-task
+          - name: task-2
+            dependencies: [task-1]
+            templateRef:
+              name: some-template
+              template: another-task
 ```
 
+In this example:
+* apiVersion: Specifies the API version.
+* kind: Indicates the resource type, which is Workflow.
+* metadata: Contains metadata, including the workflow name.
+* spec: Defines the specifications of the workflow.
+* entrypoint: Specifies the main entry point for the DAG workflow.
+* templates: Lists the tasks included in the DAG workflow.
+* dag: Defines the DAG structure with tasks and their dependencies.
 
 #### Data Artefacts
 
-> For managing input and output data, the following principles are applied:
-1. Data Inputs as Artefacts: In a WorkflowTemplate, input data should be provided as an artifact, which is submitted as an argument by the workflow calling this template. See: [Example](../../examples/artifacts/input-artifact/artifact-consumer-wf.yml)
-2. Intermediate Artefacts: In a workflow template with multiple steps, intermediate artifacts are stored in the default repository (fast storage). See: [Example](../../examples/artifacts/intermediate-steps-artifacts/demo-wf.yml)
-3. Creating Artefacts: Workflows (which can call the templates) can create artifacts from:
-A key in the default S3 repository. See: [Example](../../examples/artifacts/input-artifact/artifact-consumer-wf.yml)
-A key in a specified internal repository. SeeSee: [Example](../../examples/artifacts/specific-artifact-repository/artifact-consumer-wf.yml)
-Remote sources such as S3 or HTTP, offering flexibility. See: [Example](../../examples/artifacts/external-http-artifact/artifact-consumer-wf.yml)
-4. Credential Agnosticism: WorkflowTemplates do not handle credentials. External artifacts (HTTP, S3) are managed by a workflow generated by the Processing Gateway.
+Argo Workflows supports the management of data artefacts, enabling the staging-in, staging-out, and passing of data between workflow steps. This capability is essential for handling input and output data efficiently within workflows.
 
-> TBD interfacing with fast / slow storage areas on S3 and management of artefacts
-> Show how to define 2 multiple artifact repository (fast & slow) +configure one as the default one.
+The features of Argo Workflows for managing data artefacts include:
 
-Artifact repositories are configured within a Kuebrnetes configmap within the same namespace as the workflow or within the management namespace.
+- **Artifact Repositories**: Argo supports the use of artifact repositories for storing and retrieving data. These repositories can be any S3-compatible storage, such as Minio, or other interfaces like GIT.
+- **Input Artefacts**: Workflows can specify input artefacts that are provided as arguments when the workflow is executed.
+- **Intermediate Artefacts**: Intermediate data generated during workflow execution can be stored in artifact repositories to be used by subsequent steps.
+- **Output Artefacts**: Workflows can create and store output artefacts in designated repositories, which can then be accessed by other workflows or external systems.
+- **Credential Agnosticism**: Workflow templates do not manage credentials directly. Instead, artefact management is handled by the workflow runtime, ensuring security and separation of concerns.
+
+The process for managing data artefacts in Argo Workflows is as follows:
+
+1. **Configuration**: Define artifact repositories within Kubernetes ConfigMaps. These repositories are referenced in workflow templates to standardise artefact handling across workflows.
+2. **Data Input**: Specify input artefacts in the workflow template. These artefacts are passed as arguments when the workflow is invoked.
+3. **Intermediate Storage**: Store intermediate artefacts in the default or specified artifact repository, ensuring they are accessible for subsequent workflow steps.
+4. **Data Output**: Create and store output artefacts in artifact repositories, enabling reuse and integration with other workflows or systems.
+
+
+Below is a minimal example of an artifact repository configuration in a Kubernetes ConfigMap:
+
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: artifact-repositories
-  annotations:
-    workflows.argoproj.io/default-artifact-repository: slow-s3-artifact-repository
 data:
-  slow-s3-artifact-repository: |
+  default-artifact-repository: |
     s3:
       bucket: argo-bucket
-      endpoint: slow-minio:9000
-      insecure: true
-      accessKeySecret:
-        name: my-minio-cred
-        key: accesskey
-      secretKeySecret:
-        name: my-minio-cred
-        key: secretkey
-  fast-s3-artifact-repository: |
-    s3:
-      bucket: argo-bucket
-      endpoint: fast-minio:9000
+      endpoint: minio:9000
       insecure: true
       accessKeySecret:
         name: my-minio-cred
@@ -207,71 +183,188 @@ data:
         key: secretkey
 ```
 
-- **TBD**:Steps I/O Mappings: Workflow designer maps intermediary steps data outputs to inputs steps of the workflow.
-- **TBD**:Data Transfer Steps: Workflow designer integrates data stage-in and stage-out steps managing interactions between persistent storage system (for external interfaces), intermediate data storage system (for intermediate steps).
+In this example:
 
+* apiVersion: Specifies the API version.
+* kind: Indicates the resource type, which is ConfigMap.
+* metadata: Contains metadata, including the ConfigMap name.
+* data: Defines the artifact repository configuration, including S3 endpoint details and credentials.
 
 #### Retry Strategy
 
-> TBD Workflow designer implements retry strategies for failed or errored workflow steps
-> List the different strategies +show examples (retry number, backoff,...)
+Argo Workflows provides robust retry strategies to handle task failures effectively, ensuring that workflows can recover from transient errors and improve reliability.
 
-The retry strategy is used to decide in which case a step is retried.
+The retry strategy in Argo Workflows allows for the configuration of retries for failed tasks, providing flexibility in handling different types of errors. Key features include:
 
-**Limit parameter:**
-A limit parameter san be specified in order to limit the number of reties.
+- **Limit Parameter**: Specifies the maximum number of retry attempts for a task.
+- **Retry Policies**: Defines conditions under which a task should be retried. Available policies include:
+  - **Always**: Retries all failed tasks regardless of the failure type.
+  - **OnFailure**: Retries tasks that are marked as failed by Kubernetes.
+  - **OnError**: Retries tasks that encounter errors related to the Argo controller or when init or wait containers fail.
+  - **OnTransientError**: Retries tasks that encounter transient errors or errors matching a specific pattern.
+- **Expressions**: Utilises expressions to control retry behaviour, accessing variables such as `lastRetry.exitCode`, `lastRetry.status`, `lastRetry.duration`, and `lastRetry.message`.
+- **Backoff**: Implements a delay between retry attempts to prevent immediate consecutive retries, which can help mitigate issues from transient failures.
 
-**Retry Policy:**
-In addition to this limit parameter, one can define a retry policy.
-Retry policies in Argo Workflows are configured using the retryPolicy parameter defined in Workflow specification. It determines the conditions under which failed steps should be retried.
-The available retry policies include:
-- Always: Retries all failed steps, regardless of the failure type.
-- OnFailure: Retries steps where the main container is marked as failed by Kubernetes.
-- OnError: Retries steps that encounter errors related to the Argo controller, or steps where the init or wait containers fail.
-- OnTransientError: Retries steps that encounter transient errors or errors that match the pattern specified in the TRANSIENT_ERROR_PATTERN environment variable.
+The process for implementing retry strategies in Argo Workflows is as follows:
 
-**Expressions**:In addition to retry policies, retries in Argo Workflows can be controlled using expressions. These expressions have access to the following variables:
-- lastRetry.exitCode: The exit code of the last retry, or "-1" if not available. 
-- lastRetry.status: The phase of the last retry, which can be "Error" or "Failed".
-- lastRetry.duration: The duration of the last retry, measured in seconds. 
-- lastRetry.message: The message output from the last retry.
+1. **Define Retry Parameters**: Specify the limit for retries and the retry policy within the workflow or template definition.
+2. **Set Retry Conditions**: Use expressions to determine when a retry should be attempted based on the status and exit codes of previous attempts.
+3. **Configure Backoff**: Define the backoff strategy to introduce delays between retry attempts, helping to manage the load and reduce the likelihood of repeated failures.
 
-If the expression evaluates to false, the step will not be retried. The result of the expression is logically combined (using a logical AND) with the retryPolicy. Both the expression and the retry policy must evaluate to true for a retry to occur.
+Below is a minimal example of a retry strategy configuration in a workflow:
 
-**Backoff**: The backoff parameter can be used to avoid too frequent retries too soon by introducing a delay between retries, thereby preventing immediate subsequent retry attempts.
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: retry-strategy-
+spec:
+  entrypoint: retry-example
+  templates:
+    - name: retry-example
+      retryStrategy:
+        limit: 3
+        retryPolicy: "OnFailure"
+        backoff:
+          duration: "5s"
+          factor: 2
+      container:
+        image: busybox
+        command: ["sh", "-c"]
+        args: ["exit 1"]
+```
+In this example:
 
-**TBD**: add example of retry strategy
+* retryStrategy.limit: Specifies the maximum number of retry attempts.
+* retryStrategy.retryPolicy: Sets the retry policy to retry on failure.
+* retryStrategy.backoff: Configures a backoff strategy with an initial delay of 5 seconds and an exponential backoff factor of 2.
 
-For more information, see: https://argo-workflows.readthedocs.io/en/stable/retries/
 
 #### Notification
 
-> **TBD**: describe how exit handler can be used to send notification of any type (using a container to send a AMQP message)
+Argo Workflows provides mechanisms to send notifications based on workflow events, ensuring users are informed about the status and results of their workflows.
+
+The notification features in Argo Workflows enable users to configure alerts and messages for various workflow events, such as completions, failures, and other significant statuses. Key features include:
+
+- **Exit Handlers**: Define actions to be taken upon workflow completion, allowing notifications to be sent based on the workflow's outcome.
+- **Notification Types**: Support for various notification types, such as emails, messages via protocols like AMQP, or custom scripts.
+- **Custom Containers**: Use custom containers to execute commands that send notifications, offering flexibility in how notifications are handled and delivered.
+
+The notification system in Argo Workflows operates as follows:
+
+1. **Define Exit Handlers**: Configure exit handlers in the workflow definition. These handlers specify the actions to be executed when the workflow completes, regardless of success or failure.
+2. **Custom Containers for Notifications**: Implement custom containers within exit handlers to perform notification actions. These containers can run scripts or commands to send emails, messages, or other notifications.
+
+
+Below is a minimal example of a workflow configuration with an exit handler that sends a message to a RabbitMQ queue upon workflow completion:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: notify-rabbitmq-example-
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      container:
+        image: busybox
+        command: ["sh", "-c"]
+        args: ["exit 0"]
+  onExit: notify
+  templates:
+    - name: notify
+      container:
+        image: rabbitmq:3-management
+        command: ["sh", "-c"]
+        args:
+          - |
+            apt-get update && apt-get install -y curl
+            curl -i -u guest:guest -H "content-type:application/json" \
+            -X POST -d '{"properties":{},"routing_key":"","payload":"Workflow completed successfully","payload_encoding":"string"}' \
+            http://rabbitmq:15672/api/exchanges/%2F/amq.default/publish
+```
 
 #### Hardware Constraints
 
-> TBD: Resource requirements/limits and affinities
-> Describe how to use affinities to deploy pods on nodes with specific harware
-> Describe how to define resource requests/limits to deploy on node with sufficient resource (optimize resource usage).
+Argo Workflows allows for the specification of hardware constraints to ensure that workflows run on nodes with the appropriate resources and capabilities. This feature is essential for optimising resource usage and ensuring that workflows can utilise specialised hardware as needed.
 
-When defining a workflow template, resource requirements can be specified within the 'container' section. The 'podSpecPatch' field in either the workflow or workflow template allows for overriding the resource limits and requests for a container. See: [Example](https://github.com/argoproj/argo-workflows/blob/main/examples/pod-spec-patch.yaml)
+##### Capabilities and Usage
 
-  **TBD**: add request/limits example
+The features for managing hardware constraints in Argo Workflows include:
 
-To ensure a container runs on a Kubernetes node with specific hardware configurations, a nodeSelector can be defined in the workflow specification or workflow template. This nodeSelector should reference labels that match those defined on the desired node. 
-It is essential that Kubernetes nodes with specific hardware configurations use labels matching those used in the workflow/template nodeSelector parameter.
+- **Resource Requests and Limits**: Define the amount of CPU and memory resources required for each task.
+- **Node Affinity**: Specify node affinity rules to ensure that tasks are scheduled on nodes with specific labels, indicating specialised hardware or other node-specific attributes.
+- **Tolerations**: Define tolerations to allow tasks to be scheduled on tainted nodes, which can be used to reserve nodes for specific types of workloads.
 
-**TBD**: add nodeSelector example
+##### How Hardware Constraints Work
 
-#### Artefact Persistence
+The process for implementing hardware constraints in Argo Workflows is as follows:
 
-> TBD:  Workflow designer mark specific artefacts for persistence, overriding their default temporary status
+1. **Define Resource Requirements**: In the workflow template, specify the CPU and memory resources required for each task using `resources.requests` and `resources.limits`.
+2. **Set Node Affinity**: Use `nodeSelector` or `affinity` fields in the workflow template to ensure tasks are scheduled on nodes with the desired hardware characteristics.
+3. **Configure Tolerations**: Add tolerations to the workflow template to allow tasks to run on nodes with specific taints, enabling the reservation of nodes for specialised tasks.
+
+##### Benefits
+
+The advantages of using hardware constraints in Argo Workflows include:
+
+- **Optimised Resource Usage**: Ensures that tasks are scheduled on nodes with sufficient and appropriate resources, preventing resource contention and optimising performance.
+- **Specialised Hardware Utilisation**: Allows workflows to take advantage of nodes with specialised hardware, such as GPUs or high-memory nodes, by specifying appropriate constraints.
+- **Improved Workflow Efficiency**: Enhances the efficiency of workflows by ensuring that tasks are executed on nodes that meet their resource and hardware requirements.
+
+##### Example Configuration
+
+Below is a minimal example of a workflow configuration with hardware constraints:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hardware-constraints-
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      container:
+        image: busybox
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      nodeSelector:
+        disktype: ssd
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "gpu"
+          effect: "NoSchedule"
+```
+
+In this example:
+
+* resources.requests: Specifies the minimum required CPU and memory for the task.
+* resources.limits: Specifies the maximum allowed CPU and memory for the task.
+* nodeSelector: Ensures the task is scheduled on a node with the label disktype: ssd.
+* tolerations: Allows the task to be scheduled on nodes with the taint dedicated=gpu:NoSchedule.
 
 
-#### Retention Policies
+#### Artefact Persistence and Retention
 
-> TBD:  Workflow engine operator configure retention policies to remove expired workflows automatically
-> Archiving workflows: https://argo-workflows.readthedocs.io/en/stable/workflow-archive/
+> TBD section
+
+Argo Workflows provides mechanisms to manage the persistence of artefacts, ensuring that important data generated during workflow execution is retained and accessible for future use.
+
+The features for managing artefact persistence in Argo Workflows include:
+
+- **Persistent Artefacts**: Mark specific artefacts for persistence, ensuring they are not discarded after workflow completion.
+- **Retention Policies**: Define policies to manage the lifecycle of persistent artefacts, including archiving and expiration.
+
+The workflow engine operator must configure retention policies to remove expired workflows automatically
+(see [Archiving workflows](https://argo-workflows.readthedocs.io/en/stable/workflow-archive/). 
 
 The workflow archive stores information about the workflows such as the status, pods executed, results and more. This information is stored in a database such as PostgreSQL.
 
@@ -284,7 +377,38 @@ persistence:
   archiveTTL: 10d
 ```
 
+#### Logging
 
+Argo Workflows provides robust logging capabilities to help users monitor and debug their workflows. Logs are crucial for understanding the behaviour of workflows and diagnosing issues when they arise.
+
+The logging features in Argo Workflows include:
+
+- **Log Retrieval**: Access logs for individual tasks directly through the Argo Workflows UI, CLI, or API.
+- **Log Storage**: Configure log storage to persist logs for later analysis.
+- **Integration with Log Management Systems**: Forward logs to external log management systems like Elasticsearch, Fluentd, or Kibana for advanced searching, indexing, and analysis.
+
+
+Argo Workflows captures logs from the containers running each workflow step. These logs can be accessed and managed as follows:
+
+1. **Log Retrieval via UI**: Users can view the logs of each workflow step directly in the Argo Workflows web UI. This interface provides a convenient way to inspect logs without needing to access the underlying infrastructure.
+
+2. **Log Retrieval via CLI**: The `argo logs` command allows users to fetch and display logs for a specific workflow or task from the command line. This is useful for scripting and automated log retrieval.
+
+3. **Log Retrieval via API**: Logs can also be accessed programmatically through the Argo Workflows API, allowing integration with other systems and custom dashboards.
+
+4. **Log Storage Configuration**: Configure the storage of logs by specifying log archival options. This can be done using Kubernetes ConfigMaps or similar mechanisms to define where and how logs should be stored.
+
+5. **Integration with Log Management Systems**: For advanced log management, integrate Argo Workflows with external systems like Elasticsearch and Fluentd. These systems provide capabilities for indexing, searching, and visualising logs, enhancing the ability to monitor and troubleshoot workflows.
+
+#### Metrics
+
+
+- **Monitoring**: Argo produces metrics that provide information on the controller's status. As those metrics follow the same format as required by prometheus, those can be integrated with Prometheus.
+  Two types of metrics are emitted by Argo:
+  - Controller metrics: concerns the state of the controller;
+  - Custom metrics: regards the state of a Workflow, or a series of Workflows. Those metrics can be defined on the Workflow/Step/Task emitting the metric. using the same name and help string, is a required by prometheus to track the metrics over time.
+
+  For more information, see: See: https://argo-workflows.readthedocs.io/en/stable/metrics/
 
 ### Subordinates
 
@@ -319,7 +443,7 @@ Documentation detailing the API specifications and usage is provided in teh [API
 
 ### Data
 
-Argo Workflows utilises complex internal data structures to orchestrate and manage workflows within Kubernetes. Here's a summary of these structures:
+Argo Workflows utilises complex internal data structures to orchestrate and manage workflows within Kubernetes. The main structures include:
 
 - **Workflow Definitions**: Defined as custom resources in YAML, these include:
   - **Element Descriptions**: Identifiers (names), types (e.g., script, container), and dimensions (step hierarchies and dependencies).

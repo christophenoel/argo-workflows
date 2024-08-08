@@ -21,14 +21,7 @@ NO Build process required.
 
 ## Deployment
 
-This project uses Helm for deployment on Kubernetes. Follow the steps below to deploy the application using Helm charts.
-
-Make sure Helm is installed and set up correctly. For installation instructions, see the [official Helm documentation](https://helm.sh/docs/intro/install/).
-
-```
-
-
-
+This project uses Helm for deployment on Kubernetes. Make sure Helm is installed and set up correctly then follow the instructions in [Helm Charts Manual](./helm_charts.md)
 
 ### Verifying the Installation
 
@@ -53,16 +46,6 @@ To list labels associated with nodes:
 kubectl get nodes --show-labels=true
 ```
 
-## Troubleshooting
-
-Offer common issues and solutions encountered during the installation process.
-
-### Custom resource Definition (CRD) already defined
-Custom resource Definition (CRD) are defined cluster wide and not bound to a namespace. This can cause a conflict when installing multiple instances of Argo Workflows within the same Kubernetes cluster.
-If CRD are already installed on the Kubernetes cluster, and you don’t want/need to change those, you can install Argo and skip the CRD installation like this:
-```
-helm install --namespace argo-helm argo-workflows argo/argo-workflows --version 0.41.4 --set crds.install=false
-```
 
 ## Uninstall
 ```
