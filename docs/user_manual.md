@@ -281,7 +281,6 @@ curl -X GET "https://your-argo-server/api/v1/workflow-templates/{namespace}/{tem
 Replace `{namespace}` with your namespace and `{template-name}` with the name of the workflow template you want to retrieve.
 
 By following these instructions, you can effectively manage your workflows using the Argo Workflow REST API.
-```
 
 ##### Workflow Notifications
 
