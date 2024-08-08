@@ -1198,70 +1198,59 @@
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflow-templates/{namespace}/{template-name}&quot;</span>
 </code></pre></div>
 <p>Replace <code>{namespace}</code> with your namespace and <code>{template-name}</code> with the name of the workflow template you want to retrieve.</p>
-<p>By following these instructions, you can effectively manage your workflows using the Argo Workflow REST API.
-<div class="highlight"><pre><span></span><code>##### Workflow Notifications
-
-Argo Workflows does not natively support notification mechanisms for status updates, except through implementing a custom container in an exit handler to handle such notifications. However, this functionality can be considered in phase 2 of the project.
-
-&lt;pre class=&quot;diagram-uuid&quot;&gt;32a835ce-af84-4fd0-92e3-2e0372593f79&lt;/pre&gt;
-See [Workflow Notifications Documentation](https://argo-workflows.readthedocs.io/en/latest/workflow-notifications/) for additional details.
-
-#### GUI Operations
-
-This section provides instructions on how to perform various operations using the Argo Workflow GUI.
-
-#### List Workflows (Running or Complete)
-
-1. Open the Argo Workflows GUI.
-2. Navigate to the &quot;Workflows&quot; tab.
-3. Here, you will see a list of all workflows, including both running and completed ones.
-4. You can use filters to refine the list based on workflow status, name, and other criteria.
-
-#### Display Workflow Status
-
-1. In the Argo Workflows GUI, navigate to the &quot;Workflows&quot; tab.
-2. Click on the workflow for which you want to view the status.
-3. The workflow details page will open, displaying the current status at the top (e.g., Running, Succeeded, Failed).
-
-#### Monitor Workflow Steps
-
-1. From the workflow details page in the Argo Workflows GUI, you can see the graphical representation of the workflow.
-2. Each step in the workflow is displayed as a node in the graph.
-3. Click on any node to view the details of that step, including logs, outputs, and the current status.
-
-#### Retrieve Workflow Logs
-
-1. In the workflow details page, click on the specific node (step) you are interested in.
-2. A sidebar will appear showing details about that step.
-3. Click on the &quot;Logs&quot; tab in the sidebar to view the logs for that specific step.
-
-#### Retrieve Workflow Outputs
-
-1. Navigate to the workflow details page in the Argo Workflows GUI.
-2. At the bottom of the page, you will see a section labeled &quot;Outputs.&quot;
-3. This section lists the outputs produced by the workflow. You can click on each output to view more details or download the data.
-
-#### Manually Delete a Workflow
-
-1. Open the Argo Workflows GUI and navigate to the &quot;Workflows&quot; tab.
-2. Find the workflow you want to delete in the list.
-3. Click the three-dot menu (ellipsis) next to the workflow.
-4. Select &quot;Delete&quot; from the dropdown menu.
-5. Confirm the deletion in the prompt that appears.
-
-### Normal Termination
-
-To cease or interrupt the use of Argo Workflow, users can terminate their workflows through the Argo REST API or Argo UI. Using the Argo REST API, users can send a POST request to the `/api/v1/workflows/{namespace}/{name}/terminate` endpoint to terminate a workflow or to the `/api/v1/workflows/{namespace}/{name}/stop` endpoint to stop a workflow. Additionally, the Argo UI provides an intuitive interface to manage and halt workflows.
-
-To verify if the termination has been normal, users should check the status of the workflow. A normally terminated workflow will have a status of `Succeeded` or `Failed`, indicating that the workflow has completed its execution or encountered an error during the process. Users can inspect the workflow status via the Argo REST API by sending a GET request to the `/api/v1/workflows/{namespace}/{name}` endpoint or through the Argo UI.
-
-#### Example: Terminate a Workflow Using REST API
-
-To terminate a workflow named `example-workflow` in the `default` namespace, users can send the following POST request:
-
-```sh
-curl -X POST &quot;https://your-argo-server/api/v1/workflows/default/example-workflow/terminate&quot;
-</code></pre></div></p>
+<p>By following these instructions, you can effectively manage your workflows using the Argo Workflow REST API.</p>
+<h5 id="user_manual-workflow-notifications">Workflow Notifications</h5>
+<p>Argo Workflows does not natively support notification mechanisms for status updates, except through implementing a custom container in an exit handler to handle such notifications. However, this functionality can be considered in phase 2 of the project.</p>
+<div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="149px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 278 149" width="278px" zoomAndPan="magnify"><defs/><g><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="33" x2="33" y1="36.2969" y2="114.5625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="211.1001" x2="211.1001" y1="36.2969" y2="114.5625"/><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="24.9951">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="57.3604" x="5" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43.3604" x="12" y="133.5576">WMTS</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="24.9951">MessageQueue</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121.3516" x="151.1001" y="113.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107.3516" x="158.1001" y="133.5576">MessageQueue</text><polygon fill="#181818" points="199.7759,63.4297,209.7759,67.4297,199.7759,71.4297,203.7759,67.4297" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="33.6802" x2="205.7759" y1="67.4297" y2="67.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="133.1611" x="40.6802" y="62.3638">Poll Workflow Status</text><polygon fill="#181818" points="44.6802,92.5625,34.6802,96.5625,44.6802,100.5625,40.6802,96.5625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="38.6802" x2="210.7759" y1="96.5625" y2="96.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154.0957" x="50.6802" y="91.4966">Return Workflow Status</text></g></svg></div>
+<p>See <a href="https://argo-workflows.readthedocs.io/en/latest/workflow-notifications/">Workflow Notifications Documentation</a> for additional details.</p>
+<h4 id="user_manual-gui-operations">GUI Operations</h4>
+<p>This section provides instructions on how to perform various operations using the Argo Workflow GUI.</p>
+<h4 id="user_manual-list-workflows-running-or-complete">List Workflows (Running or Complete)</h4>
+<ol>
+<li>Open the Argo Workflows GUI.</li>
+<li>Navigate to the "Workflows" tab.</li>
+<li>Here, you will see a list of all workflows, including both running and completed ones.</li>
+<li>You can use filters to refine the list based on workflow status, name, and other criteria.</li>
+</ol>
+<h4 id="user_manual-display-workflow-status">Display Workflow Status</h4>
+<ol>
+<li>In the Argo Workflows GUI, navigate to the "Workflows" tab.</li>
+<li>Click on the workflow for which you want to view the status.</li>
+<li>The workflow details page will open, displaying the current status at the top (e.g., Running, Succeeded, Failed).</li>
+</ol>
+<h4 id="user_manual-monitor-workflow-steps">Monitor Workflow Steps</h4>
+<ol>
+<li>From the workflow details page in the Argo Workflows GUI, you can see the graphical representation of the workflow.</li>
+<li>Each step in the workflow is displayed as a node in the graph.</li>
+<li>Click on any node to view the details of that step, including logs, outputs, and the current status.</li>
+</ol>
+<h4 id="user_manual-retrieve-workflow-logs">Retrieve Workflow Logs</h4>
+<ol>
+<li>In the workflow details page, click on the specific node (step) you are interested in.</li>
+<li>A sidebar will appear showing details about that step.</li>
+<li>Click on the "Logs" tab in the sidebar to view the logs for that specific step.</li>
+</ol>
+<h4 id="user_manual-retrieve-workflow-outputs">Retrieve Workflow Outputs</h4>
+<ol>
+<li>Navigate to the workflow details page in the Argo Workflows GUI.</li>
+<li>At the bottom of the page, you will see a section labeled "Outputs."</li>
+<li>This section lists the outputs produced by the workflow. You can click on each output to view more details or download the data.</li>
+</ol>
+<h4 id="user_manual-manually-delete-a-workflow_1">Manually Delete a Workflow</h4>
+<ol>
+<li>Open the Argo Workflows GUI and navigate to the "Workflows" tab.</li>
+<li>Find the workflow you want to delete in the list.</li>
+<li>Click the three-dot menu (ellipsis) next to the workflow.</li>
+<li>Select "Delete" from the dropdown menu.</li>
+<li>Confirm the deletion in the prompt that appears.</li>
+</ol>
+<h3 id="user_manual-normal-termination">Normal Termination</h3>
+<p>To cease or interrupt the use of Argo Workflow, users can terminate their workflows through the Argo REST API or Argo UI. Using the Argo REST API, users can send a POST request to the <code>/api/v1/workflows/{namespace}/{name}/terminate</code> endpoint to terminate a workflow or to the <code>/api/v1/workflows/{namespace}/{name}/stop</code> endpoint to stop a workflow. Additionally, the Argo UI provides an intuitive interface to manage and halt workflows.</p>
+<p>To verify if the termination has been normal, users should check the status of the workflow. A normally terminated workflow will have a status of <code>Succeeded</code> or <code>Failed</code>, indicating that the workflow has completed its execution or encountered an error during the process. Users can inspect the workflow status via the Argo REST API by sending a GET request to the <code>/api/v1/workflows/{namespace}/{name}</code> endpoint or through the Argo UI.</p>
+<h4 id="user_manual-example-terminate-a-workflow-using-rest-api">Example: Terminate a Workflow Using REST API</h4>
+<p>To terminate a workflow named <code>example-workflow</code> in the <code>default</code> namespace, users can send the following POST request:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://your-argo-server/api/v1/workflows/default/example-workflow/terminate&quot;</span>
+</code></pre></div>
 <h4 id="user_manual-example-check-workflow-status-using-rest-api">Example: Check Workflow Status Using REST API</h4>
 <p>To check the status of a workflow named example-workflow in the default namespace, users can send the following GET request:</p>
 <p>```sh
