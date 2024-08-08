@@ -42,7 +42,7 @@ argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent
 
 #### Label Kubernetes nodes
 
-Labels associated with nodes are used by Argo Workflow and Kubernetes to choose on which node a pods must be scheduled.
+Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
 Here is an example of how to associate a label with a node:
 ```
 kubectl label nodes <node-name> accelerator=<my-label>

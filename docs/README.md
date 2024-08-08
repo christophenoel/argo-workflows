@@ -37,7 +37,7 @@ Argo Workflows enables the chaining of container-based modules and workflows. Th
 
 ## Getting Started
 
-To begin using this project, please refer to the [Installation Manual](./docs/installation_manual.md).
+To begin using this project, please refer to the [Installation Manual](./installation_manual.md).
 
 ## Documentation
 
@@ -49,7 +49,7 @@ Detailed documentation is available to help you understand and use the project e
 
 ## API Reference
 
-For a detailed description of the API, see the [API Specifications](design/rest_api_spec.yaml).
+For a detailed description of the API, see the [API Specifications](./design/rest_api_design.md).
 
 ## Configuration and Deployment
 
