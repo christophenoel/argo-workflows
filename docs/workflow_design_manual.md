@@ -362,12 +362,24 @@ artifacts:
 
 ##### Workflow Output Artefact
 
+When a workflow needs to expose an artifact on a particular S3 bucket and key, it is expected to call a publication step. This step will handle the actual publishing of the artifact to the designated S3 bucket. 
+
+The publication step receives the key from a configured secret:
+
 ```yaml
 outputs:
   artifacts:
     - name: result
-      globalName: result
-      from: "{{tasks.stage-out.outputs.artifacts.result}}"
+      s3:
+        endpoint: s3.custom-endpoint.com
+        bucket: custom-bucket
+        key: custom-path/to/output.txt
+        accessKeySecret:
+          name: custom-s3-secret
+          key: accessKey
+        secretKeySecret:
+          name: custom-s3-secret
+          key: secretKey
 ```
 
 #### Creating DAG
