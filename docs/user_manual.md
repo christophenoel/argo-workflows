@@ -366,78 +366,122 @@ curl -X GET "https://your-argo-server/api/v1/workflows/default/example-workflow"
 
 Common error conditions in Argo Workflows include:
 
-1. **Workflow Fails to Start**: This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.
+#### Workflow Fails to Start
+
+This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.
 
    **Troubleshooting Steps**:
   - Verify the workflow YAML file for syntax errors.
   - Ensure all required parameters and artifacts are correctly defined.
   - Use the `argo lint` command to validate the workflow definition.
 
-2. **Pod Failures**: Pods may fail to start or run due to resource constraints, image pull errors, or misconfigurations. Detection involves monitoring pod status in the Kubernetes dashboard or using the Argo CLI.
+#### Pod Failures
+
+Pods may fail to start or run due to resource constraints, image pull errors, or misconfigurations. Detection involves monitoring pod status in the Kubernetes dashboard or using the Argo CLI.
 
    **Troubleshooting Steps**:
   - Check pod logs using `kubectl logs <pod-name>` for detailed error messages.
   - Ensure the container images are accessible and correctly specified.
   - Verify resource requests and limits to ensure the cluster can accommodate the pod.
 
-3. **Timeouts**: Workflows or specific steps may time out if they exceed the allotted execution time. Detection methods include checking the workflow status for timeout errors.
+#### Timeouts
+
+Workflows or specific steps may time out if they exceed the allotted execution time. Detection methods include checking the workflow status for timeout errors.
 
    **Troubleshooting Steps**:
   - Review and adjust the timeout settings in the workflow definition.
   - Optimize the workflow steps to reduce execution time.
   - Ensure external services or dependencies are responsive and not causing delays.
 
-4. **Permission Denied Errors**: These errors occur when the workflow does not have the necessary permissions to perform certain actions. Detection involves examining the error messages related to access issues.
+#### Permission Denied Errors
+
+These errors occur when the workflow does not have the necessary permissions to perform certain actions. Detection involves examining the error messages related to access issues.
 
    **Troubleshooting Steps**:
   - Verify the service account permissions and roles assigned to the workflow.
   - Update the role-based access control (RBAC) settings to grant the required permissions.
   - Check and correct any file or directory permissions within the workflow.
 
-5. **Resource Quota Exceeded**: Workflows may fail if they exceed the assigned resource quotas in the cluster. Detection involves checking for resource-related error messages in the workflow status.
+#### Resource Quota Exceeded
 
-   **Troubleshooting Steps**:
-  - Review the resource quotas assigned to the namespace and adjust if necessary.
-  - Optimize workflow resource usage to stay within the quota limits.
-  - Consult with the cluster administrator to request increased resource allocations if needed.
+Workflows may fail if they exceed the assigned resource quotas in the cluster. Detection involves checking for resource-related error messages in the workflow status.
+
+**Troubleshooting Steps**:
+- Review the resource quotas assigned to the namespace and adjust if necessary.
+- Optimize workflow resource usage to stay within the quota limits.
+- Consult with the cluster administrator to request increased resource allocations if needed.
 
 
 ### Recover Runs
 
 In the event of workflow failures or interruptions, Argo Workflows provides mechanisms to restart or recover runs, ensuring continuity and minimizing downtime.
 
-1. **Retry Failed Steps**: Argo allows users to retry failed steps within a workflow. This can be configured in the workflow YAML by specifying the `retryStrategy`. Users can define the number of retries and the backoff strategy.
+#### Retry Failed Steps
 
-   **Procedure**:
-  - Edit the workflow definition to include a `retryStrategy` for the relevant steps.
-  - Resubmit the workflow using the `argo submit` command with the updated YAML file.
+Argo allows users to retry failed steps within a workflow. This can be configured in the workflow YAML by specifying the `retryStrategy`. Users can define the number of retries and the backoff strategy.
 
-2. **Resume Suspended Workflows**: If a workflow is manually or automatically suspended, it can be resumed using the Argo CLI.
+**Procedure**:
+- Edit the workflow definition to include a `retryStrategy` for the relevant steps.
+- Resubmit the workflow using the Argo REST API by sending a POST request to `/api/v1/workflows/{namespace}` with the updated YAML file.
 
-   **Procedure**:
-  - Use the `argo resume <workflow-name>` command to resume a suspended workflow.
-  - Verify the workflow status to ensure it continues from the point of suspension.
+#### Resume Suspended Workflows
 
-3. **Resubmit Failed Workflows**: Entire workflows that have failed can be resubmitted. This can be useful if the failure was due to transient issues or if changes have been made to the environment.
+If a workflow is manually or automatically suspended, it can be resumed using the Argo REST API.
 
-   **Procedure**:
-  - Identify the failed workflow using the `argo list` command.
-  - Resubmit the workflow using the `argo resubmit <workflow-name>` command.
-  - Monitor the workflow status to ensure it runs to completion.
+**Procedure**:
+- Send a PUT request to the Argo REST API to resume a suspended workflow:
 
-4. **Workflow Archiving and Retrieval**: Argo Workflows can be configured to archive completed workflows. Archived workflows can be retrieved and resubmitted if needed.
+  ```sh
+  curl -X PUT "https://your-argo-server/api/v1/workflows/{namespace}/{name}/resume"
+  ```
 
-   **Procedure**:
-  - Ensure workflow archiving is enabled in the Argo configuration.
-  - Retrieve archived workflows using the `argo archive get <workflow-name>` command.
-  - Resubmit the archived workflow using the `argo submit` command.
+- Verify the workflow status to ensure it continues from the point of suspension.
 
-5. **Handling Emergency Situations**: In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.
+#### Resubmit Failed Workflows
 
-   **Procedure**:
-  - Implement backup and restore strategies for the Argo Workflows controller and associated databases.
-  - Utilize high-availability (HA) configurations for critical components to minimize downtime.
-  - Regularly test disaster recovery plans to ensure workflows can be recovered quickly.
+Entire workflows that have failed can be resubmitted. This can be useful if the failure was due to transient issues or if changes have been made to the environment.
+
+**Procedure**:
+- Identify the failed workflow by sending a GET request to list workflows:
+
+  ```sh
+  curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}"
+  ```
+
+- Resubmit the workflow by sending a POST request to the Argo REST API:
+
+  ```sh
+  curl -X POST "https://your-argo-server/api/v1/workflows/{namespace}/{name}/resubmit"
+  ```
+
+- Monitor the workflow status to ensure it runs to completion.
+
+#### Workflow Archiving and Retrieval
+
+Argo Workflows can be configured to archive completed workflows. Archived workflows can be retrieved and resubmitted if needed.
+
+**Procedure**:
+- Ensure workflow archiving is enabled in the Argo configuration.
+- Retrieve archived workflows by sending a GET request to the Argo REST API:
+
+  ```sh
+  curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}/archived/{name}"
+  ```
+
+- Resubmit the archived workflow by sending a POST request to the Argo REST API:
+
+  ```sh
+  curl -X POST "https://your-argo-server/api/v1/workflows/{namespace}"
+  ```
+
+#### Handling Emergency Situations
+
+In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.
+
+**Procedure**:
+- Implement backup and restore strategies for the Argo Workflows controller and associated databases.
+- Utilize high-availability (HA) configurations for critical components to minimize downtime.
+- Regularly test disaster recovery plans to ensure workflows can be recovered quickly.
 
 ## Tutorials
 
