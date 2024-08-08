@@ -13,8 +13,6 @@ nav:
     - GUI Tutorial: tutorial_gui.md
   - Operator Guide:
       - Installation: installation_manual.md
-      - Docker: docker.md
-      - Kubernetes: kubernetes.md
       - Helm Charts: helm_charts.md
   - Software Design: design/sw_design.md
   - Interfaces:
