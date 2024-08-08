@@ -2,11 +2,27 @@
 
 ## Overview
 
-Argo Workflows enables the chaining of container-based modules and workflows. The software 'Argo Workflows' is a **Commercial-Of-The-Shelf (COTS)** which consists in a Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster. 
+Argo Workflows implements the Workflow Engine of the Data Processing Environment (DPE) of the DimSum platform (ESA project OHDSA).
 
-In the context of the DimSum platform developed in the scope of the ESA Project 'Operational Hyper-spectral Data Store and Access (OHDSA)', Argo Workflows operates as part of the Data Processing Environment (DPE). 
+The Workflow Engine implemented by Argo Workflows receives the execution requests from the Workflow Management System (WMTS). These workflows are implemented as a collection of Pluggable Acquisition and Processing Modules (PAPM).
 
-The Workflow Management System (WMTS) manages and submits workflows to Argo typically from orders placed through the User Segment portal. These workflows are implemented as a collection of Pluggable Acquisition and Processing Modules (PAPM).
+```puml
+@startuml
+left to right direction
+
+package "Workflow Management System" as WFMS {
+}
+package "Data Processing Environment" as DataProcessingEnvironment {
+component "Workflow Engine\n[Container: Argo Workflow with Kubernetes]" as WorkflowEngine
+component "Module Registry\n[Container: Spring Boot]" as ModuleRegistry
+  WorkflowEngine -[hidden]--> ModuleRegistry
+}
+WFMS--> WorkflowEngine : submit workflows
+ModuleRegistry --> WorkflowEngine : registers module
+@enduml
+```
+
+Argo Workflows enables the chaining of container-based modules and workflows. The software 'Argo Workflows' is a **Commercial-Of-The-Shelf (COTS)** which consists in a Kubernetes-native workflow engine that orchestrates parallel jobs on a Kubernetes cluster.
 
 ## Features
 
