@@ -683,6 +683,54 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verifying the Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addition-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Addition configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Addition configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-kubernetes-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label Kubernetes nodes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstall
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -911,6 +959,54 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verifying the Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addition-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Addition configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Addition configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-kubernetes-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label Kubernetes nodes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstall
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -946,38 +1042,24 @@
 <h2 id="build-procedure">Build Procedure</h2>
 <p>NO Build process required.</p>
 <h2 id="deployment">Deployment</h2>
-<p>This project uses Helm for deployment on Kubernetes. Follow the steps below to deploy the application using Helm charts.</p>
-<p>Make sure Helm is installed and set up correctly. For installation instructions, see the <a href="https://helm.sh/docs/intro/install/">official Helm documentation</a>.</p>
-<p><div class="highlight"><pre><span></span><code>### Verifying the Installation
-
-Ensure the installation was successful, by submitting a workflow to Argo:
+<p>This project uses Helm for deployment on Kubernetes. Make sure Helm is installed and set up correctly then follow the instructions in <a href="../helm_charts/">Helm Charts Manual</a></p>
+<h3 id="verifying-the-installation">Verifying the Installation</h3>
+<p>Ensure the installation was successful, by submitting a workflow to Argo:</p>
+<div class="highlight"><pre><span></span><code>argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml --watch
 </code></pre></div>
-argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml --watch
-<div class="highlight"><pre><span></span><code>### Addition configuration
-
-#### Label Kubernetes nodes
-
-Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
+<h3 id="addition-configuration">Addition configuration</h3>
+<h4 id="label-kubernetes-nodes">Label Kubernetes nodes</h4>
+<p>Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
 Here is an example of how to associate a label with a node:
-</code></pre></div>
-kubectl label nodes <node-name> accelerator=<my-label>
-<div class="highlight"><pre><span></span><code>To list labels associated with nodes:
-</code></pre></div>
-kubectl get nodes --show-labels=true
-<div class="highlight"><pre><span></span><code>## Troubleshooting
-
-Offer common issues and solutions encountered during the installation process.
-
-### Custom resource Definition (CRD) already defined
-Custom resource Definition (CRD) are defined cluster wide and not bound to a namespace. This can cause a conflict when installing multiple instances of Argo Workflows within the same Kubernetes cluster.
-If CRD are already installed on the Kubernetes cluster, and you don’t want/need to change those, you can install Argo and skip the CRD installation like this:
-</code></pre></div>
-helm install --namespace argo-helm argo-workflows argo/argo-workflows --version 0.41.4 --set crds.install=false
-<div class="highlight"><pre><span></span><code>## Uninstall
-</code></pre></div>
-helm uninstall --namespace argo-helm argo-workflows
+<div class="highlight"><pre><span></span><code>kubectl label nodes &lt;node-name&gt; accelerator=&lt;my-label&gt;
+</code></pre></div></p>
+<p>To list labels associated with nodes:
+<div class="highlight"><pre><span></span><code>kubectl get nodes --show-labels=true
+</code></pre></div></p>
+<h2 id="uninstall">Uninstall</h2>
+<div class="highlight"><pre><span></span><code>helm uninstall --namespace argo-helm argo-workflows
 kubectl delete namespace argo-helm
-```</p>
+</code></pre></div>
 
 
 
