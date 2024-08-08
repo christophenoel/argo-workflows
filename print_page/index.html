@@ -620,48 +620,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Docker
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../kubernetes/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Kubernetes
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../helm_charts/" class="md-nav__link">
         
   
@@ -925,27 +883,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Docker
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Kubernetes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#helm_charts" class="md-nav__link">
     <span class="md-ellipsis">
-      10. Helm Charts
+      8. Helm Charts
     </span>
   </a>
   
@@ -959,7 +899,7 @@
         <li class="md-nav__item">
   <a href="#design-sw_design" class="md-nav__link">
     <span class="md-ellipsis">
-      11. Software Design
+      9. Software Design
     </span>
   </a>
   
@@ -978,7 +918,7 @@
           <li class="md-nav__item">
   <a href="#design-rest_api_design" class="md-nav__link">
     <span class="md-ellipsis">
-      12. REST API Design
+      10. REST API Design
     </span>
   </a>
   
@@ -987,7 +927,7 @@
           <li class="md-nav__item">
   <a href="#design-rest_api_spec" class="md-nav__link">
     <span class="md-ellipsis">
-      13. REST API Specification
+      11. REST API Specification
     </span>
   </a>
   
@@ -1001,7 +941,7 @@
         <li class="md-nav__item">
   <a href="#license" class="md-nav__link">
     <span class="md-ellipsis">
-      14. License
+      12. License
     </span>
   </a>
   
@@ -1258,76 +1198,84 @@ curl -X GET "https://your-argo-server/api/v1/workflows/default/example-workflow"
 ```` </p>
 <h3 id="user_manual-error-conditions">Error Conditions</h3>
 <p>Common error conditions in Argo Workflows include:</p>
-<ol>
-<li><strong>Workflow Fails to Start</strong>: This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.</li>
-</ol>
+<h4 id="user_manual-workflow-fails-to-start">Workflow Fails to Start</h4>
+<p>This may be due to incorrect workflow definitions or missing dependencies. Detection methods include checking the Argo CLI or UI for error messages indicating validation issues.</p>
 <p><strong>Troubleshooting Steps</strong>:
   - Verify the workflow YAML file for syntax errors.
   - Ensure all required parameters and artifacts are correctly defined.
   - Use the <code>argo lint</code> command to validate the workflow definition.</p>
-<ol>
-<li><strong>Pod Failures</strong>: Pods may fail to start or run due to resource constraints, image pull errors, or misconfigurations. Detection involves monitoring pod status in the Kubernetes dashboard or using the Argo CLI.</li>
-</ol>
+<h4 id="user_manual-pod-failures">Pod Failures</h4>
+<p>Pods may fail to start or run due to resource constraints, image pull errors, or misconfigurations. Detection involves monitoring pod status in the Kubernetes dashboard or using the Argo CLI.</p>
 <p><strong>Troubleshooting Steps</strong>:
   - Check pod logs using <code>kubectl logs &lt;pod-name&gt;</code> for detailed error messages.
   - Ensure the container images are accessible and correctly specified.
   - Verify resource requests and limits to ensure the cluster can accommodate the pod.</p>
-<ol>
-<li><strong>Timeouts</strong>: Workflows or specific steps may time out if they exceed the allotted execution time. Detection methods include checking the workflow status for timeout errors.</li>
-</ol>
+<h4 id="user_manual-timeouts">Timeouts</h4>
+<p>Workflows or specific steps may time out if they exceed the allotted execution time. Detection methods include checking the workflow status for timeout errors.</p>
 <p><strong>Troubleshooting Steps</strong>:
   - Review and adjust the timeout settings in the workflow definition.
   - Optimize the workflow steps to reduce execution time.
   - Ensure external services or dependencies are responsive and not causing delays.</p>
-<ol>
-<li><strong>Permission Denied Errors</strong>: These errors occur when the workflow does not have the necessary permissions to perform certain actions. Detection involves examining the error messages related to access issues.</li>
-</ol>
+<h4 id="user_manual-permission-denied-errors">Permission Denied Errors</h4>
+<p>These errors occur when the workflow does not have the necessary permissions to perform certain actions. Detection involves examining the error messages related to access issues.</p>
 <p><strong>Troubleshooting Steps</strong>:
   - Verify the service account permissions and roles assigned to the workflow.
   - Update the role-based access control (RBAC) settings to grant the required permissions.
   - Check and correct any file or directory permissions within the workflow.</p>
-<ol>
-<li><strong>Resource Quota Exceeded</strong>: Workflows may fail if they exceed the assigned resource quotas in the cluster. Detection involves checking for resource-related error messages in the workflow status.</li>
-</ol>
+<h4 id="user_manual-resource-quota-exceeded">Resource Quota Exceeded</h4>
+<p>Workflows may fail if they exceed the assigned resource quotas in the cluster. Detection involves checking for resource-related error messages in the workflow status.</p>
 <p><strong>Troubleshooting Steps</strong>:
-  - Review the resource quotas assigned to the namespace and adjust if necessary.
-  - Optimize workflow resource usage to stay within the quota limits.
-  - Consult with the cluster administrator to request increased resource allocations if needed.</p>
+- Review the resource quotas assigned to the namespace and adjust if necessary.
+- Optimize workflow resource usage to stay within the quota limits.
+- Consult with the cluster administrator to request increased resource allocations if needed.</p>
 <h3 id="user_manual-recover-runs">Recover Runs</h3>
 <p>In the event of workflow failures or interruptions, Argo Workflows provides mechanisms to restart or recover runs, ensuring continuity and minimizing downtime.</p>
-<ol>
-<li><strong>Retry Failed Steps</strong>: Argo allows users to retry failed steps within a workflow. This can be configured in the workflow YAML by specifying the <code>retryStrategy</code>. Users can define the number of retries and the backoff strategy.</li>
-</ol>
+<h4 id="user_manual-retry-failed-steps">Retry Failed Steps</h4>
+<p>Argo allows users to retry failed steps within a workflow. This can be configured in the workflow YAML by specifying the <code>retryStrategy</code>. Users can define the number of retries and the backoff strategy.</p>
 <p><strong>Procedure</strong>:
-  - Edit the workflow definition to include a <code>retryStrategy</code> for the relevant steps.
-  - Resubmit the workflow using the <code>argo submit</code> command with the updated YAML file.</p>
-<ol>
-<li><strong>Resume Suspended Workflows</strong>: If a workflow is manually or automatically suspended, it can be resumed using the Argo CLI.</li>
-</ol>
+- Edit the workflow definition to include a <code>retryStrategy</code> for the relevant steps.
+- Resubmit the workflow using the Argo REST API by sending a POST request to <code>/api/v1/workflows/{namespace}</code> with the updated YAML file.</p>
+<h4 id="user_manual-resume-suspended-workflows">Resume Suspended Workflows</h4>
+<p>If a workflow is manually or automatically suspended, it can be resumed using the Argo REST API.</p>
 <p><strong>Procedure</strong>:
-  - Use the <code>argo resume &lt;workflow-name&gt;</code> command to resume a suspended workflow.
-  - Verify the workflow status to ensure it continues from the point of suspension.</p>
-<ol>
-<li><strong>Resubmit Failed Workflows</strong>: Entire workflows that have failed can be resubmitted. This can be useful if the failure was due to transient issues or if changes have been made to the environment.</li>
-</ol>
+- Send a PUT request to the Argo REST API to resume a suspended workflow:</p>
+<p><code>sh
+  curl -X PUT "https://your-argo-server/api/v1/workflows/{namespace}/{name}/resume"</code></p>
+<ul>
+<li>Verify the workflow status to ensure it continues from the point of suspension.</li>
+</ul>
+<h4 id="user_manual-resubmit-failed-workflows">Resubmit Failed Workflows</h4>
+<p>Entire workflows that have failed can be resubmitted. This can be useful if the failure was due to transient issues or if changes have been made to the environment.</p>
 <p><strong>Procedure</strong>:
-  - Identify the failed workflow using the <code>argo list</code> command.
-  - Resubmit the workflow using the <code>argo resubmit &lt;workflow-name&gt;</code> command.
-  - Monitor the workflow status to ensure it runs to completion.</p>
-<ol>
-<li><strong>Workflow Archiving and Retrieval</strong>: Argo Workflows can be configured to archive completed workflows. Archived workflows can be retrieved and resubmitted if needed.</li>
-</ol>
+- Identify the failed workflow by sending a GET request to list workflows:</p>
+<p><code>sh
+  curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}"</code></p>
+<ul>
+<li>Resubmit the workflow by sending a POST request to the Argo REST API:</li>
+</ul>
+<p><code>sh
+  curl -X POST "https://your-argo-server/api/v1/workflows/{namespace}/{name}/resubmit"</code></p>
+<ul>
+<li>Monitor the workflow status to ensure it runs to completion.</li>
+</ul>
+<h4 id="user_manual-workflow-archiving-and-retrieval">Workflow Archiving and Retrieval</h4>
+<p>Argo Workflows can be configured to archive completed workflows. Archived workflows can be retrieved and resubmitted if needed.</p>
 <p><strong>Procedure</strong>:
-  - Ensure workflow archiving is enabled in the Argo configuration.
-  - Retrieve archived workflows using the <code>argo archive get &lt;workflow-name&gt;</code> command.
-  - Resubmit the archived workflow using the <code>argo submit</code> command.</p>
-<ol>
-<li><strong>Handling Emergency Situations</strong>: In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.</li>
-</ol>
+- Ensure workflow archiving is enabled in the Argo configuration.
+- Retrieve archived workflows by sending a GET request to the Argo REST API:</p>
+<p><code>sh
+  curl -X GET "https://your-argo-server/api/v1/workflows/{namespace}/archived/{name}"</code></p>
+<ul>
+<li>Resubmit the archived workflow by sending a POST request to the Argo REST API:</li>
+</ul>
+<p><code>sh
+  curl -X POST "https://your-argo-server/api/v1/workflows/{namespace}"</code></p>
+<h4 id="user_manual-handling-emergency-situations">Handling Emergency Situations</h4>
+<p>In emergencies, such as cluster failures or critical resource shortages, maintaining workflow continuity is crucial.</p>
 <p><strong>Procedure</strong>:
-  - Implement backup and restore strategies for the Argo Workflows controller and associated databases.
-  - Utilize high-availability (HA) configurations for critical components to minimize downtime.
-  - Regularly test disaster recovery plans to ensure workflows can be recovered quickly.</p>
+- Implement backup and restore strategies for the Argo Workflows controller and associated databases.
+- Utilize high-availability (HA) configurations for critical components to minimize downtime.
+- Regularly test disaster recovery plans to ensure workflows can be recovered quickly.</p>
 <h2 id="user_manual-tutorials">Tutorials</h2>
 <p>The following tutorials are provided for testing purposes to facilitate the learning of Argo Workflows:</p>
 <ul>
@@ -1764,59 +1712,7 @@ helm install --namespace argo-helm argo-workflows argo/argo-workflows --version 
 </code></pre></div>
 helm uninstall --namespace argo-helm argo-workflows
 kubectl delete namespace argo-helm
-```</p></section><section class="print-page" id="docker"><h1 id="docker-docker-image-deployment-for-project-name">Docker Image Deployment for [Project Name]</h1>
-<h2 id="docker-overview">Overview</h2>
-<p>This document outlines the Docker image configuration and deployment instructions for [Component Name]. It includes details on building the Docker image, running containers, and handling common configurations.</p>
-<h2 id="docker-building-the-docker-image">Building the Docker Image</h2>
-<p>To build the Docker image, navigate to the directory containing the <code>Dockerfile</code> and run the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="o">[</span>your-image-name<span class="o">]</span>:<span class="o">[</span>tag<span class="o">]</span><span class="w"> </span>.
-</code></pre></div>
-<p>Replace <code>[your-image-name]</code> with the appropriate name for your Docker image and <code>[tag]</code> with the desired version or tag.</p>
-<h2 id="docker-running-the-docker-container">Running the Docker Container</h2>
-<p>Once the image is built, you can run a container based on that image with the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span><span class="o">[</span>your-container-name<span class="o">]</span><span class="w"> </span>-p<span class="w"> </span><span class="o">[</span>port<span class="o">]</span>:<span class="o">[</span>port<span class="o">]</span><span class="w"> </span><span class="o">[</span>your-image-name<span class="o">]</span>:<span class="o">[</span>tag<span class="o">]</span>
-</code></pre></div>
-<p>Replace <code>[your-container-name]</code> with a name for your container, <code>[port]</code> with the appropriate port numbers, and <code>[your-image-name]:[tag]</code> with the image name and tag used in the build step.</p>
-<h2 id="docker-additional-resources">Additional Resources</h2>
-<ul>
-<li><a href="https://docs.docker.com">Docker Documentation</a></li>
-</ul></section><section class="print-page" id="kubernetes"><h1 id="kubernetes-kubernetes-configuration-for-project-name">Kubernetes Configuration for [Project Name]</h1>
-<h2 id="kubernetes-overview">Overview</h2>
-<p>This document provides an overview of the Kubernetes configurations used for deploying and managing [Component Name]. It includes details on deployment manifests, service definitions, and other Kubernetes resources critical to the operation of the component.</p>
-<h2 id="kubernetes-configuration-files">Configuration Files</h2>
-<p>Below is a list of key Kubernetes configuration files included in this directory:</p>
-<ul>
-<li><strong><code>deployment.yaml</code></strong>: Defines the Deployment configuration for [Component Name].</li>
-<li><strong><code>service.yaml</code></strong>: Specifies the Service configuration that provides network access to the component.</li>
-<li><strong><code>ingress.yaml</code></strong>: (Optional) Manages external access to the services, typically via HTTP.</li>
-<li><strong><code>configmap.yaml</code></strong>: Contains non-confidential data in key-value pairs that can be consumed by pods.</li>
-<li><strong><code>secret.yaml</code></strong>: Manages sensitive information, such as passwords and API keys, used by the component.</li>
-</ul>
-<h2 id="kubernetes-deployment">Deployment</h2>
-<p>To deploy the component to a Kubernetes cluster, use the following command:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deployment.yaml
-</code></pre></div>
-<h2 id="kubernetes-services">Services</h2>
-<p>To establish the network access to the component, apply the service configuration:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>service.yaml
-</code></pre></div>
-<h2 id="kubernetes-scaling">Scaling</h2>
-<p>To scale the component, adjust the <code>replicas</code> field in the <code>deployment.yaml</code> file or use the following command:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span><span class="o">[</span>deployment-name<span class="o">]</span><span class="w"> </span>--replicas<span class="o">=[</span>number<span class="o">]</span>
-</code></pre></div>
-<h2 id="kubernetes-updating">Updating</h2>
-<p>To update the component, modify the relevant Docker image or configuration and apply the changes:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deployment.yaml
-</code></pre></div>
-<h2 id="kubernetes-cleanup">Cleanup</h2>
-<p>To remove the deployed resources from your cluster, use:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>.
-</code></pre></div>
-<h2 id="kubernetes-additional-resources">Additional Resources</h2>
-<ul>
-<li><a href="https://kubernetes.io/docs/home/">Kubernetes Documentation</a></li>
-<li><a href="#..-charts-readme.md">Helm Charts</a> for managing complex deployments with Helm.</li>
-</ul></section><section class="print-page" id="helm_charts"><h1 id="helm_charts-helm-charts-for-project-name">Helm Charts for [Project Name]</h1>
+```</p></section><section class="print-page" id="helm_charts"><h1 id="helm_charts-helm-charts-for-project-name">Helm Charts for [Project Name]</h1>
 <h2 id="helm_charts-overview">Overview</h2>
 <p>The official chart for Argo Workflows is used to deploy Argo Workflows. It is described and detailed in <a href="https://github.com/argoproj/argo-helm/tree/main/charts/argo-workflows">Argo Workflows Helm Documentation</a> with a list of all properties.</p>
 <p>The present repository provides the specific parameters used for the DimSum platform. This document only details these parameters and those that need to be provided during installation (depending on the environment).</p>
