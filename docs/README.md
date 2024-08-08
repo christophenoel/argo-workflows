@@ -2,7 +2,7 @@
 
 ## Overview
 
-Argo Workflows implements the Workflow Engine of the Data Processing Environment (DPE) of the DimSum platform (ESA project OHDSA).
+Argo Workflows serves as the Workflow Engine for the Data Processing Environment (DPE) within the DimSum platform, developed in the context of ESA project OHDSA.
 
 The Workflow Engine implemented by Argo Workflows receives the execution requests from the Workflow Management System (WMTS). These workflows are implemented as a collection of Pluggable Acquisition and Processing Modules (PAPM).
 
@@ -53,8 +53,9 @@ For a detailed description of the API, see the [API Specifications](./design/res
 
 ## Configuration and Deployment
 
-Configuration instructions and deployment guides are provided for different environments:
-
+Configuration instructions and deployment guides are provided:
+- 
+- [Installation Manual](./installation_manual.md): comprehensive guidance on how to install and set up Argo Workflows.
 - [Helm Charts](./helm_charts.md): Guidelines on using and configuring Helm charts for Kubernetes deployment.
 
 ## Examples

@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: artifact-consumer-wft-
+  generateName: hello-world
 spec:
   arguments:
     parameters:
-      - name: source-path
-        value: lorem.txt # The specific key for the S3 input object
-      - name: target-path
-        value: result.txt # The specific key where the S3 output object will be written
-
-  # Reference the WorkflowTemplate
+      - name: message
+        value: "from workflow“
+    artifacts:
+      - name: input-data
+        s3:
+          key: “/data/input.gzarr”
   workflowTemplateRef:
-    name: artifact-consumer-wft
+    name: my-template

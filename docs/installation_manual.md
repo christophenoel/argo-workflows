@@ -2,7 +2,7 @@
 
 ## Overview
 
-This manual provides comprehensive guidance on how to install and set up Argo Workflow. Ensure all prerequisites are met before proceeding with the installation.
+This manual provides comprehensive guidance on how to install and set up Argo Workflows. Ensure all prerequisites are met before proceeding with the installation.
 
 ## Prerequisites
 

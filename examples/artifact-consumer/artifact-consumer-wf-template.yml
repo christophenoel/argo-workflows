@@ -1,29 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: artifact-consumer-wft
+  name: my-template
 spec:
-  entrypoint: process-artifact
+  entrypoint: whalesay-template
   templates:
-    - name: process-artifact
+    - name: whalesay-template
       inputs:
-        parameters:
-          - name: source-path
-          - name: target-path
         artifacts:
-          - name: input-file
+          - name: input-data
             path: /tmp/input-file
-            s3:
-              bucket: test
-              key: "{{inputs.parameters.source-path}}"
       outputs:
         artifacts:
           - name: output-file
             path: /tmp/output-file.txt
-            archive:
-              none: { }
-            s3:
-              key: "{{inputs.parameters.target-path}}"
       container:
         image: docker/whalesay
         command: [ sh, -c ]
