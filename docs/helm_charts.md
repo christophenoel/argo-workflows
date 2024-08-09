@@ -12,6 +12,7 @@ The exact configuration and prerequisites required for the DimSum platform are d
 ## Prerequisites
 
 Before you can use this Helm chart, ensure you meet the following prerequisites:
+
 * Target cluster with Kubernetes 1.23+ and PV support is available
 * S3 Bucket must be deployed and a `secret` is created for providing the credentials.
 * Helm 3.8.0+ installed locally
@@ -67,6 +68,7 @@ helm delete [release-name] --namespace [namespace]
 This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed.
 
 The following parameters are expected to be provided:
+
 * artifactRepositoryRef: the default artifact repository must be configured with the endpoint and credentials of the S3 storage of the environment
 * server.ingress: the external domain name must be configured as a Kuberntes Ingress
 
@@ -127,10 +129,10 @@ server:
           - argo.your-domain.com
 ```
 
-### :warning: Service Account Parameters 
+### Service Account Parameters 
 
 
->IMPORTANT: These parameters should only be modified by experienced users for advanced configurations. 
+> :warning: These parameters should only be modified by experienced users for advanced configurations. 
 
 Each workflow is associated with a service account that dictates the permissions and actions the workflow can perform within the cluster. 
 
@@ -152,9 +154,9 @@ controller:
       serviceAccountName: argo-workflow
 ```
 
-### :warning: Authentication Parameters
+###  Authentication Parameters
 
->IMPORTANT: These parameters should only be modified by experienced users for advanced configurations.
+> :warning: These parameters should only be modified by experienced users for advanced configurations.
 
 Authentication parameters define the authentication modes and settings for Argo Workflows. These parameters are specified in the values.yaml file.
 

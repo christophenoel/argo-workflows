@@ -21,12 +21,14 @@ The API allows for the creation, submission, monitoring, and management of workf
 ## Producers and Consumers
 
 Producers:
+
 - CI/CD systems that need to automate deployment pipelines.
 - Data processing systems that require complex task orchestration.
 - Machine learning platforms that automate model training and deployment workflows.
 - Users and developers who define and manage workflows through the API.
 
 Consumers:
+
 - Monitoring systems that track the status and progress of workflows.
 Logging systems that aggregate and analyze workflow logs.
 Notification services that alert users about workflow events and statuses.
@@ -35,6 +37,7 @@ Users and administrators who retrieve workflow status, logs, and results through
 
 
 ## Operations
+
 Detail each operation provided by the API, including method names, request and response formats, and a brief description of their functionality.
 
 ### Example Operation: GetItem
@@ -70,6 +73,7 @@ The following operation is used to register a reusable workflow template by prov
 
 
 ### List available Workflow Templates
+
 The following operation list the reusable workflow templates already available. This request requires to provide the namespace as a path parameter, other parameters must be provided as query parameters and are optionals parameters used to filter the list returned by this operation.
 
 > <span style="background-color: #007bff; color: white; padding: 2px 6px; border-radius: 3px;">GET</span> /api/v1/workflow-templates/{namespace}
@@ -80,6 +84,7 @@ The following operation list the reusable workflow templates already available. 
 
 
 ### Describe Workflow Template
+
 The following operation provide information about a specific workflow template.
 
 > <span style="background-color: #007bff; color: white; padding: 2px 6px; border-radius: 3px;">GET</span> /api/v1/workflow-templates/{namespace}/{name}
@@ -92,6 +97,7 @@ The following operation provide information about a specific workflow template.
 
 
 ### List Workflows
+
 The following operation list all workflows submitted in a specific namespace.
 
 > <span style="background-color: #007bff; color: white; padding: 2px 6px; border-radius: 3px;">GET</span> /api/v1/workflows/{namespace}
@@ -102,6 +108,7 @@ The following operation list all workflows submitted in a specific namespace.
 
 
 ### Submit Workflow
+
 The following operation submit a workflow for execution in the namespace specified.
 
 > <span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 3px;">POST</span> /api/v1/workflows/{namespace}
@@ -113,6 +120,7 @@ The following operation submit a workflow for execution in the namespace specifi
 
 
 ### Delete Workflow
+
 The following operation deletes a workflow in the namespace specified.
 
 > <span style="background-color: #dc3545; color: white; padding: 2px 6px; border-radius: 3px;">DELETE</span> /api/v1/workflows/{namespace}/{name}
@@ -136,6 +144,7 @@ The following operation retrieves the status of the desired workflow running in 
 
 
 ### Retrieve Workflow Logs
+
 The following operation retrieves the logs of the desired workflow running in the namespace specified. To retrieve logs from the desired step, specify the 'logOptions.container' query parameter with the container name corresponding to the desired step.
 
 > <span style="background-color: #007bff; color: white; padding: 2px 6px; border-radius: 3px;">GET</span> /api/v1/workflows/{namespace}/{name}/logs

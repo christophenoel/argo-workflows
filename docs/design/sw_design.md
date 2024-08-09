@@ -136,6 +136,7 @@ spec:
 ```
 
 In this example:
+
 * apiVersion: Specifies the API version.
 * kind: Indicates the resource type, which is Workflow.
 * metadata: Contains metadata, including the workflow name.
