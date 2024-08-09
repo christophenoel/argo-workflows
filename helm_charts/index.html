@@ -1159,10 +1159,12 @@
 <p>The present repository provides the specific parameters used for the DimSum platform. This document only details these parameters and those that need to be provided during installation (depending on the environment).</p>
 <p>The exact configuration and prerequisites required for the DimSum platform are detailed in the <a href="../installation_manual/">installation manual</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>Before you can use this Helm chart, ensure you meet the following prerequisites:
-* Target cluster with Kubernetes 1.23+ and PV support is available
-* S3 Bucket must be deployed and a <code>secret</code> is created for providing the credentials.
-* Helm 3.8.0+ installed locally</p>
+<p>Before you can use this Helm chart, ensure you meet the following prerequisites:</p>
+<ul>
+<li>Target cluster with Kubernetes 1.23+ and PV support is available</li>
+<li>S3 Bucket must be deployed and a <code>secret</code> is created for providing the credentials.</li>
+<li>Helm 3.8.0+ installed locally</li>
+</ul>
 <h2 id="installing-the-helm-chart">Installing the Helm Chart</h2>
 <ol>
 <li>
@@ -1206,9 +1208,11 @@
 </code></pre></div></p>
 <h2 id="helm-configuration-details">Helm Configuration Details</h2>
 <p>This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed.</p>
-<p>The following parameters are expected to be provided:
-* artifactRepositoryRef: the default artifact repository must be configured with the endpoint and credentials of the S3 storage of the environment
-* server.ingress: the external domain name must be configured as a Kuberntes Ingress</p>
+<p>The following parameters are expected to be provided:</p>
+<ul>
+<li>artifactRepositoryRef: the default artifact repository must be configured with the endpoint and credentials of the S3 storage of the environment</li>
+<li>server.ingress: the external domain name must be configured as a Kuberntes Ingress</li>
+</ul>
 <p>Additional parameters are detailed below for advanced configuration but are not expected to be overridden in nominal scenarios.</p>
 <h3 id="artifact-repository-configuration">Artifact Repository Configuration</h3>
 <p>To configure the artifact repository, you need to set up the <code>artifactRepositoryRef</code> in the <code>values.yaml</code> file. This configuration defines where Argo Workflows will store its artifacts. </p>
@@ -1252,9 +1256,9 @@
 <span class="w">        </span><span class="nt">hosts</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo.your-domain.com</span>
 </code></pre></div>
-<h3 id="service-account-parameters"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> Service Account Parameters</h3>
+<h3 id="service-account-parameters">Service Account Parameters</h3>
 <blockquote>
-<p>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations. </p>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> These parameters should only be modified by experienced users for advanced configurations. </p>
 </blockquote>
 <p>Each workflow is associated with a service account that dictates the permissions and actions the workflow can perform within the cluster. </p>
 <p>It is recommended to create a default service account <code>argo-workflow</code>, assign all required roles for workflows, and bind the role to that default service account.</p>
@@ -1272,9 +1276,9 @@
 <span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo-workflow</span>
 </code></pre></div>
-<h3 id="authentication-parameters"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> Authentication Parameters</h3>
+<h3 id="authentication-parameters">Authentication Parameters</h3>
 <blockquote>
-<p>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations.</p>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> These parameters should only be modified by experienced users for advanced configurations.</p>
 </blockquote>
 <p>Authentication parameters define the authentication modes and settings for Argo Workflows. These parameters are specified in the values.yaml file.</p>
 <blockquote>

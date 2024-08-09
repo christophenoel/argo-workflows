@@ -1469,14 +1469,16 @@ represents a basic workflow template definition:
 <span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">some-template</span>
 <span class="w">              </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">another-task</span>
 </code></pre></div>
-<p>In this example:
-* apiVersion: Specifies the API version.
-* kind: Indicates the resource type, which is Workflow.
-* metadata: Contains metadata, including the workflow name.
-* spec: Defines the specifications of the workflow.
-* entrypoint: Specifies the main entry point for the DAG workflow.
-* templates: Lists the tasks included in the DAG workflow.
-* dag: Defines the DAG structure with tasks and their dependencies.</p>
+<p>In this example:</p>
+<ul>
+<li>apiVersion: Specifies the API version.</li>
+<li>kind: Indicates the resource type, which is Workflow.</li>
+<li>metadata: Contains metadata, including the workflow name.</li>
+<li>spec: Defines the specifications of the workflow.</li>
+<li>entrypoint: Specifies the main entry point for the DAG workflow.</li>
+<li>templates: Lists the tasks included in the DAG workflow.</li>
+<li>dag: Defines the DAG structure with tasks and their dependencies.</li>
+</ul>
 <h4 id="data-artefacts">Data Artefacts</h4>
 <p>Argo Workflows supports the management of data artefacts, enabling the staging-in, staging-out, and passing of data between workflow steps. This capability is essential for handling input and output data efficiently within workflows.</p>
 <p>The features of Argo Workflows for managing data artefacts include:</p>
