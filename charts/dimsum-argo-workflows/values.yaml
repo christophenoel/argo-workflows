@@ -1,0 +1,31 @@
+workflow:
+  serviceAccount:
+    create: true
+    name: "argo-workflow"
+  rbac:
+    create: true
+server:
+  authModes: [ server ]
+  rbac:
+    create: true
+  serviceType: NodePort
+  serviceNodePort: 32747
+controller:
+  workflowDefaults:
+    spec:
+      serviceAccountName: argo-workflow
+artifactRepositoryRef:
+  artifact-repositories:
+    annotations:
+      workflows.argoproj.io/default-artifact-repository: default-artifact-repository
+    default-artifact-repository:
+      s3:
+        bucket: test
+        insecure: true
+        endpoint: l-k8s01-master.spb.spacebel.be:30901
+        accessKeySecret:
+          name: minio-credentials
+          key: accessKey
+        secretKeySecret:
+          name: minio-credentials
+          key: secretKey

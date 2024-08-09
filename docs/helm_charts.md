@@ -12,31 +12,46 @@ The exact configuration and prerequisites required for the DimSum platform are d
 ## Prerequisites
 
 Before you can use this Helm chart, ensure you meet the following prerequisites:
-* S3 Bucket must be deployed and a `secret` providing the credentials.
-* Target cluster with Kubernetes 1.23+ (with PV support)
+* Target cluster with Kubernetes 1.23+ and PV support is available
+* S3 Bucket must be deployed and a `secret` is created for providing the credentials.
 * Helm 3.8.0+ installed locally
 
 ## Installing the Helm Chart
 
-1. Clone locally the present GitHub repository, which contains the DimSum `charts/values.yaml` with some overridden values.
+1. Clone locally the present GitHub repository.
 
     ```bash
     git clone https://github.com/argoproj/argo-helm.git /charts
     ```
 
-2. Add the Helm chart repository:
+2. Create a custom configuration file
+
+The custom configuration file `custom-values.yaml` should specify the specific configuration for your deployment as described in section [Helm Configuration Details](#helm-configuration-details)
+
+   Example content:
+
+   ```yaml
+   artifactRepositoryRef:
+     artifact-repositories:
+       annotations:
+         workflows.argoproj.io/default-artifact-repository: default-artifact-repository
+       default-artifact-repository:
+         s3:
+           bucket: test
+           insecure: true
+           endpoint: l-k8s01-master.spb.spacebel.be:30901
+           accessKeySecret:
+             name: minio-credentials
+             key: accessKey
+           secretKeySecret:
+             name: minio-credentials
+             key: secretKey
+   ```
+
+3. Install the Helm chart with:
 
     ```bash
-    helm repo add argo https://argoproj.github.io/argo-helm
-    helm repo update
-    ```
-
-3. Edit the necessary parameters in [charts/values.yml](../charts/values.yml) (see further section)
-
-4. Install the official Argo Workflows Helm chart with:
-
-    ```bash
-    helm install [release-name] argo/argo-workflows --namespace [namespace] -f /charts/values.yaml 
+    helm install [release-name] ./charts/dimsum-argo-workflows --namespace [namespace] -f custom-values.yaml 
     ```
    Replace `[release-name]` with a name for your Helm release, and `[namespace]` with the Kubernetes namespace where you want to deploy.
 
@@ -47,9 +62,16 @@ To remove the deployed Helm chart:
 helm delete [release-name] --namespace [namespace]
 ```
 
-## Configuration and installation details
+## Helm Configuration Details
 
-This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed. 
+This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed.
+
+The following parameters are expected to be provided:
+* artifactRepositoryRef: the default artifact repository must be configured with the endpoint and credentials of the S3 storage of the environment
+* server.ingress: the external domain name must be configured as a Kuberntes Ingress
+
+Additional parameters are detailed below for advanced configuration but are not expected to be overridden in nominal scenarios.
+
 
 ### Artifact Repository Configuration
 
@@ -85,7 +107,28 @@ artifactRepositoryRef:
               key: secretKey
 ```
 
-### Service Account Parameters
+
+### Ingress Parameters
+
+```yaml
+server:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      # Add other necessary annotations here
+    hosts:
+      - argo.your-domain.com
+    paths:
+      - /
+    tls: 
+      - secretName: argo-tls
+        hosts:
+          - argo.your-domain.com
+```
+
+### :warning: Service Account Parameters 
+
 
 >IMPORTANT: These parameters should only be modified by experienced users for advanced configurations. 
 
@@ -109,29 +152,13 @@ controller:
       serviceAccountName: argo-workflow
 ```
 
-### Authentication Parameters
+### :warning: Authentication Parameters
+
+>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations.
 
 Authentication parameters define the authentication modes and settings for Argo Workflows. These parameters are specified in the values.yaml file.
 
-
-### Ingress Parameters
-
-```yaml
-server:
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      # Add other necessary annotations here
-    hosts:
-      - argo.your-domain.com
-    paths:
-      - /
-    tls: 
-      - secretName: argo-tls
-        hosts:
-          - argo.your-domain.com
-```
+> TBD section
 
 
 ## Parameters

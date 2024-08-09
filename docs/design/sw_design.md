@@ -1,11 +1,13 @@
 # Software Design Document for Argo-Workflow
 
 ### General
+
 This section provides a detailed look at the design aspects of each component used in the software. 
 
 ### Component Identifier
 
-- **Naming Convention**: Argo-Workflows
+- **Component Identifier**: Argo-Workflows
+- **System Logical Component** Workflow Engine: 
 
 Argo Workflows enables the chaining of container-based modules and workflows.
 

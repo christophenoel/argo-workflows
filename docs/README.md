@@ -2,7 +2,7 @@
 
 ## Overview
 
-Argo Workflows serves as the Workflow Engine for the Data Processing Environment (DPE) within the DimSum platform, developed in the context of ESA project OHDSA.
+**Argo Workflows** serves as the **Workflow Engine** of the Data Processing Environment (DPE) within the DimSum platform, developed in the context of ESA project OHDSA.
 
 The Workflow Engine implemented by Argo Workflows receives the execution requests from the Workflow Management System (WMTS). These workflows are implemented as a collection of Pluggable Acquisition and Processing Modules (PAPM).
 
