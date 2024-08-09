@@ -683,26 +683,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#verifying-the-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verifying the Installation
-    </span>
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#addition-configuration" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Addition configuration
+      Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Addition configuration">
+    <nav class="md-nav" aria-label="Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -711,11 +701,6 @@
       Label Kubernetes nodes
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -959,26 +944,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#verifying-the-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verifying the Installation
-    </span>
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#addition-configuration" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Addition configuration
+      Configuration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Addition configuration">
+    <nav class="md-nav" aria-label="Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -987,11 +962,6 @@
       Label Kubernetes nodes
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1038,17 +1008,22 @@
 <li>Helm</li>
 <li>Argo CLI</li>
 </ul>
-<p>NB: Argo CLI can be downloaded from here: https://github.com/argoproj/argo-workflows/releases/</p>
+<blockquote>
+<p>NOTE: Argo CLI can be downloaded from here: https://github.com/argoproj/argo-workflows/releases/</p>
+</blockquote>
 <h2 id="build-procedure">Build Procedure</h2>
 <p>NO Build process required.</p>
 <h2 id="deployment">Deployment</h2>
-<p>This project uses Helm for deployment on Kubernetes. Make sure Helm is installed and set up correctly then follow the instructions in <a href="../helm_charts/">Helm Charts Manual</a></p>
-<h3 id="verifying-the-installation">Verifying the Installation</h3>
+<p>This project uses Helm for deployment on Kubernetes. </p>
+<p>Make sure Helm is installed and set up correctly then follow the instructions in <a href="../helm_charts/">Helm Charts Manual</a></p>
 <p>Ensure the installation was successful, by submitting a workflow to Argo:</p>
 <div class="highlight"><pre><span></span><code>argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml --watch
 </code></pre></div>
-<h3 id="addition-configuration">Addition configuration</h3>
-<h4 id="label-kubernetes-nodes">Label Kubernetes nodes</h4>
+<h2 id="configuration">Configuration</h2>
+<h3 id="label-kubernetes-nodes">Label Kubernetes nodes</h3>
+<blockquote>
+<p>NOTE: TBD detail this section</p>
+</blockquote>
 <p>Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
 Here is an example of how to associate a label with a node:
 <div class="highlight"><pre><span></span><code>kubectl label nodes &lt;node-name&gt; accelerator=&lt;my-label&gt;

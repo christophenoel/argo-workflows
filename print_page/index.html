@@ -972,7 +972,7 @@
         </section>
         <section class="print-page" id="index"><h1 id="index-argo-workflow">Argo Workflow</h1>
 <h2 id="index-overview">Overview</h2>
-<p>Argo Workflows serves as the Workflow Engine for the Data Processing Environment (DPE) within the DimSum platform, developed in the context of ESA project OHDSA.</p>
+<p><strong>Argo Workflows</strong> serves as the <strong>Workflow Engine</strong> of the Data Processing Environment (DPE) within the DimSum platform, developed in the context of ESA project OHDSA.</p>
 <p>The Workflow Engine implemented by Argo Workflows receives the execution requests from the Workflow Management System (WMTS). These workflows are implemented as a collection of Pluggable Acquisition and Processing Modules (PAPM).</p>
 <div class="puml"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="153px" preserveAspectRatio="true" style="background: #ffffff" version="1.1" viewBox="0 0 1248 153" width="1248px" zoomAndPan="magnify"><defs/><g><g id="cluster_DataProcessingEnvironment"><path d="M417.94,6 L652.6129,6 A3.75,3.75 0 0 1 655.1129,8.5 L662.1129,28.2969 L1238.93,28.2969 A2.5,2.5 0 0 1 1241.43,30.7969 L1241.43,143.5 A2.5,2.5 0 0 1 1238.93,146 L417.94,146 A2.5,2.5 0 0 1 415.44,143.5 L415.44,8.5 A2.5,2.5 0 0 1 417.94,6 " fill="none" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="415.44" x2="662.1129" y1="28.2969" y2="28.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="233.6729" x="419.44" y="20.9951">Data Processing Environment</text></g><g id="elem_WFMS"><path d="M8.5,57.2 L70.5205,57.2 A3.75,3.75 0 0 1 73.0205,59.7 L80.0205,79.4969 L251.9355,79.4969 A2.5,2.5 0 0 1 254.4355,81.9969 L254.4355,110.2938 A2.5,2.5 0 0 1 251.9355,112.7938 L8.5,112.7938 A2.5,2.5 0 0 1 6,110.2938 L6,59.7 A2.5,2.5 0 0 1 8.5,57.2 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><line style="stroke:#181818;stroke-width:0.5;" x1="6" x2="80.0205" y1="79.4969" y2="79.4969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="49.0205" x="16" y="73.1951">WFMS</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="218.4355" x="16" y="99.492">Workflow Management System</text></g><g id="elem_WorkflowEngine"><rect fill="#F1F1F1" height="62.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="349.6406" x="431.44" y="53.7"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="761.0806" y="58.7"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="759.0806" y="60.7"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="759.0806" y="64.7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117.5371" x="446.44" y="86.6951">Workflow Engine</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="309.6406" x="446.44" y="102.992">[Container: Argo Workflow with Kubernetes]</text></g><g id="elem_ModuleRegistry"><rect fill="#F1F1F1" height="62.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="210.3584" x="1015.08" y="53.7"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="1205.4384" y="58.7"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="1203.4384" y="60.7"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="1203.4384" y="64.7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113.2988" x="1030.08" y="86.6951">Module Registry</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="170.3584" x="1030.08" y="102.992">[Container: Spring Boot]</text></g><g id="link_ModuleRegistry_WorkflowEngine"><path d="M1014.71,85 C947.62,85 864.86,85 787.31,85 " fill="none" id="ModuleRegistry-to-WorkflowEngine" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="781.31,85,790.31,89,786.31,85,790.31,81,781.31,85" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110.043" x="843.08" y="81.0669">registers module</text></g><g id="link_WFMS_WorkflowEngine"><path d="M254.84,85 C308.61,85 366.56,85 425.02,85 " fill="none" id="WFMS-to-WorkflowEngine" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="431.02,85,422.02,81,426.02,85,422.02,89,431.02,85" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113.7754" x="285.44" y="81.0669">submit workflows</text></g></g></svg></div>
 
@@ -1809,17 +1809,22 @@ You can find more information online on: <a href="https://argo-workflows.readthe
 <li>Helm</li>
 <li>Argo CLI</li>
 </ul>
-<p>NB: Argo CLI can be downloaded from here: https://github.com/argoproj/argo-workflows/releases/</p>
+<blockquote>
+<p>NOTE: Argo CLI can be downloaded from here: https://github.com/argoproj/argo-workflows/releases/</p>
+</blockquote>
 <h2 id="installation_manual-build-procedure">Build Procedure</h2>
 <p>NO Build process required.</p>
 <h2 id="installation_manual-deployment">Deployment</h2>
-<p>This project uses Helm for deployment on Kubernetes. Make sure Helm is installed and set up correctly then follow the instructions in <a href="#helm_charts">Helm Charts Manual</a></p>
-<h3 id="installation_manual-verifying-the-installation">Verifying the Installation</h3>
+<p>This project uses Helm for deployment on Kubernetes. </p>
+<p>Make sure Helm is installed and set up correctly then follow the instructions in <a href="#helm_charts">Helm Charts Manual</a></p>
 <p>Ensure the installation was successful, by submitting a workflow to Argo:</p>
 <div class="highlight"><pre><span></span><code>argo -n argo-helm submit --serviceaccount executor https://raw.githubusercontent.com/argoproj/argo-workflows/master/examples/hello-world.yaml --watch
 </code></pre></div>
-<h3 id="installation_manual-addition-configuration">Addition configuration</h3>
-<h4 id="installation_manual-label-kubernetes-nodes">Label Kubernetes nodes</h4>
+<h2 id="installation_manual-configuration">Configuration</h2>
+<h3 id="installation_manual-label-kubernetes-nodes">Label Kubernetes nodes</h3>
+<blockquote>
+<p>NOTE: TBD detail this section</p>
+</blockquote>
 <p>Labels associated with nodes are used by Argo Workflows and Kubernetes to choose on which node a pods must be scheduled.
 Here is an example of how to associate a label with a node:
 <div class="highlight"><pre><span></span><code>kubectl label nodes &lt;node-name&gt; accelerator=&lt;my-label&gt;
@@ -1837,28 +1842,42 @@ kubectl delete namespace argo-helm
 <p>The exact configuration and prerequisites required for the DimSum platform are detailed in the <a href="#installation_manual">installation manual</a>.</p>
 <h2 id="helm_charts-prerequisites">Prerequisites</h2>
 <p>Before you can use this Helm chart, ensure you meet the following prerequisites:
-* S3 Bucket must be deployed and a <code>secret</code> providing the credentials.
-* Target cluster with Kubernetes 1.23+ (with PV support)
+* Target cluster with Kubernetes 1.23+ and PV support is available
+* S3 Bucket must be deployed and a <code>secret</code> is created for providing the credentials.
 * Helm 3.8.0+ installed locally</p>
 <h2 id="helm_charts-installing-the-helm-chart">Installing the Helm Chart</h2>
 <ol>
 <li>
-<p>Clone locally the present GitHub repository, which contains the DimSum <code>charts/values.yaml</code> with some overridden values.</p>
+<p>Clone locally the present GitHub repository.</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/argoproj/argo-helm.git<span class="w"> </span>/charts
 </code></pre></div>
 </li>
 <li>
-<p>Add the Helm chart repository:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>argo<span class="w"> </span>https://argoproj.github.io/argo-helm
-helm<span class="w"> </span>repo<span class="w"> </span>update
+<p>Create a custom configuration file</p>
+</li>
+</ol>
+<p>The custom configuration file <code>custom-values.yaml</code> should specify the specific configuration for your deployment as described in section <a href="#helm_charts-helm-configuration-details">Helm Configuration Details</a></p>
+<p>Example content:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">artifactRepositoryRef</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">artifact-repositories</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">workflows.argoproj.io/default-artifact-repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default-artifact-repository</span>
+<span class="w">    </span><span class="nt">default-artifact-repository</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">s3</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">        </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">l-k8s01-master.spb.spacebel.be:30901</span>
+<span class="w">        </span><span class="nt">accessKeySecret</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-credentials</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">accessKey</span>
+<span class="w">        </span><span class="nt">secretKeySecret</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-credentials</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secretKey</span>
 </code></pre></div>
-</li>
+<ol>
 <li>
-<p>Edit the necessary parameters in <a href="../charts/values.yml">charts/values.yml</a> (see further section)</p>
-</li>
-<li>
-<p>Install the official Argo Workflows Helm chart with:</p>
-<p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>release-name<span class="o">]</span><span class="w"> </span>argo/argo-workflows<span class="w"> </span>--namespace<span class="w"> </span><span class="o">[</span>namespace<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>/charts/values.yaml<span class="w"> </span>
+<p>Install the Helm chart with:</p>
+<p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>release-name<span class="o">]</span><span class="w"> </span>./charts/dimsum-argo-workflows<span class="w"> </span>--namespace<span class="w"> </span><span class="o">[</span>namespace<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>custom-values.yaml<span class="w"> </span>
 </code></pre></div>
    Replace <code>[release-name]</code> with a name for your Helm release, and <code>[namespace]</code> with the Kubernetes namespace where you want to deploy.</p>
 </li>
@@ -1867,8 +1886,12 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <p>To remove the deployed Helm chart:
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>delete<span class="w"> </span><span class="o">[</span>release-name<span class="o">]</span><span class="w"> </span>--namespace<span class="w"> </span><span class="o">[</span>namespace<span class="o">]</span>
 </code></pre></div></p>
-<h2 id="helm_charts-configuration-and-installation-details">Configuration and installation details</h2>
-<p>This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed. </p>
+<h2 id="helm_charts-helm-configuration-details">Helm Configuration Details</h2>
+<p>This section details the parameters that need to be adapted for the environment on which Argo Workflows is deployed.</p>
+<p>The following parameters are expected to be provided:
+* artifactRepositoryRef: the default artifact repository must be configured with the endpoint and credentials of the S3 storage of the environment
+* server.ingress: the external domain name must be configured as a Kuberntes Ingress</p>
+<p>Additional parameters are detailed below for advanced configuration but are not expected to be overridden in nominal scenarios.</p>
 <h3 id="helm_charts-artifact-repository-configuration">Artifact Repository Configuration</h3>
 <p>To configure the artifact repository, you need to set up the <code>artifactRepositoryRef</code> in the <code>values.yaml</code> file. This configuration defines where Argo Workflows will store its artifacts. </p>
 <p>By default, the workflow uses the artifact repositories defined by the config map <code>artifact-repositories</code> (specifying one or more repositories). Within this ConfigMap, the  default repository must be designated using the annotation workflows.argoproj.io/default-artifact-repository. </p>
@@ -1895,7 +1918,23 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minio-credentials</span>
 <span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secretKey</span>
 </code></pre></div>
-<h3 id="helm_charts-service-account-parameters">Service Account Parameters</h3>
+<h3 id="helm_charts-ingress-parameters">Ingress Parameters</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">server</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">      </span><span class="c1"># Add other necessary annotations here</span>
+<span class="w">    </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo.your-domain.com</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">    </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo-tls</span>
+<span class="w">        </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo.your-domain.com</span>
+</code></pre></div>
+<h3 id="helm_charts-service-account-parameters"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> Service Account Parameters</h3>
 <blockquote>
 <p>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations. </p>
 </blockquote>
@@ -1915,24 +1954,14 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo-workflow</span>
 </code></pre></div>
-<h3 id="helm_charts-authentication-parameters">Authentication Parameters</h3>
+<h3 id="helm_charts-authentication-parameters"><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/26a0.svg" title=":warning:" /> Authentication Parameters</h3>
+<blockquote>
+<p>IMPORTANT: These parameters should only be modified by experienced users for advanced configurations.</p>
+</blockquote>
 <p>Authentication parameters define the authentication modes and settings for Argo Workflows. These parameters are specified in the values.yaml file.</p>
-<h3 id="helm_charts-ingress-parameters">Ingress Parameters</h3>
-<div class="highlight"><pre><span></span><code><span class="nt">server</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ingress</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="w">      </span><span class="c1"># Add other necessary annotations here</span>
-<span class="w">    </span><span class="nt">hosts</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo.your-domain.com</span>
-<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<span class="w">    </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo-tls</span>
-<span class="w">        </span><span class="nt">hosts</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argo.your-domain.com</span>
-</code></pre></div>
+<blockquote>
+<p>TBD section</p>
+</blockquote>
 <h2 id="helm_charts-parameters">Parameters</h2>
 <p>The present section provides the definition of the properties overridden in the yaml file <a href="../charts/values.yaml">../charts/values.yaml</a>.</p>
 <h3 id="helm_charts-artefacts-repository-parameters">Artefacts Repository Parameters</h3>
@@ -2044,7 +2073,8 @@ helm<span class="w"> </span>repo<span class="w"> </span>update
 <p>This section provides a detailed look at the design aspects of each component used in the software. </p>
 <h3 id="design-sw_design-component-identifier">Component Identifier</h3>
 <ul>
-<li><strong>Naming Convention</strong>: Argo-Workflows</li>
+<li><strong>Component Identifier</strong>: Argo-Workflows</li>
+<li><strong>System Logical Component</strong> Workflow Engine: </li>
 </ul>
 <p>Argo Workflows enables the chaining of container-based modules and workflows.</p>
 <h3 id="design-sw_design-type">Type</h3>
